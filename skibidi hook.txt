@@ -1,6 +1,6 @@
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/khen791/library-/refs/heads/main/khen%20intrro%20check%20fps.txt"))()
 library.rank = "developer"
-local Wm = library:Watermark("Khen cracked: " .. library:GetUsername() .. "")
+local Wm = library:Watermark("Khen: " .. library:GetUsername() .. "")
 local FpsWm = Wm:AddWatermark("fps: " .. library.fps)
 coroutine.wrap(function()
     while wait(.75) do
@@ -21,8 +21,8 @@ local Settings = {
     Rounded = false,
     Dim = false,
     
-    ItemColor = Color3.fromRGB(30, 30, 30),
-    BorderColor = Color3.fromRGB(45, 45, 45),
+    ItemColor = Color3.fromRGB(125, 187, 221),
+    BorderColor = Color3.fromRGB(	18, 238, 212),
     MinSize = Vector2.new(430, 280),
     MaxSize = Vector2.new(430, 280)
 }

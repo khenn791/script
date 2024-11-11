@@ -22,7 +22,7 @@ local Settings = {
     Dim = false,
     
     ItemColor = Color3.fromRGB(125, 187, 221),
-    BorderColor = Color3.fromRGB(	18, 238, 212),
+    BorderColor = Color3.fromRGB(16, 42, 220),
     MinSize = Vector2.new(430, 280),
     MaxSize = Vector2.new(430, 280)
 }

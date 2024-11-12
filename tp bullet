@@ -1,0 +1,235 @@
+if not Game:IsLoaded() then Game.Loaded:Wait() end
+
+--> Services | Variables <--
+local Workspace = Game:GetService("Workspace")
+local RunService = Game:GetService("RunService")
+local Players = Game:GetService("Players")
+local StarterGui = Game:GetService("StarterGui")
+local UserInputService = Game:GetService("UserInputService")
+
+--> LocalPlayer | Variables <--
+local player = Players.LocalPlayer
+local playerCharacter = player.Character or player.CharacterAdded:Wait()
+local playerHumanoidRootPart = playerCharacter:FindFirstChild("HumanoidRootPart") or playerCharacter:WaitForChild("HumanoidRootPart")
+local playerCamera = Workspace.CurrentCamera
+local playerBackPack = player:FindFirstChild("Backpack") or player:WaitForChild("Backpack")
+
+--> TargetedPlayer | Variables <--
+local TargetedPlayer = nil
+local TargetedPlayerCharacter = nil
+local TargetedPlayerHumanoidRootPart = nil
+local TargetedPlayerAimPart = nil
+
+--> Tp Bullet | Global Table <--
+getgenv().TpBullet = {
+    Settings = {
+        Enabled = false,
+        AimPart = "HumanoidRootPart",
+        Prediction = {
+            Enabled = true,
+            Horizontal = 0.147591,
+            Vertical = 0.147591
+        },
+        
+        Circle = {
+            Visible = true,
+            Color = Color3.fromRGB(255, 255, 255),
+            Transparency = 1,
+            Thickness = 2,
+            NumSides = 100000,
+            Radius = 125,
+            Filled = false, 
+        },
+    }
+}
+
+--> Tool | Instance <--
+local Tool = Instance.new("Tool")
+Tool.Parent = playerBackPack
+Tool.Name = "Tp Bullet"
+Tool.CanBeDropped = false
+Tool.Enabled = true
+Tool.ManualActivationOnly = false
+Tool.RequiresHandle = false
+Tool.ToolTip = "Tap on someone"
+Tool.TextureId = ""
+Tool.Parent = game.Players.LocalPlayer.Backpack
+
+local player = game.Players.LocalPlayer
+
+local function connectCharacterAdded()
+    player.CharacterAdded:Connect(onCharacterAdded)
+end
+
+connectCharacterAdded()
+
+player.CharacterRemoving:Connect(function()
+    Tool.Parent = game.Players.LocalPlayer.Backpack
+end)
+
+--> FOV Circle | Drawing <--
+local FOVCircle = Drawing.new("Circle")
+FOVCircle.Visible = TpBullet.Settings.Circle.Visible
+FOVCircle.Color = TpBullet.Settings.Circle.Color
+FOVCircle.Transparency = TpBullet.Settings.Circle.Transparency
+FOVCircle.Thickness = TpBullet.Settings.Circle.Thickness
+FOVCircle.NumSides = TpBullet.Settings.Circle.NumSides
+FOVCircle.Radius = TpBullet.Settings.Circle.Radius
+FOVCircle.Filled = TpBullet.Settings.Circle.Filled
+
+--> Function To Make Roblox Basic Notifications <--
+local function Notification(Title, Description, Icon, Duration, Button1, Button2, Callback)
+    StarterGui:SetCore("SendNotification", {
+        Title = Title or "Basic Notification",
+        Text = Description or "Hello World!",
+        Icon = Icon or "",
+        Duration = Duration or 5,
+        Button1 = Button1 or "",
+        Button2 = Button2 or "",
+        Callback = Callback or function() return end
+    })
+end
+
+--> Function To Change Circle Position On Screen Touch <--
+local function TouchingScreen(Touch, GameProcessedEvent)
+    if GameProcessedEvent then return end
+    local TouchedPlace = Touch.Position - Touch.Delta
+    
+    FOVCircle.Position = Vector2.new(TouchedPlace.X, TouchedPlace.Y + 25)
+end
+
+--> Applies Function To Change Circle Position On Screen Touch <--
+UserInputService.TouchStarted:Connect(TouchingScreen)
+UserInputService.TouchMoved:Connect(TouchingScreen)
+UserInputService.TouchEnded:Connect(TouchingScreen)
+
+local function RefreshGripPos(Tool)
+    Tool.Parent = playerBackPack
+    Tool.Parent = playerCharacter
+end
+
+--> Function To Teleport The Bullet <--
+local function TpBulletFunction(Character)
+    local Connection = nil
+    local Tool = nil
+    local OldPos = nil
+    local SetPos = nil
+    local PointToObjectSpacePosition = nil
+    
+    Character.ChildAdded:Connect(function(Child)
+        if TpBullet.Settings.Enabled and Child:IsA("Tool") then
+            Tool = Child
+            OldPos = Tool.GripPos
+            
+            Connection = Tool.Activated:Connect(function()
+                if TargetedPlayer and TargetedPlayerCharacter and TargetedPlayerHumanoidRootPart and Tool and TpBullet.Settings.Enabled then
+                    PointToObjectSpacePosition = playerHumanoidRootPart.CFrame:PointToObjectSpace(TargetedPlayerHumanoidRootPart.CFrame.Position)
+                    SetPos = Vector3.new(-PointToObjectSpacePosition.Z, 0, PointToObjectSpacePosition.X)
+                    
+                    Tool.GripPos = SetPos
+                    RefreshGripPos(Tool)
+                    task.wait(0.3)
+                    Tool.GripPos = OldPos
+                    RefreshGripPos(Tool)
+                end
+            end)
+        end
+    end)
+    
+    Character.ChildRemoved:Connect(function(Child)
+        if Child:IsA("Tool") then
+            Tool = nil
+            if Connection then
+                Connection:Disconnect()
+                Connection = nil
+            end
+        end
+    end)
+end
+
+--> Activate Teleport Bullet Function <--
+pcall(TpBulletFunction, playerCharacter)
+player.CharacterAdded:Connect(TpBulletFunction)
+
+--> Function To Get The Closest Player <--
+local function GetClosestPlayer()
+    local ClosestPlayer = nil
+    local ShortestDistance = math.huge
+
+    for _, Player in pairs(Players:GetPlayers()) do
+        if Player ~= player and Player.Character then
+            for _, PlayerPart in ipairs(Player.Character:GetChildren()) do
+                if PlayerPart:IsA("BasePart") and PlayerPart.Transparency ~= 1 then
+                    local PlayerScreenPosition = playerCamera:WorldToViewportPoint(PlayerPart.Position)                   
+                    local PlayerDirection = (PlayerPart.Position - playerCamera.CFrame.Position).unit
+                    local DotProduct = playerCamera.CFrame.LookVector:Dot(PlayerDirection)
+                    
+                    if DotProduct > 0 then
+                        local MagnitudeDistance = (Vector2.new(PlayerScreenPosition.X, PlayerScreenPosition.Y) - FOVCircle.Position).Magnitude
+                        
+                        if MagnitudeDistance < ShortestDistance and MagnitudeDistance <= FOVCircle.Radius then
+                            ClosestPlayer = Player
+                            ShortestDistance = MagnitudeDistance
+                        end
+                    end
+                end
+            end
+        end
+    end
+    return ClosestPlayer
+end
+
+Players.PlayerRemoving:Connect(function(Player)
+    if Player == TargetedPlayer then
+        TargetedPlayer = nil
+        TargetedPlayerCharacter = nil
+        TargetedPlayerHumanoidRootPart = nil
+        TargetedPlayerAimPart = nil
+    end
+end)
+
+Tool.Activated:Connect(function()
+    TpBullet.Settings.Enabled = not TpBullet.Settings.Enabled
+    
+    if TpBullet.Settings.Enabled then
+        TargetedPlayer = GetClosestPlayer()
+        if TargetedPlayer then
+            TargetedPlayerCharacter = TargetedPlayer.Character or TargetedPlayer.CharacterAdded:Wait()
+            if TargetedPlayerCharacter then
+                TargetedPlayerHumanoidRootPart = TargetedPlayerCharacter:FindFirstChild("HumanoidRootPart") or TargetedPlayerCharacter:WaitForChild("HumanoidRootPart")
+                TargetedPlayerAimPart = TargetedPlayerCharacter:FindFirstChild(TpBullet.Settings.AimPart) or TargetedPlayerCharacter:WaitForChild(TpBullet.Settings.AimPart)
+            end
+            Notification("Found Target", "Target: " .. TargetedPlayer.DisplayName .. ".", nil, 3, nil, nil, nil)
+        elseif TargetedPlayer == nil then
+            Notification("No Target Found", "No Players Found Within FOV Circle.", nil, 3, nil, nil, nil)
+        end
+    elseif not TpBullet.Settings.Enabled then
+        if TargetedPlayer then
+            Notification("Spared Target", "Spared: " .. TargetedPlayer.DisplayName .. ".", nil, 3, nil, nil, nil)
+        end
+        TargetedPlayer = nil
+        TargetedPlayerCharacter = nil
+        TargetedPlayerHumanoidRootPart = nil
+        TargetedPlayerAimPart = nil
+    end
+end)
+
+-- too lazy to make my own lol 
+
+local RawMetaTable = getrawmetatable(game)
+local OldNameCall = RawMetaTable.__namecall
+
+setreadonly(RawMetaTable, false)
+
+RawMetaTable.__namecall = newcclosure(function(self, ...)
+    local Arguments = {...}
+    local CallMethod = getnamecallmethod()
+    
+    if TpBullet.Settings.Enabled and TargetedPlayer and TargetedPlayerCharacter and TargetedPlayerAimPart and string.lower(self.Name) == "mainevent" and CallMethod == "FireServer" then
+        if (Arguments[1] == "UpdateMousePos" or Arguments[1] == "MOUSE") then
+            Arguments[2] = TargetedPlayerAimPart.Position + (Vector3.new(TargetedPlayerAimPart.Velocity.X * TpBullet.Settings.Prediction.Horizontal, TargetedPlayerAimPart.Velocity.Y * TpBullet.Settings.Prediction.Vertical, 0))
+        end
+        return OldNameCall(self, unpack(Arguments))
+    end
+    return OldNameCall(self, ...)
+end)

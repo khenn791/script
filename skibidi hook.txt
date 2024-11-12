@@ -1,6 +1,6 @@
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/khen791/library-/refs/heads/main/khen%20intrro%20check%20fps.txt"))()
 library.rank = "developer"
-local Wm = library:Watermark("khen user: " .. library:GetUsername() .. "")
+local Wm = library:Watermark("khen user:" .. library:GetUsername() .. "")
 local FpsWm = Wm:AddWatermark("fps: " .. library.fps)
 coroutine.wrap(function()
     while wait(.75) do

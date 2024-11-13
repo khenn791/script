@@ -2884,7 +2884,7 @@ local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 
 function SendNotification(text)
     Notification:Notify(
-        {Title = "SkibidiHook.Lua", Description = "Raged For A Dollar - "..text},
+        {Title = "IM KHEN AND FROM VIETNAM!", Description = "Raged For A Dollar - "..text},
         {OutlineColor = Color3.fromRGB(143, 48, 167),Time = 3, Type = "image"},
         {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(143, 48, 167)}
     )

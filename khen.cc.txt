@@ -2884,7 +2884,7 @@ local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 
 function SendNotification(text)
     Notification:Notify(
-        {Title = "IM KHEN AND FROM VIETNAM!", Description = "Raged For A Dollar - "..text},
+        {Title = "khen.cc", Description = "Lock - "..text},
         {OutlineColor = Color3.fromRGB(143, 48, 167),Time = 3, Type = "image"},
         {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(143, 48, 167)}
     )
@@ -3547,7 +3547,7 @@ task.spawn(MenuNameUpdate)
 
 
 Menu.Watermark()
-Menu.Watermark:Update('Skibidi<font color="#' .. tostring(Menu.Accent:ToHex()) .. '">.hook</font>') -- please fix this and we can add a variable for a color.
+Menu.Watermark:Update('IM FROM <font color="#' .. tostring(Menu.Accent:ToHex()) .. '">VIETNAM</font>') -- please fix this and we can add a variable for a color.
 
   --\\ Setting Stuff Function
   Menu.Watermark:SetVisible(true)

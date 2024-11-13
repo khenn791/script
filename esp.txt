@@ -1,0 +1,571 @@
+local Esp = {}
+local ThreeDrawingLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Blissful4992/ESPs/main/3D%20Drawing%20Api.lua"))()
+local RunService = game:GetService("RunService")
+local Client = game:GetService("Players").LocalPlayer
+
+
+function Esp:Esp(v)
+    local bones = {
+        {"Head", "UpperTorso"},
+        {"UpperTorso", "RightUpperArm"},
+        {"RightUpperArm", "RightLowerArm"},
+        {"RightLowerArm", "RightHand"},
+        {"UpperTorso", "LeftUpperArm"},
+        {"LeftUpperArm", "LeftLowerArm"},
+        {"LeftLowerArm", "LeftHand"},
+        {"UpperTorso", "LowerTorso"},
+        {"LowerTorso", "LeftUpperLeg"},
+        {"LeftUpperLeg", "LeftLowerLeg"},
+        {"LeftLowerLeg", "LeftFoot"},
+        {"LowerTorso", "RightUpperLeg"},
+        {"RightUpperLeg", "RightLowerLeg"},
+        {"RightLowerLeg", "RightFoot"}
+    }
+
+    function lerp(a, b, t)
+        return a + (b - a) * t
+    end
+
+    local function fade(drawObject)
+        local currentAlpha = drawObject.Transparency
+        local lerpAlpha = taffy_esp.misc.fadespeed * 0.05
+
+        if taffy_esp.misc.fade then
+            local oscillation = (math.sin(tick() * taffy_esp.misc.fadespeed) + 1) / 2
+            drawObject.Transparency = lerp(currentAlpha, oscillation, lerpAlpha)
+        else
+            drawObject.Transparency = 1
+        end
+    end
+    
+    local function fadeFill(drawObject)
+        local currentAlpha = drawObject.Transparency
+        local lerpAlpha = taffy_esp.misc.fadespeed * 0.05
+    
+        if taffy_esp.misc.fade then
+            local oscillation = (math.sin(tick() * taffy_esp.misc.fadespeed) + 1) / 2
+            local newAlpha = lerp(currentAlpha, oscillation, lerpAlpha)
+            drawObject.Transparency = math.min(newAlpha, 0.3)
+        else
+            drawObject.Transparency = 0.3
+        end
+    end
+    
+    local BLOCKOUTLINE = nil
+    local BOXPLAYER = nil
+    local FILLEDBOXPLAYER = nil
+    local HealthBarBackground = nil
+    local HealthBarITSELF = nil
+    local Cube = nil
+    local HealthText = nil
+    local Tracer = nil
+    local Name = nil
+    local toolshow = nil
+    local SkeletonLines = {}
+    
+    RunService.RenderStepped:Connect(function()
+        if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= Client and v.Character.Humanoid.Health > 0 and (not taffy_esp.misc.teamcheck or v.TeamColor == Client.TeamColor) and v.Character:FindFirstChild("Head") ~= nil and taffy_esp.enabled then
+            local Vector, onScreen = game:GetService("Workspace").CurrentCamera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+            
+            if onScreen then
+                local RootPart = v.Character.HumanoidRootPart
+                local Head = v.Character.Head
+                local RootPosition, RootVis = game:GetService("Workspace").CurrentCamera:worldToViewportPoint(RootPart.Position)
+                local HeadPosition = game:GetService("Workspace").CurrentCamera:worldToViewportPoint(Head.Position + Vector3.new(0, 1.3, 0))
+                local LegPosition = game:GetService("Workspace").CurrentCamera:worldToViewportPoint(RootPart.Position - Vector3.new(0, 3.6, 0))
+
+                if not taffy_esp.misc.target or v == Target then
+                    if taffy_esp.box.boxes and taffy_esp.enabled then
+                        if taffy_esp.box.boxtype == "2D" then
+                            local height = HeadPosition.Y - LegPosition.Y
+                            local yOffset = 0
+                            local centerHeight = LegPosition.Y + height / 2
+                            local boxSize = Vector2.new(2700 / RootPosition.Z, height)
+                            local boxPosition = Vector2.new(RootPosition.X - boxSize.X / 2, centerHeight - boxSize.Y / 2 + yOffset)
+                    
+                            
+                            if not BLOCKOUTLINE then
+                                BLOCKOUTLINE = Drawing.new("Square")
+                                BLOCKOUTLINE.Visible = false
+                                BLOCKOUTLINE.Color = Color3.new(0, 0, 0)
+                                BLOCKOUTLINE.Thickness = 3
+                                BLOCKOUTLINE.Transparency = 1
+                                BLOCKOUTLINE.Filled = false
+                            end
+                    
+                            if BLOCKOUTLINE then
+                                BLOCKOUTLINE.Size = boxSize
+                                BLOCKOUTLINE.Position = boxPosition
+                                BLOCKOUTLINE.Visible = taffy_esp.box.outline
+                                BLOCKOUTLINE.Color = taffy_esp.box.color2
+                            end
+                    
+                            if not BOXPLAYER then
+                                BOXPLAYER = Drawing.new("Square")
+                                BOXPLAYER.Visible = false
+                                BOXPLAYER.Color = taffy_esp.box.color1
+                                BOXPLAYER.Thickness = 1
+                                BOXPLAYER.Transparency = 1
+                                BOXPLAYER.Filled = false
+                            end
+                    
+                            if BOXPLAYER then
+                                BOXPLAYER.Size = boxSize
+                                BOXPLAYER.Position = boxPosition
+                                BOXPLAYER.Visible = taffy_esp.box.boxes 
+                                BOXPLAYER.Color = taffy_esp.box.color1
+                            end
+                    
+                            if Cube then
+                                Cube:Remove()
+                                Cube = nil
+                            end
+                            if taffy_esp.box.filled then
+                                if not FILLEDBOXPLAYER then
+                                    FILLEDBOXPLAYER = Drawing.new("Square")
+                                    FILLEDBOXPLAYER.Visible = false
+                                    FILLEDBOXPLAYER.Color = taffy_esp.box.filledColor
+                                    FILLEDBOXPLAYER.Filled = true
+                                    FILLEDBOXPLAYER.Transparency = 0.3
+                                end 
+                    
+                                if FILLEDBOXPLAYER then
+                                    FILLEDBOXPLAYER.Size = boxSize
+                                    FILLEDBOXPLAYER.Position = boxPosition
+                                    FILLEDBOXPLAYER.Visible = true
+                                    FILLEDBOXPLAYER.Color = taffy_esp.box.filledColor
+                                end
+                            else
+                                if FILLEDBOXPLAYER then
+                                    FILLEDBOXPLAYER:Remove()
+                                    FILLEDBOXPLAYER = nil
+                                end
+                            end
+                        elseif taffy_esp.box.boxtype == "3D" then
+                            if BLOCKOUTLINE then
+                                BLOCKOUTLINE:Remove()
+                                BLOCKOUTLINE = nil
+                            end 
+                    
+                            if BOXPLAYER then
+                                BOXPLAYER:Remove()
+                                BOXPLAYER = nil
+                            end
+                            if FILLEDBOXPLAYER then
+                                FILLEDBOXPLAYER:Remove()
+                                FILLEDBOXPLAYER = nil
+                            end
+                            if not Cube then
+                                Cube = ThreeDrawingLibrary:New3DCube()
+                                Cube.Visible = false
+                                Cube.ZIndex = 3
+                                Cube.Transparency = 1
+                                Cube.Color = Color3.fromRGB(255, 255, 255)
+                                Cube.Thickness = 1
+                                Cube.Filled = false
+                            end
+                    
+                            if Cube then
+                                Cube.Color = taffy_esp.box.color1
+                                Cube.Size = Vector3.new(1.5, 3, 1.5)
+                                Cube.Position = Vector3.new(v.Character.HumanoidRootPart.Position.X, v.Character.HumanoidRootPart.Position.Y, v.Character.HumanoidRootPart.Position.Z)
+                                Cube.Visible = true
+                            end
+                        end
+                    else
+                        if BLOCKOUTLINE then
+                            BLOCKOUTLINE:Remove()
+                            BLOCKOUTLINE = nil
+                        end
+                        if BOXPLAYER then
+                            BOXPLAYER:Remove()
+                            BOXPLAYER = nil
+                        end
+                    
+                        if FILLEDBOXPLAYER then
+                            FILLEDBOXPLAYER:Remove()
+                            FILLEDBOXPLAYER = nil
+                        end
+                    
+                        if Cube then
+                            Cube:Remove()
+                            Cube = nil
+                        end
+                    end
+                    
+                    if taffy_esp.tracer.enabled and taffy_esp.enabled then
+                        if not Tracer then
+                            Tracer = Drawing.new("Line")
+                            Tracer.Visible = false
+                            Tracer.Color = Color3.new(1, 1, 1)
+                            Tracer.Thickness = 1
+                            Tracer.Transparency = 1
+                        end
+
+                        if taffy_esp.tracer.unlocktracers and Tracer then
+                            Tracer.From = Vector2.new(Client:GetMouse().X, Client:GetMouse().Y + 36)
+                        else
+                            Tracer.From = Vector2.new(game:GetService("Workspace").CurrentCamera.ViewportSize.X / 2, game:GetService("Workspace").CurrentCamera.ViewportSize.Y / 1)
+                        end
+
+                        if Tracer then
+                            Tracer.To = Vector2.new(Vector.X, Vector.Y)
+                            Tracer.Visible = true
+                        end
+                    else
+                        if Tracer then
+                            Tracer:Remove()
+                            Tracer = nil
+                        end
+                    end
+
+                    if taffy_esp.Skeletons.Enabled and taffy_esp.enabled then
+                        if #SkeletonLines == 0 then
+                            for _, bonePair in ipairs(bones) do
+                                local parentBone, childBone = bonePair[1], bonePair[2]
+                                local skeletonLine = Drawing.new("Line")
+                                skeletonLine.Color = taffy_esp.Skeletons.Color
+                                skeletonLine.Thickness = 1
+                                skeletonLine.Transparency = 1
+                                SkeletonLines[#SkeletonLines + 1] = {skeletonLine, parentBone, childBone}
+                            end
+                        end
+                    
+                        for _, lineData in ipairs(SkeletonLines) do
+                            local skeletonLine = lineData[1]
+                            local parentBone, childBone = lineData[2], lineData[3]
+                    
+                            if v.Character and v.Character:FindFirstChild(parentBone) and v.Character:FindFirstChild(childBone) then
+                                local parentPosition, parentOnScreen = game:GetService("Workspace").CurrentCamera:worldToViewportPoint(v.Character[parentBone].Position)
+                                local childPosition, childOnScreen = game:GetService("Workspace").CurrentCamera:worldToViewportPoint(v.Character[childBone].Position)
+                    
+                                if parentOnScreen and childOnScreen then
+                                    skeletonLine.From = Vector2.new(parentPosition.X, parentPosition.Y)
+                                    skeletonLine.To = Vector2.new(childPosition.X, childPosition.Y)
+                                    skeletonLine.Color = taffy_esp.Skeletons.Color
+                                    skeletonLine.Visible = true
+                                else
+                                    skeletonLine.Visible = false
+                                end
+                            else
+                                skeletonLine.Visible = false
+                            end
+                        end
+                    else
+                        for _, lineData in ipairs(SkeletonLines) do
+                            local skeletonLine = lineData[1]
+                            if skeletonLine then
+                                skeletonLine.Visible = false
+                            end
+                        end
+                    end
+                    
+                    if taffy_esp.box.healthbar and taffy_esp.enabled then
+                        if not HealthBarBackground then
+                            HealthBarBackground = Drawing.new("Square")
+                            HealthBarBackground.Thickness = 1
+                            HealthBarBackground.Filled = true
+                            HealthBarBackground.Color = Color3.new(0, 0, 0)
+                            HealthBarBackground.Transparency = 0.5
+                            HealthBarBackground.Visible = false
+                        end
+                    
+                        if not HealthBarITSELF then
+                            HealthBarITSELF = Drawing.new("Line")
+                            HealthBarITSELF.Thickness = 2
+                            HealthBarITSELF.Color = taffy_esp.box.healthbarcolor
+                            HealthBarITSELF.Transparency = 1
+                            HealthBarITSELF.Visible = false
+                        end
+                    
+                        if not HealthText and taffy_esp.box.healthtext then
+                            HealthText = Drawing.new("Text")
+                            HealthText.Text = ""
+                            HealthText.Size = 15
+                            HealthText.Color = Color3.new(1, 1, 1)
+                            HealthText.Outline = true
+                            HealthText.Center = true
+                            HealthText.Visible = true
+                        end
+                    
+                        local height = HeadPosition.Y - LegPosition.Y
+                        local centerHeight = LegPosition.Y + height / 2
+                        local yOffset = 0
+                        local boxSize = Vector2.new(2700 / RootPosition.Z, height)
+                        local boxPosition = Vector2.new(RootPosition.X - boxSize.X / 2, centerHeight - boxSize.Y / 2 + yOffset)
+                        local healthPercentage = math.clamp(v.Character.Humanoid.Health / 100, 0, 1)
+                        local healthBarSize = Vector2.new(4, height * healthPercentage)
+                        local healthBarPosition = Vector2.new(boxPosition.X - 5, boxPosition.Y + (1 / healthBarSize.Y))
+                        HealthBarBackground.Size = Vector2.new(healthBarSize.X, height)
+                        HealthBarBackground.Position = Vector2.new(healthBarPosition.X, boxPosition.Y)
+                        HealthBarBackground.Visible = true
+                        
+                        HealthBarITSELF.From = Vector2.new(healthBarPosition.X + 1, healthBarPosition.Y + 1)
+                        HealthBarITSELF.To = Vector2.new(healthBarPosition.X + 1, healthBarPosition.Y + 1 + healthBarSize.Y - 2)
+                        HealthBarITSELF.Visible = true
+                        if taffy_esp.box.healthtext then
+                            local healthTextPosition = Vector2.new(healthBarPosition.X - 18, healthBarPosition.Y + 1 + healthBarSize.Y - 4)
+                            HealthText.Position = healthTextPosition
+                            HealthText.Text = math.floor(v.Character.Humanoid.Health) .. "%"
+                            HealthText.Color = taffy_esp.box.healthtextcolor
+                            HealthText.Visible = true
+                        else
+                            if HealthText then
+                                HealthText:Remove()
+                                HealthText = nil
+                            end
+                        end
+                    else
+                        if HealthBarBackground then
+                            HealthBarBackground:Remove()
+                            HealthBarBackground = nil
+                        end
+                    
+                        if HealthBarITSELF then
+                            HealthBarITSELF:Remove()
+                            HealthBarITSELF = nil
+                        end
+                    
+                        if HealthText then
+                            HealthText:Remove()
+                            HealthText = nil
+                        end
+                    end
+                    
+                    if taffy_esp.Toolsshow.enable and taffy_esp.enabled then
+                        if not toolshow then
+                            toolshow = Drawing.new("Text")
+                            toolshow.Transparency = 1
+                            toolshow.Visible = false
+                            toolshow.Color = taffy_esp.Toolsshow.color
+                            toolshow.Size = 16
+                            toolshow.Center = true
+                            toolshow.Outline = taffy_esp.Toolsshow.outline
+                            toolshow.Font = 2
+                        end
+            
+                        if toolshow then
+                            local Equipped = v.Character:FindFirstChildOfClass("Tool") and v.Character:FindFirstChildOfClass("Tool").Name or "None"
+                            toolshow.Text = Equipped
+                            toolshow.Position = Vector2.new((v.Character.HumanoidRootPart.Size.X / 2) + LegPosition.X, LegPosition.Y)
+                            toolshow.Color = taffy_esp.Toolsshow.color
+                            toolshow.Outline = taffy_esp.Toolsshow.outline
+                            toolshow.Font = 3
+                            toolshow.Size = 16
+                            toolshow.Visible = true
+                        end
+                    else
+                        if toolshow then
+                            toolshow:Remove()
+                            toolshow = nil
+                        end
+                    end
+            
+                    if taffy_esp.name.enabled and taffy_esp.enabled then
+                        if not Name then
+                            Name = Drawing.new("Text")
+                            Name.Transparency = 1
+                            Name.Visible = false
+                            Name.Color = taffy_esp.name.color
+                            Name.Size = 16
+                            Name.Center = true
+                            Name.Outline = false
+                            Name.Font = 2
+                        end
+                        if Name then
+                            Name.Text = tostring(v.Character.Humanoid.DisplayName)
+                            Name.Position = Vector2.new((v.Character.HumanoidRootPart.Size.X / 2) + HeadPosition.X, HeadPosition.Y - 19)
+                            Name.Visible = true
+                            Name.Size = 16
+                            Name.Outline = taffy_esp.name.outline
+                        end
+                    else
+                        if Name then
+                            Name:Remove()
+                            Name = nil
+                        end
+                    end
+
+                    if BLOCKOUTLINE then
+                        fade(BLOCKOUTLINE)
+                    end
+                    if BOXPLAYER then
+                        fade(BOXPLAYER)
+                    end
+                    if HealthText then
+                        fade(HealthText)
+                    end
+                    if FILLEDBOXPLAYER then
+                        fadeFill(FILLEDBOXPLAYER)
+                    end
+                    if HealthBarBackground then
+                        fade(HealthBarBackground)
+                    end
+                    if HealthBarITSELF then
+                        fade(HealthBarITSELF)
+                    end
+                    if Tracer then
+                        fade(Tracer)
+                    end 
+                    if Name then
+                        fade(Name)
+                    end
+                    if toolshow then
+                        fade(toolshow)
+                    end
+                    if Cube then
+                        fade(Cube)
+                    end
+                    for _, lineData in ipairs(SkeletonLines) do
+                        if lineData[1] then
+                            fade(lineData[1])
+                        end 
+                    end
+                else
+                    if BLOCKOUTLINE then
+                        BLOCKOUTLINE:Remove()
+                        BLOCKOUTLINE = nil
+                    end
+                    if BOXPLAYER then
+                        BOXPLAYER:Remove()
+                        BOXPLAYER = nil
+                    end
+                    if FILLEDBOXPLAYER then
+                        FILLEDBOXPLAYER:Remove()
+                        FILLEDBOXPLAYER = nil
+                    end
+                    if toolshow then
+                        toolshow:Remove()
+                        toolshow = nil
+                    end
+                    if HealthBarITSELF then
+                        HealthBarITSELF:Remove()
+                        HealthBarITSELF = nil
+                    end
+                    if HealthBarBackground then
+                        HealthBarBackground:Remove()
+                        HealthBarBackground = nil
+                    end
+                    if Tracer then
+                        Tracer:Remove()
+                        Tracer = nil
+                    end
+                    if Name then
+                        Name:Remove()
+                        Name = nil
+                    end
+                    if Cube then
+                        Cube:Remove()
+                        Cube = nil
+                    end
+                    if HealthText then
+                        HealthText:Remove()
+                        HealthText = nil
+                    end
+                    for _, lineData in ipairs(SkeletonLines) do
+                        if lineData[1] then
+                            lineData[1]:Remove()
+                            SkeletonLines = {}
+                        end
+                    end
+                end
+            else
+                if toolshow then
+                    toolshow:Remove()
+                    toolshow = nil
+                end
+                if BLOCKOUTLINE then
+                    BLOCKOUTLINE:Remove()
+                    BLOCKOUTLINE = nil
+                end
+                if HealthText then
+                    HealthText:Remove()
+                    HealthText = nil
+                end
+                if BOXPLAYER then
+                    BOXPLAYER:Remove()
+                    BOXPLAYER = nil
+                end
+                if FILLEDBOXPLAYER then
+                    FILLEDBOXPLAYER:Remove()
+                    FILLEDBOXPLAYER = nil
+                end
+                if HealthBarITSELF then
+                    HealthBarITSELF:Remove()
+                    HealthBarITSELF = nil
+                end
+                if HealthBarBackground then
+                    HealthBarBackground:Remove()
+                    HealthBarBackground = nil
+                end
+                if Tracer then
+                    Tracer:Remove()
+                    Tracer = nil
+                end
+                if Name then
+                    Name:Remove()
+                    Name = nil
+                end
+                if Cube then
+                    Cube:Remove()
+                    Cube = nil
+                end
+                for _, lineData in ipairs(SkeletonLines) do
+                    if lineData[1] then
+                        lineData[1]:Remove()
+                        SkeletonLines = {}
+                    end
+                end
+            end
+        else
+            if toolshow then
+                toolshow:Remove()
+                toolshow = nil
+            end
+            if BLOCKOUTLINE then
+                BLOCKOUTLINE:Remove()
+                BLOCKOUTLINE = nil
+            end
+            if BOXPLAYER then
+                BOXPLAYER:Remove()
+                BOXPLAYER = nil
+            end
+            if FILLEDBOXPLAYER then
+                FILLEDBOXPLAYER:Remove()
+                FILLEDBOXPLAYER = nil
+            end
+            if HealthText then
+                HealthText:Remove()
+                HealthText = nil
+            end
+            if HealthBarITSELF then
+                HealthBarITSELF:Remove()
+                HealthBarITSELF = nil
+            end
+            if HealthBarBackground then
+                HealthBarBackground:Remove()
+                HealthBarBackground = nil
+            end
+            if Tracer then
+                Tracer:Remove()
+                Tracer = nil
+            end
+            if Name then
+                Name:Remove()
+                Name = nil
+            end
+            if Cube then
+                Cube:Remove()
+                Cube = nil
+            end
+            for _, lineData in ipairs(SkeletonLines) do
+                if lineData[1] then
+                    lineData[1]:Remove()
+                    SkeletonLines = {}
+                end
+            end
+        end
+    end)
+end
+
+return Esp

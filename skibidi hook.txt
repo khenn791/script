@@ -10,7 +10,7 @@ end)()
 library:Introduction()
 wait(0)
 
-setfpscap(120)
+setfpscap(25)
 
 
 

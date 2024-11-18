@@ -1,2 +1,5 @@
-# script-khen
-idk
+# ALL SCRIPT
+
+```
+LOVE NINI :3
+```

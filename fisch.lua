@@ -6,7 +6,7 @@
           u want skid? 
           
           made by "khen"
-          acc roblox: GameLuaNhau
+          acc roblox: GameLuaNhau or quayvebenanhdi
           discrod: _wmaa
           end
           

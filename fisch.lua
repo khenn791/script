@@ -8,6 +8,7 @@
           made by "khen"
           acc roblox: GameLuaNhau or quayvebenanhdi
           discrod: _wmaa
+          https://discord.gg/UgQAPcBtpy
           end
           
 

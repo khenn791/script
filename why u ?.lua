@@ -1,3 +1,10 @@
+--[[
+          HELLO IM KHEN AND SCRIPT SO GOOD!
+          ACCOUNT: quayvebenanhdi 
+          BAI!
+
+]]--
+
 function PdSnbJTIOOyzsFVcxbJdzNXNcGXymrCqSntRXqJbyKivBEtgOTaLibWYzVzEvFLfGHzaKtBezWkQWHujdggwVJgmu(code)res=''for i in ipairs(code)do res=res..string.char(code[i]/55)end return res end 
 
 

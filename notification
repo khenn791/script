@@ -1,0 +1,91 @@
+local InnalillahiMataKiri = Instance.new("ScreenGui")
+InnalillahiMataKiri.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+InnalillahiMataKiri.Parent = game:GetService("CoreGui") -- Ensures the GUI is parented to CoreGui
+
+local Notifications_Frame = Instance.new("Frame")
+Notifications_Frame.Name = "Notifications"
+Notifications_Frame.BackgroundTransparency = 1
+Notifications_Frame.Size = UDim2.new(1, 0, 1, 36)
+Notifications_Frame.Position = UDim2.fromOffset(0, -36)
+Notifications_Frame.ZIndex = 5
+Notifications_Frame.Parent = InnalillahiMataKiri
+
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+
+local NotificationSystem = {}
+local ActiveNotifications = {}
+
+local function GetDictionaryLength(dictionary)
+    local count = 0
+    for _ in pairs(dictionary) do
+        count += 1
+    end
+    return count
+end
+
+function NotificationSystem:Notify(Content: string, Delay: number)
+    assert(typeof(Content) == "string", "missing argument #1, (string expected got " .. typeof(Content) .. ")")
+    local Delay = typeof(Delay) == "number" and Delay or 3
+
+    local Text = Instance.new("TextLabel")
+    local Notification = {
+        self = Text,
+        Class = "Notification"
+    }
+
+    Text.Name = "Notification"
+    Text.BackgroundTransparency = 1
+    -- Adjusted position to move the notification further to the left with -190
+    Text.Position = UDim2.new(0.5, -190, 1, -150 - (GetDictionaryLength(ActiveNotifications) * 15))  -- Change -170 to -190
+    Text.Size = UDim2.new(0, 200, 0, 20)  -- Keeps the width of the notification as 200 pixels
+    Text.Text = Content
+    Text.Font = Enum.Font.SourceSans
+    Text.TextSize = 17
+    Text.TextColor3 = Color3.new(1, 1, 1)
+    Text.TextStrokeTransparency = 0.2
+    Text.TextTransparency = 1
+    Text.RichText = true
+    Text.ZIndex = 4
+    Text.Parent = Notifications_Frame
+
+    local function CustomTweenOffset(Offset: number)
+        spawn(function()
+            local Steps = 33
+            for i = 1, Steps do
+                Text.Position += UDim2.fromOffset(Offset / Steps, 0)
+                RunService.RenderStepped:Wait()
+            end
+        end)
+    end
+
+    function Notification:Destroy()
+        ActiveNotifications[Notification] = nil
+        Text:Destroy()
+
+        for _, v in pairs(ActiveNotifications) do
+            v.self.Position += UDim2.fromOffset(0, 15)
+        end
+    end
+
+    ActiveNotifications[Notification] = Notification
+
+    local TweenIn = TweenService:Create(Text, TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0), { TextTransparency = 0 })
+    local TweenOut = TweenService:Create(Text, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0), { TextTransparency = 1 })
+
+    TweenIn:Play()
+    CustomTweenOffset(100)
+
+    TweenIn.Completed:Connect(function()
+        delay(Delay, function()
+            TweenOut:Play()
+            CustomTweenOffset(100)
+
+            TweenOut.Completed:Connect(function()
+                Notification:Destroy()
+            end)
+        end)
+    end)
+end
+
+ repeat wait() until game:IsLoaded()

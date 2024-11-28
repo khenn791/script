@@ -1,6 +1,7 @@
 --[[
           Script Aim View On Game VFS.
           Account: quayvebenanhdi
+          Discord: https://discord.gg/UgQAPcBtpy
           Bai!
 ]]--
 

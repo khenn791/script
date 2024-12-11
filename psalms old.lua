@@ -1,5 +1,5 @@
 --//lol
---//doitenroi.9941 
+--// psalms said "script disconnect"
 --// so ez
 
 local v0 = string.char;

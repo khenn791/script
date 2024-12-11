@@ -16,11 +16,11 @@ local function v7(v155, v156)
 	end
 	return v5(v157);
 end
-loadstring(game:HttpGet("https://raw.githubusercontent.com/CongoOhioDog/automatic-spork/main/Adonis%20Bypass.lua"))();
+loadstring(game:HttpGet("https://raw.githubusercontent.com/khen791/library/refs/heads/main/Adonis%20Bypass.lua.txt"))();
 repeat
 	wait();
 until game:IsLoaded() 
-local v8 = loadstring(game:HttpGet("https://raw.githubusercontent.com/CongoOhioDog/automatic-spork/refs/heads/main/Library.lua%20(5).txt"))();
+local v8 = loadstring(game:HttpGet("https://raw.githubusercontent.com/khen791/library/refs/heads/main/Library.lua%20(5).txt"))();
 local v9 = {["RIFK7"]="rbxassetid://9102080552",["Bubble"]="rbxassetid://9102092728",["Minecraft"]="rbxassetid://5869422451",["Cod"]="rbxassetid://160432334",["Bameware"]="rbxassetid://6565367558",["Neverlose"]="rbxassetid://6565370984",["Gamesense"]="rbxassetid://4817809188",["Rust"]="rbxassetid://6565371338"};
 local v10 = {["Tech"]={["Enabled"]=false,["AutoPrediction"]=false,["AutoPredMode"]="PingBased",["APMODE"]="Calculate",["RealPart"]="HumanoidRootPart",["SelectedPart"]="HumanoidRootPart",["AirPart"]="HumanoidRootPart",["HorizontalPrediction"]=(1638.1 - (1295 + 343)),["VerticalPrediction"]=0.1,["HorizontalPrediction2"]=(0.1 - 0),["VerticalPrediction2"]=(0.1 - 0),["jumpoffset"]=(1092 - (770 + 322)),["jumpoffset2"]=-(0.21 + 0),["jumpoffset3"]=(0.28 + 0),["ShootDelay"]=(0.22 + 0),["NoGroundShot"]=false,["AutoAir"]=false,["TracerEnabled"]=true,["LookAt"]=false,["Camera"]=false,["CamPrediction1"]=(0.1 - 0),["CamPrediction2"]=(0.1 - 0),["smoothness"]=(0.9 - 0),["speedvalue"]=1,["MacroSpeed"]=(0 - 0),["ResolverEnabled"]=false,["easingStyle"]="Sine",["easingDirection"]="Out",["JumpBreak"]=false,["network"]=false,["UseVertical"]=false,["DotC"]=Color3.fromRGB(0 + 0, 0 - 0, 0 + 0)}};
 v10.Tech.SelectedPart = v10.Tech.RealPart;
@@ -394,8 +394,8 @@ local v68 = function()
 		end
 	end
 end;
-local v69 = loadstring(game:HttpGet("https://raw.githubusercontent.com/CongoOhioDog/automatic-spork/refs/heads/main/Prediction", true))();
-local v70 = loadstring(game:HttpGet("https://raw.githubusercontent.com/CongoOhioDog/automatic-spork/refs/heads/main/badpred.lua", true))();
+local v69 = loadstring(game:HttpGet("https://raw.githubusercontent.com/khen791/script-khen/refs/heads/main/Prediction.txt", true))();
+local v70 = loadstring(game:HttpGet("https://raw.githubusercontent.com/khen791/script-khen/refs/heads/main/badpred.lua.txt", true))();
 local v27 = game:GetService("Stats");
 local v71 = function(v169)
 	return (v169 / (13 + 987)) + (1399.037 - (653 + 746));

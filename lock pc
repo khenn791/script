@@ -1,0 +1,400 @@
+local players = game:GetService("Players")
+local localplayer = players.LocalPlayer
+local mouse = localplayer:GetMouse()
+local userinputservice = game:GetService("UserInputService")
+local runservice = game:GetService("RunService")
+local currentCamera = workspace.CurrentCamera
+
+local victim = nil
+local targeting = false
+local flying = false
+local velocity = Vector3.new(0,0,0)
+local lastKnownPosition = nil
+
+local spinning = false
+local EspPlayers = {}
+local espEnabled = false
+
+local function intro()
+    local cam = workspace.CurrentCamera
+    local newx, newy = cam.ViewportSize.X * 0.5, cam.ViewportSize.Y * 0.5
+
+    local SplashScreen = Instance.new("ScreenGui", game.CoreGui)
+    local Image = Instance.new("ImageLabel", SplashScreen)
+    Image.BackgroundTransparency, Image.ImageTransparency, Image.AnchorPoint = 1, 1, Vector2.new(0.5, 0.5)
+    Image.Position, Image.Size, Image.Image = UDim2.new(0, newx, 0, newy), UDim2.new(0, 825, 0, 377), getgenv().Settings.IntroSettings.IntroID
+
+    local Blur = Instance.new("BlurEffect", game.Lighting)
+    Blur.Size, Blur.Name = 0, "IntroBlur"
+
+    local function gui(el, props, dur)
+        game:GetService("TweenService"):Create(el, TweenInfo.new(dur or 1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), props):Play()
+    end
+
+    gui(Image, {ImageTransparency = 0}, 0.3)
+    gui(Blur, {Size = 20}, 0.3)
+    wait(3)
+    gui(Image, {ImageTransparency = 1}, 0.3)
+    gui(Blur, {Size = 0}, 0.3)
+    wait(1)
+
+    SplashScreen:Destroy()
+end
+intro()
+
+local function target()
+    local target = nil
+    local shortestDistance = math.huge
+    local mousePosition = Vector2.new(mouse.X, mouse.Y)
+
+    for _, player in ipairs(players:GetPlayers()) do
+        if player ~= localplayer and player.Character then
+            local character = player.Character
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+
+            if humanoid and humanoid.Health > 0 and humanoidRootPart then
+
+                local worldPosition, onScreen = currentCamera:WorldToViewportPoint(humanoidRootPart.Position)
+                if onScreen then
+
+                    local screenDistance = (mousePosition - Vector2.new(worldPosition.X, worldPosition.Y)).Magnitude
+
+                    if screenDistance < shortestDistance then
+                        target = humanoidRootPart
+                        shortestDistance = screenDistance
+                    end
+                end
+            end
+        end
+    end
+
+    if target then
+        local targetHumanoid = target.Parent:FindFirstChildOfClass("Humanoid")
+        if not targetHumanoid or targetHumanoid.Health <= 0 then
+            target = nil
+        end
+    end
+
+    return target
+end
+
+local function toggleSpin()
+    spinning = not spinning
+    if spinning then
+        coroutine.wrap(function()
+            while spinning do
+                local speed = getgenv().Settings.Spin.Speed
+                local rotation = CFrame.Angles(0, math.rad(speed), 0)
+
+                if localplayer.Character and localplayer.Character:FindFirstChild("HumanoidRootPart") then
+                    localplayer.Character.HumanoidRootPart.CFrame = localplayer.Character.HumanoidRootPart.CFrame * rotation
+                end
+
+                if getgenv().Settings.Spin.InFirstPerson then
+                    currentCamera.CFrame = currentCamera.CFrame * rotation
+                end
+                wait(0.01)
+            end
+        end)()
+    end
+end
+
+local function activateFly()
+    local character = localplayer.Character
+    local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+    
+    if not humanoid then return end
+
+    if flying then
+
+        humanoid.PlatformStand = false
+        flying = false
+
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = true
+            end
+        end
+    else
+        humanoid.PlatformStand = true
+        flying = true
+
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = false
+            end
+        end
+    end
+end
+local function isInAir(humanoid)
+    return humanoid.FloorMaterial == Enum.Material.Air
+end
+
+local function ToggleESP()
+    espEnabled = not espEnabled
+end
+
+userinputservice.InputBegan:Connect(function(input, processed)
+    if processed then return end
+
+    if input.KeyCode == Enum.KeyCode[getgenv().Settings.Camlock.Keybind] then
+        targeting = not targeting
+
+        if targeting then
+            victim = target()
+        else
+            victim = nil
+        end
+    end
+
+    if input.KeyCode == Enum.KeyCode[getgenv().Settings.Spin.Keybind] and getgenv().Settings.Spin.Enabled then
+        toggleSpin()
+    end
+
+    if input.KeyCode == Enum.KeyCode[getgenv().Settings.Fly.Keybind] and getgenv().Settings.Fly.Enabled then
+        activateFly()
+    end
+
+    if input.KeyCode == Enum.KeyCode[getgenv().Settings.Esp.Keybind] and getgenv().Settings.Esp.Enabled then
+        ToggleESP()
+    end
+
+end)
+
+runservice.RenderStepped:Connect(function()
+    if flying then
+        local moveDirection = Vector3.new()
+        local speed = getgenv().Settings.Fly.Speed
+
+        if userinputservice:IsKeyDown(Enum.KeyCode.W) then
+            moveDirection += (currentCamera.CFrame.LookVector * speed)
+        end
+        if userinputservice:IsKeyDown(Enum.KeyCode.S) then
+            moveDirection -= (currentCamera.CFrame.LookVector * speed)
+        end
+        if userinputservice:IsKeyDown(Enum.KeyCode.A) then
+            moveDirection -= (currentCamera.CFrame.RightVector * speed)
+        end
+        if userinputservice:IsKeyDown(Enum.KeyCode.D) then
+            moveDirection += (currentCamera.CFrame.RightVector * speed)
+        end
+        if userinputservice:IsKeyDown(Enum.KeyCode.Space) then
+            moveDirection += Vector3.new(0, speed, 0)
+        end
+        if userinputservice:IsKeyDown(Enum.KeyCode.LeftControl) then
+            moveDirection -= Vector3.new(0, speed, 0)
+        end
+
+        local humanoidRootPart = localplayer.Character and localplayer.Character:FindFirstChild("HumanoidRootPart")
+        if humanoidRootPart then
+            humanoidRootPart.Velocity = moveDirection
+            humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position)
+        end
+    end
+end)
+
+runservice.RenderStepped:Connect(function()
+    if targeting and victim and victim.Parent then
+        local humanoid = victim.Parent:FindFirstChildOfClass("Humanoid")
+        if humanoid and humanoid.Health > 0 then
+            local aimPart = victim.Parent:FindFirstChild(getgenv().Settings.Camlock.Part) or victim
+            lastKnownPosition = aimPart.Position
+
+            if getgenv().Settings.Camlock.UsePrediction then
+                local predictedPos = aimPart.Position + (velocity * getgenv().Settings.Camlock.Prediction)
+                local targetCFrame = CFrame.new(currentCamera.CFrame.Position, predictedPos)
+                currentCamera.CFrame = currentCamera.CFrame:Lerp(targetCFrame, getgenv().Settings.Camlock.Smoothness)
+            end
+        elseif lastKnownPosition then
+            local targetCFrame = CFrame.new(currentCamera.CFrame.Position, lastKnownPosition)
+            currentCamera.CFrame = currentCamera.CFrame:Lerp(targetCFrame, getgenv().Settings.Camlock.Smoothness)
+        end
+    end
+end)
+
+runservice.Heartbeat:Connect(function(deltaTime)
+    if victim and victim.Parent then
+        local currentPos = victim.Position
+        local displacement = currentPos - oldPos
+        local velocityVector = displacement / deltaTime
+
+        velocity = velocity:Lerp(Vector3.new(
+            velocityVector.X,
+            velocityVector.Y * (0.3 * (getgenv().Settings.Camlock.Offset or 1)),
+            velocityVector.Z
+        ), math.clamp(deltaTime * 5, 0, 1))
+
+        oldPos = currentPos
+    end
+end)
+
+runservice.RenderStepped:Connect(function()
+    if targeting and victim and victim.Parent then
+        local humanoid = victim.Parent:FindFirstChildOfClass("Humanoid")
+        if humanoid and humanoid.Health > 0 then
+            local aimPartName = isInAir(humanoid) and getgenv().Settings.Camlock.EnableJumpPart
+                and getgenv().Settings.Camlock.JumpPart
+                or getgenv().Settings.Camlock.Part
+
+            local aimPart = victim.Parent:FindFirstChild(aimPartName) or victim
+            if aimPart then
+                lastKnownPosition = aimPart.Position
+
+                local predictedPos
+                if getgenv().Settings.Camlock.UsePrediction then
+                    local predictionVelocity = getgenv().Settings.Camlock.Resolver and velocity or victim.Velocity
+                    predictedPos = aimPart.Position + (predictionVelocity * (getgenv().Settings.Camlock.Prediction or 0))
+                else
+                    predictedPos = aimPart.Position
+                end
+
+                local smoothness = math.clamp(getgenv().Settings.Camlock.Smoothness, 0.1, 1)
+                local targetCFrame = CFrame.new(currentCamera.CFrame.Position, predictedPos)
+
+                currentCamera.CFrame = currentCamera.CFrame:Lerp(targetCFrame, smoothness)
+            end
+        elseif lastKnownPosition then
+            local targetCFrame = CFrame.new(currentCamera.CFrame.Position, lastKnownPosition)
+            currentCamera.CFrame = currentCamera.CFrame:Lerp(targetCFrame, getgenv().Settings.Camlock.Smoothness)
+        end
+    end
+end)
+
+local function CreateDrawing(type, properties)
+    local drawing = Drawing.new(type)
+    for i, v in pairs(properties) do
+        drawing[i] = v
+    end
+    return drawing
+end
+
+local function CreatePlayerESP(player)
+    if player == localplayer then return end
+    local esp = {
+        Name = CreateDrawing("Text", {
+            Color = getgenv().Settings.Esp.NameColor,
+            Outline = true,
+            Visible = false,
+            Center = true,
+            Size = getgenv().Settings.Esp.FontSize,
+            Font = 0
+        }),
+        BoxOutline = CreateDrawing("Square", {
+            Color = Color3.new(0, 0, 0),
+            Thickness = 3,
+            Filled = false,
+            Visible = false
+        }),
+        Box = CreateDrawing("Square", {
+            Color = getgenv().Settings.Esp.BoxColor,
+            Thickness = 1,
+            Filled = false,
+            Visible = false
+        }),
+        Tracer = CreateDrawing("Line", {
+            Color = getgenv().Settings.Esp.TracerColor.Color,
+            Thickness = getgenv().Settings.Esp.TracerColor.Thickness,
+            Visible = getgenv().Settings.Esp.TracerColor.Enabled
+        }),
+        Distance = CreateDrawing("Text", {
+            Color = getgenv().Settings.Esp.NameColor,
+            Outline = true,
+            Visible = false,
+            Center = true,
+            Size = getgenv().Settings.Esp.FontSize,
+            Font = 0
+        })
+    }
+    EspPlayers[player] = esp
+end
+
+local function UpdateESP()
+    for player, esp in pairs(EspPlayers) do
+        if player.Character and player.Character:FindFirstChild("HumanoidRootPart") and player.Character.Humanoid.Health > 0 then
+            local humanoidRootPart = player.Character.HumanoidRootPart
+            local screenPos, onScreen = workspace.CurrentCamera:WorldToViewportPoint(humanoidRootPart.Position)
+
+            if onScreen then
+
+                local size = Vector3.new(2, 3, 0)
+                local topLeft = workspace.CurrentCamera:WorldToViewportPoint(humanoidRootPart.Position - size / 2)
+                local bottomRight = workspace.CurrentCamera:WorldToViewportPoint(humanoidRootPart.Position + size / 2)
+
+                local boxPos = Vector2.new(topLeft.X, topLeft.Y)
+                local boxSize = Vector2.new(bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y)
+
+                esp.BoxOutline.Position = boxPos
+                esp.BoxOutline.Size = boxSize
+                esp.BoxOutline.Visible = espEnabled
+
+                esp.Box.Position = boxPos
+                esp.Box.Size = boxSize
+                esp.Box.Visible = espEnabled
+
+                local headPos = workspace.CurrentCamera:WorldToViewportPoint(player.Character.Head.Position)
+                esp.Name.Position = Vector2.new(headPos.X, headPos.Y - 20)
+                esp.Name.Text = player.Name
+                esp.Name.Visible = espEnabled
+
+                if getgenv().Settings.Esp.TracerColor.Enabled then
+                    esp.Tracer.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
+                    esp.Tracer.To = Vector2.new(screenPos.X, screenPos.Y)
+                    esp.Tracer.Color = getgenv().Settings.Esp.TracerColor.Color
+                    esp.Tracer.Thickness = getgenv().Settings.Esp.TracerColor.Thickness
+                    esp.Tracer.Visible = espEnabled
+                else
+                    esp.Tracer.Visible = false
+                end
+                local distance = (humanoidRootPart.Position - localplayer.Character.HumanoidRootPart.Position).Magnitude
+                esp.Distance.Position = Vector2.new(screenPos.X, screenPos.Y + 20)
+                esp.Distance.Text = string.format("[%.1fm]", distance)
+                esp.Distance.Visible = espEnabled
+            else
+                esp.Name.Visible = false
+                esp.Box.Visible = false
+                esp.BoxOutline.Visible = false
+                esp.Tracer.Visible = false
+                esp.Distance.Visible = false
+            end
+        else
+            esp.Name.Visible = false
+            esp.Box.Visible = false
+            esp.BoxOutline.Visible = false
+            esp.Tracer.Visible = false
+            esp.Distance.Visible = false
+        end
+    end
+end
+
+runservice.RenderStepped:Connect(function()
+    if espEnabled then
+        UpdateESP()
+    else
+        for _, esp in pairs(EspPlayers) do
+            esp.Name.Visible = false
+            esp.Box.Visible = false
+            esp.BoxOutline.Visible = false
+            esp.Tracer.Visible = false
+            esp.Distance.Visible = false
+        end
+    end
+end)
+
+players.PlayerAdded:Connect(function(player)
+    CreatePlayerESP(player)
+end)
+
+players.PlayerRemoving:Connect(function(player)
+    local esp = EspPlayers[player]
+    if esp then
+        for _, drawing in pairs(esp) do
+            drawing:Remove()
+        end
+        EspPlayers[player] = nil
+    end
+end)
+
+for _, player in pairs(players:GetPlayers()) do
+    CreatePlayerESP(player)
+end

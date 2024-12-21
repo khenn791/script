@@ -1,4 +1,4 @@
---//test
+--// fix rename and library by khen.cc
 getgenv().venus = {
     ["Enabled"] = true,
     ["AimPart"] = "Head",

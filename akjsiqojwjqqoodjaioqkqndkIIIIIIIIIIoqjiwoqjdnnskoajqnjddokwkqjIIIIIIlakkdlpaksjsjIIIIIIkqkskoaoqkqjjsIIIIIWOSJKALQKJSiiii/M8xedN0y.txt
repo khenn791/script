@@ -1,0 +1,152 @@
+local ScreenGui = Instance.new("ScreenGui")
+local ToggleButton = Instance.new("TextButton")
+ 
+local ESPColor = Color3.fromRGB(255, 0, 0) -- Fully red color for ESP
+local HealthBarColor = Color3.fromRGB(0, 255, 0) -- Green color for health bar at full health
+local camLockActive = false
+local targetPart
+local Camera = Workspace.CurrentCamera
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local RunService = game:GetService("RunService")
+ 
+local PredictionMultiplier = {Horizontal = 0.1324, Vertical = 0.1}
+ 
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ 
+ToggleButton.Parent = ScreenGui
+ToggleButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ToggleButton.Size = UDim2.new(0, 170, 0, 55)
+ToggleButton.Position = UDim2.new(0, 0, 0, 0)
+ToggleButton.Text = "Ego.HAHA"
+ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleButton.Draggable = true
+
+-- Rounded corners
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 12)  -- Adjust the value for more or less roundness
+UICorner.Parent = ToggleButton
+
+-- Enable text scaling
+ToggleButton.TextScaled = true
+ 
+local highlight
+local healthBillboard
+local connection
+ 
+local function createESP(target)
+if highlight then highlight:Destroy() end
+highlight = Instance.new("Highlight")
+highlight.Adornee = target.Parent
+highlight.FillTransparency = 0.5
+highlight.FillColor = ESPColor
+highlight.OutlineTransparency = 0.5
+highlight.OutlineColor = Color3.fromRGB(0, 0, 0)
+highlight.Parent = target.Parent
+end
+ 
+local function createVerticalHealthBar(target)
+if healthBillboard then healthBillboard:Destroy() end
+healthBillboard = Instance.new("BillboardGui")
+healthBillboard.Size = UDim2.new(0.7, 0, 5, 0) -- Wider and taller vertical health bar
+healthBillboard.ExtentsOffset = Vector3.new(5, 0, 0)
+healthBillboard.Adornee = target.Parent
+healthBillboard.AlwaysOnTop = true
+healthBillboard.Parent = target.Parent
+ 
+local healthFrame = Instance.new("Frame")
+healthFrame.Size = UDim2.new(1, 0, 1, 0)
+healthFrame.Position = UDim2.new(0, 0, 0, 0)
+healthFrame.BackgroundColor3 = HealthBarColor
+healthFrame.BorderSizePixel = 0
+healthFrame.Parent = healthBillboard
+ 
+return healthBillboard, healthFrame
+end
+ 
+local function updateHealthBar(healthFrame, healthPercentage)
+if healthPercentage >= 0.5 then
+HealthBarColor = Color3.fromRGB(0, 255, 0)
+elseif healthPercentage > 0 then
+HealthBarColor = Color3.fromRGB(255, 255, 0)
+else
+HealthBarColor = Color3.fromRGB(255, 0, 0)
+end
+healthFrame.BackgroundColor3 = HealthBarColor
+healthFrame.Size = UDim2.new(1, 0, healthPercentage, 0)
+end
+ 
+function FindNearestEnemy()
+local ClosestDistance, ClosestPlayer = math.huge, nil
+local CenterPosition = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+ 
+for _, Player in ipairs(Players:GetPlayers()) do
+if Player ~= LocalPlayer then
+local Character = Player.Character
+if Character and Character:FindFirstChild("HumanoidRootPart") and Character.Humanoid.Health > 0 then
+local Position, IsVisibleOnViewport = Camera:WorldToViewportPoint(Character.HumanoidRootPart.Position)
+if IsVisibleOnViewport then
+local Distance = (CenterPosition - Vector2.new(Position.X, Position.Y)).Magnitude
+if Distance < ClosestDistance then
+ClosestPlayer = Character.HumanoidRootPart
+ClosestDistance = Distance
+end
+end
+end
+end
+end
+ 
+return ClosestPlayer
+end
+ 
+local function enableCamLock()
+if not camLockActive then
+targetPart = FindNearestEnemy()
+if targetPart then
+camLockActive = true
+ToggleButton.TextColor3 = Color3.fromRGB(0, 255, 0)
+createESP(targetPart)
+healthBillboard, healthFrame = createVerticalHealthBar(targetPart)
+ 
+if connection then connection:Disconnect() end
+connection = RunService.RenderStepped:Connect(function()
+if camLockActive and targetPart and targetPart.Parent and targetPart.Parent:FindFirstChild("Humanoid") then
+local humanoid = targetPart.Parent:FindFirstChild("Humanoid")
+local healthPercentage = humanoid.Health / humanoid.MaxHealth
+updateHealthBar(healthFrame, healthPercentage)
+local predictedPosition = targetPart.Position + (targetPart.Velocity * PredictionMultiplier.Horizontal) + Vector3.new(0, targetPart.Velocity.Y * PredictionMultiplier.Vertical, 0)
+Camera.CFrame = CFrame.new(Camera.CFrame.Position, predictedPosition)
+else
+if connection then connection:Disconnect() end
+end
+end)
+end
+end
+end
+ 
+local function disableCamLock()
+if camLockActive then
+camLockActive = false
+ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+if highlight then highlight:Destroy() end
+if healthBillboard then healthBillboard:Destroy() end
+highlight = nil
+healthBillboard = nil
+if connection then connection:Disconnect() end
+end
+end
+ 
+ToggleButton.MouseButton1Click:Connect(function()
+if camLockActive then
+disableCamLock()
+else
+enableCamLock()
+end
+end)
+ 
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Comp?",
+    Text = "Ego.HAHA"
+})

@@ -1,0 +1,4 @@
+while true do
+loadstring(game:HttpGet('https://raw.githubusercontent.com/khen791/script-khen/refs/heads/main/emoji.lua'))()
+wait(6)
+end

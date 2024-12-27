@@ -1,10 +1,12 @@
+--// what is that?
+
 local repo = 'https://raw.githubusercontent.com/LionTheGreatRealFrFr/MobileLinoriaLib/main/'
 
 
 local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
 
 
-Library:Notify('Script Loading')
+Library:Notify('WANT FUCK')
 wait(1)
 
 

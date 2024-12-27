@@ -1,17 +1,19 @@
---// what is that?
-
-local repo = 'https://raw.githubusercontent.com/LionTheGreatRealFrFr/MobileLinoriaLib/main/'
+local repo = 'https://raw.githubusercontent.com/khen791/library/main/'
 
 
-local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+local Library = loadstring(game:HttpGet(repo .. 'main.txt'))()
 
 
-Library:Notify('WANT FUCK')
+
+
+
+Library:Notify('I HORNEY')
 wait(1)
 
 
-local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
-local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. 'nini/ThemeManager.lua'))()
+local SaveManager = loadstring(game:HttpGet(repo .. 'nini/SaveManager.lua'))()
+
 local Window = Library:CreateWindow({
     Title = 'Sentinel.cc',
     Center = true,
@@ -82,7 +84,7 @@ local WatermarkConnection = game:GetService('RunService').RenderStepped:Connect(
         FrameCounter = 0;
     end;
 
-    Library:SetWatermark(('Psalms.Tech | %s fps | %s ms'):format(
+    Library:SetWatermark(('Sentinel.cc | %s fps | %s ms'):format(
         math.floor(FPS),
         math.floor(game:GetService('Stats').Network.ServerStatsItem['Data Ping']:GetValue())
     ));

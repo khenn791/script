@@ -1,5 +1,3 @@
---// khen.cc
-
 {
     ["Constants"] = {
         [1] = {

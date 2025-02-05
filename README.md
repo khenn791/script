@@ -1,5 +1,6 @@
-# ALL SCRIPT
+# ONLY NINI
 
 ```
-LOVE NINI :3
+print("LOVE NINI :3")
+warn("just want NINi")
 ```

@@ -1,4 +1,7 @@
---// fix rename and library by khen.cc
+--// fix hahah by khen.cc and update more
+--// https://discord.gg/UgQAPcBtpy
+
+
 getgenv().venus = {
     ["Enabled"] = true,
     ["AimPart"] = "Head",
@@ -85,12 +88,12 @@ function NotificationSystem:Notify(Content: string, Delay: number)
 
     Text.Name = "Notification"
     Text.BackgroundTransparency = 1
-    -- Adjusted position to move the notification further to the left with -190
-    Text.Position = UDim2.new(0.5, -190, 1, -150 - (GetDictionaryLength(ActiveNotifications) * 15))  -- Change -170 to -190
-    Text.Size = UDim2.new(0, 200, 0, 20)  -- Keeps the width of the notification as 200 pixels
+    -- Position kept on the left, slightly moved down (-130 instead of -150)
+    Text.Position = UDim2.new(0.5, -190, 1, -130 - (GetDictionaryLength(ActiveNotifications) * 15)) -- Left side, slightly down
+    Text.Size = UDim2.new(0, 200, 0, 15) -- Reduced height from 20 to 15
     Text.Text = Content
     Text.Font = Enum.Font.SourceSans
-    Text.TextSize = 17
+    Text.TextSize = 14 -- Reduced text size from 17 to 14
     Text.TextColor3 = Color3.new(1, 1, 1)
     Text.TextStrokeTransparency = 0.2
     Text.TextTransparency = 1
@@ -113,7 +116,7 @@ function NotificationSystem:Notify(Content: string, Delay: number)
         Text:Destroy()
 
         for _, v in pairs(ActiveNotifications) do
-            v.self.Position += UDim2.fromOffset(0, 15)
+            v.self.Position += UDim2.fromOffset(0, 15) -- Spacing adjusted for smaller text
         end
     end
 
@@ -137,8 +140,7 @@ function NotificationSystem:Notify(Content: string, Delay: number)
     end)
 end
 
- repeat wait() until game:IsLoaded()
-
+repeat wait() until game:IsLoaded()
 
 
 
@@ -152,11 +154,160 @@ local ThemeManager = loadstring(game:HttpGet(repo .. 'nini/ThemeManager.lua'))()
 local SaveManager = loadstring(game:HttpGet(repo .. 'nini/SaveManager.lua'))()
 
 
-Library:Notify('Failurty Loading')
+Library:Notify('khen.cc')
 wait(1)
 
+
+
+local player = game.Players.LocalPlayer
+
+local playerGuii = player:WaitForChild("PlayerGui")
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "khen.cc"
+screenGui.Parent = playerGuii
+screenGui.ResetOnSpawn = false
+screenGui.IgnoreGuiInset = true
+
+local frame = Instance.new("Frame")
+frame.Parent = screenGui
+frame.Position = UDim2.new(1, -90, 0, 10)
+frame.Size = UDim2.new(0, 60, 0, 50)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.BorderSizePixel = 0
+frame.Active = true -- Required for dragging
+
+local frameCorner = Instance.new("UICorner")
+frameCorner.CornerRadius = UDim.new(0, 8)
+frameCorner.Parent = frame
+
+
+local frameShadow = Instance.new("UIStroke")
+frameShadow.Parent = frame
+frameShadow.Color = Color3.fromRGB(0, 0, 0)
+frameShadow.Thickness = 2
+frameShadow.Transparency = 0.7
+
+local button = Instance.new("TextButton")
+button.Parent = frame
+button.Position = UDim2.new(0.5, -22, 0.5, -12) -- Centered better
+button.Size = UDim2.new(0, 44, 0, 24) -- Slightly larger for better touch
+button.Text = "Menu"
+button.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
+button.TextColor3 = Color3.fromRGB(255, 255, 255)
+button.Font = Enum.Font.SourceSansBold
+button.TextSize = 15
+button.BorderSizePixel = 0
+
+local buttonCorner = Instance.new("UICorner")
+buttonCorner.CornerRadius = UDim.new(0, 8)
+buttonCorner.Parent = button
+
+-- Add hover effect
+local buttonHover = Instance.new("UIStroke")
+buttonHover.Parent = button
+buttonHover.Color = Color3.fromRGB(255, 255, 255)
+buttonHover.Thickness = 1
+buttonHover.Transparency = 1
+
+local dragging = false
+local dragStart = nil
+local startPos = nil
+
+-- Handle both mouse and touch input
+local function startDrag(input)
+    dragging = true
+    dragStart = input.Position
+    startPos = frame.Position
+end
+
+local function updateDrag(input)
+    if dragging then
+        local delta = input.Position - dragStart
+        local newX = math.clamp(startPos.X.Offset + delta.X, 0, playerGui.AbsoluteSize.X - frame.Size.X.Offset)
+        local newY = math.clamp(startPos.Y.Offset + delta.Y, 0, playerGui.AbsoluteSize.Y - frame.Size.Y.Offset)
+        frame.Position = UDim2.new(0, newX, 0, newY)
+    end
+end
+
+frame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or 
+       input.UserInputType == Enum.UserInputType.Touch then
+        startDrag(input)
+    end
+end)
+
+frame.InputChanged:Connect(function(input)
+    if (input.UserInputType == Enum.UserInputType.MouseMovement or 
+        input.UserInputType == Enum.UserInputType.Touch) and dragging then
+        updateDrag(input)
+    end
+end)
+
+frame.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or 
+       input.UserInputType == Enum.UserInputType.Touch then
+        dragging = false
+    end
+end)
+
+-- Button effects
+button.MouseEnter:Connect(function()
+    buttonHover.Transparency = 0.8
+    button.BackgroundColor3 = Color3.fromRGB(0, 140, 235)
+end)
+
+button.MouseLeave:Connect(function()
+    buttonHover.Transparency = 1
+    button.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
+end)
+
+button.MouseButton1Click:Connect(function()
+    Library:Toggle()
+end)
+
+local Modules = {
+    Colors = {
+        ["Green"] = "0,255,0",
+        ["Cyan"] = "33,161,163",
+        ["Red"] = "255,0,0"
+    }
+}
+
+Modules.ChangeColor = function() 
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if game:GetService("CoreGui"):FindFirstChild("DevConsoleMaster") then 
+            for _, v in pairs(game:GetService("CoreGui"):FindFirstChild("DevConsoleMaster"):GetDescendants()) do 
+                if v:IsA("TextLabel") then 
+                    v.RichText = true 
+                end 
+            end 
+        end
+    end)
+end
+
+Modules.print = function(color, text, size)
+    if not Modules.Colors[color] then 
+        warn("Color was not found!")
+        return 
+    end 
+    
+    local Text = '<font color="rgb(' .. Modules.Colors[color] .. ')"'
+    if size then
+        Text = Text .. ' size="' .. tostring(size) .. '"'
+    end
+    Text = Text .. '>' .. tostring(text) .. '</font>'
+    print(Text)
+end
+
+Modules.ChangeColor()
+
+
+Modules.print("Red", "khen.cc on top", 25)
+
+
 local Window = Library:CreateWindow({
-    Title = "Failurty.CC",
+    Title = "Failurty.cc [khen.cc]",
     Center = true,
     AutoShow = true,
     Size = UDim2.new(0, 450, 0, 380)
@@ -185,7 +336,7 @@ local WatermarkConnection = game:GetService('RunService').RenderStepped:Connect(
 
     local currentTime = os.date("%H:%M:%S")  -- Format the time as HH:MM:SS
 
-    Library:SetWatermark(('Failurty.CC | %s fps | %s ms | Time: %s'):format(
+    Library:SetWatermark(('Failurty.cc [khen.cc] | %s fps | %s ms | Time: %s'):format(
         math.floor(FPS),
         math.floor(game:GetService('Stats').Network.ServerStatsItem['Data Ping']:GetValue()),
         currentTime
@@ -1426,7 +1577,7 @@ SaveManager:SetLibrary(Library)
 SaveManager:IgnoreThemeSettings()
 SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
 
-ThemeManager:SetFolder('failurty.CC')
+ThemeManager:SetFolder('failurty.cc')
 SaveManager:SetFolder('failurty/configs')
 
 SaveManager:BuildConfigSection(Tabs['UI Settings'])
@@ -1438,12 +1589,9 @@ SaveManager:LoadAutoloadConfig()
 
 
 
+print("hahah")
 
 
-
-
-
-local player = game.Players.LocalPlayer
 
 local userInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
@@ -1613,19 +1761,26 @@ local function ToggleLock()
     if AimlockState then
         Locked = not Locked
         if Locked then
-            -- Change image when locked
-            if LockButton then
-                LockButton.Image = "rbxassetid://78342062013795" -- Image for the lock when locked
-            end
             Victim = GetClosestPlayer()
             target = Victim
-            if Victim then
+            if Victim and Victim.Character and Victim.Character:FindFirstChild(venus.AimPart) then
+                -- Change image to locked state when a valid target is found
+                if LockButton then
+                    LockButton.Image = "rbxassetid://96734356722259" -- Image for the lock when locked
+                end
                 if venus.Enabled and notificationsEnabled then
                     NotificationSystem:Notify("Camlock: Locked onto " .. tostring(Victim.Name), 5)
                 elseif targetaim.enabled and notificationsEnabled then
                     NotificationSystem:Notify("Target Lock: Locked onto " .. tostring(target.Name), 5)
                 end
             else
+                -- No valid target found, revert to unlocked state
+                Locked = false
+                Victim = nil
+                target = nil
+                if LockButton then
+                    LockButton.Image = "rbxassetid://88399410034249" -- Image for the lock when unlocked
+                end
                 if venus.Enabled and notificationsEnabled then
                     NotificationSystem:Notify("Camlock: No target found", 5)
                 elseif targetaim.enabled and notificationsEnabled then
@@ -1633,9 +1788,9 @@ local function ToggleLock()
                 end
             end
         else
-            -- Change image when unlocked
+            -- Unlock state
             if LockButton then
-                LockButton.Image = "rbxassetid://134820707156642" -- Image for the lock when unlocked
+                LockButton.Image = "rbxassetid://88399410034249" -- Image for the lock when unlocked
             end
             Victim = nil
             target = nil
@@ -1652,12 +1807,6 @@ local function ToggleLock()
     end
 end
 
-local player = game.Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-local userInputService = game:GetService("UserInputService")
-
-local LockButton
-
 -- Function for the "Button" mode
 function spawnButton()
     local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -1669,6 +1818,7 @@ function spawnButton()
             screenGui = Instance.new("ScreenGui")
             screenGui.Name = "LockScreenGui"
             screenGui.Parent = playerGui
+            screenGui.ResetOnSpawn = false -- Prevent GUI from resetting on respawn
         end
 
         LockButton = screenGui:FindFirstChild("LockButton")
@@ -1678,7 +1828,7 @@ function spawnButton()
             LockButton.Name = "LockButton"
             LockButton.Size = UDim2.new(0, 80, 0, 80)
             LockButton.Position = UDim2.new(0.5, -250, 0.8, -225)
-            LockButton.Image = "rbxassetid://134820707156642" -- Default image for the lock (not locked)
+            LockButton.Image = "rbxassetid://88399410034249" -- Default image for the lock (not locked)
             LockButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
             LockButton.BackgroundTransparency = 0.450
             LockButton.Parent = screenGui
@@ -1700,6 +1850,12 @@ function spawnButton()
     -- Re-setup the GUI when the character respawns
     game.Players.LocalPlayer.CharacterAdded:Connect(function()
         setupGui()
+        -- Ensure the button image reflects the current lock state after respawn
+        if Locked and Victim then
+            LockButton.Image = "rbxassetid://96734356722259"
+        else
+            LockButton.Image = "rbxassetid://88399410034249"
+        end
     end)
 end
 

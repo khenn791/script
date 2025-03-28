@@ -50,6 +50,7 @@ getgenv().venus = {
     }
 }
 
+-- gay
 local InnalillahiMataKiri = Instance.new("ScreenGui")
 InnalillahiMataKiri.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 InnalillahiMataKiri.Parent = game:GetService("CoreGui") -- Ensures the GUI is parented to CoreGui
@@ -88,12 +89,12 @@ function NotificationSystem:Notify(Content: string, Delay: number)
 
     Text.Name = "Notification"
     Text.BackgroundTransparency = 1
-    -- Position kept on the left, slightly moved down (-130 instead of -150)
-    Text.Position = UDim2.new(0.5, -190, 1, -130 - (GetDictionaryLength(ActiveNotifications) * 15)) -- Left side, slightly down
-    Text.Size = UDim2.new(0, 200, 0, 15) -- Reduced height from 20 to 15
+    -- Position moved to the top-left corner, shifted right to 20 pixels
+    Text.Position = UDim2.new(0, 20, 1, -130 - (GetDictionaryLength(ActiveNotifications) * 15)) -- X: 0 + 20 offset
+    Text.Size = UDim2.new(0, 200, 0, 15) -- Kept reduced height from 20 to 15
     Text.Text = Content
     Text.Font = Enum.Font.SourceSans
-    Text.TextSize = 14 -- Reduced text size from 17 to 14
+    Text.TextSize = 14 -- Kept reduced text size from 17 to 14
     Text.TextColor3 = Color3.new(1, 1, 1)
     Text.TextStrokeTransparency = 0.2
     Text.TextTransparency = 1

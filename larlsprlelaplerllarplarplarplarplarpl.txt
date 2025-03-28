@@ -1,0 +1,32 @@
+return {
+    ["UpdateMousePosI"] = {
+        2788229376,    -- Da Hood
+        7213786345,    -- Da Hood VC
+        16033173781,   -- Da Hood Macro
+    },
+
+    ["UpdateMousePos"] = {
+        17897702920,   -- Og Da Hood
+        11143225577,   -- 1v1 Hood Aim Trainer
+        14975320521,   -- Ar Hood
+        17200018150,   -- Hood Of AR
+        17809101348,   -- New Hood
+        16469595315,   -- Del Hood Aim
+        17344804827,   -- Yeno Hood
+        15644861772,   -- Flame Hood
+        16435867341,   -- Mad Hood
+        12927359803,   -- Dah Aim Trainer
+        12867571492,   -- Katana Hood
+        11867820563,   -- Dae Hood
+        9825515356,    -- Hood Customs
+        17109142105,   -- Da Battles
+        14412601883,   -- Hood Bank
+        14412436145,   -- Da Uphill
+        14413712255,   -- Hood Aim
+        15186202290,   -- Da Strike
+        14487637618,   -- Da Hood Bot Aim Trainer
+        5602055394,    -- Hood Modded
+        7951883376,    -- Hood Modded VC
+        9183932460,    -- Untitled Hood
+    }
+}

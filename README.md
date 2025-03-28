@@ -2,5 +2,6 @@
 
 ```
 print("LOVE NINI :3")
-warn("just want NINi")
+warn("NINI")
+error("can't leave")
 ```

@@ -1,3 +1,7 @@
+-- wdym??
+-- idk
+-- https://discord.gg/UgQAPcBtpy
+
 getgenv().Ethical = {
   ["Start Up"] = {
       ["Intro"] = false,

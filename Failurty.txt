@@ -3,11 +3,11 @@
 
 game.StarterGui:SetCore("SendNotification", {
     Title = "UPDATE DONE!"; 
-    Text = "Script has fixed all error functions by khen.cc"; 
+    Text = "Script has fixed all error functions by khen.cc."; 
     Duration = 20;
 })
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script-khen/dd6a63fba72c89c424ecc0635051a73151987b70/bypasssssssss%20game"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script-khen/refs/heads/main/larplarpbypasser.txt"))()
 
 getgenv().venus = {
     ["Enabled"] = false,

@@ -2,14 +2,14 @@
 --// https://discord.gg/UgQAPcBtpy
 
 game.StarterGui:SetCore("SendNotification", {
-    Title = "Script update!"; 
+    Title = "UPDATE DONE!"; 
     Text = "Script has fixed all error functions by khen.cc"; 
     Duration = 20;
 })
 
 
 getgenv().venus = {
-    ["Enabled"] = true,
+    ["Enabled"] = false,
     ["AimPart"] = "Head",
     ["Prediction"] = 0.12588,
     ["Smoothness"] = 0.7,
@@ -43,7 +43,7 @@ getgenv().venus = {
     },
     ["desync"] = {
         ["sky"] = false,
-        ["invis"] = true,
+        ["invis"] = false,
         ["jump"] = false,
         ["network"] = false
     },
@@ -279,7 +279,7 @@ local Window = Library:CreateWindow({
     Title = "Failurty.cc [khen.cc]",
     Center = true,
     AutoShow = true,
-    Size = UDim2.new(0, 450, 0, 390)
+    Size = UDim2.new(0, 450, 0, 380)
 })
 
 local Tabs = {
@@ -351,7 +351,7 @@ assist:AddToggle(
     "Enable Camlock",
     {
         Text = "Enable Aim assist",
-        Default = true,
+        Default = false,
         Tooltip = "Enable",
         Callback = function(state)
             venus.Enabled = state
@@ -491,7 +491,7 @@ assist:AddToggle(
     "Enable TargetAim",
     {
         Text = "Enable Target Aim",
-        Default = true,
+        Default = false,
         Tooltip = "Enable",
         Callback = function(state)
             targetaim.enabled = state
@@ -572,54 +572,7 @@ game:GetService("UserInputService").InputBegan:Connect(function(input)
     end
 end)
 
-local speed = 45
-local LocalPlayer = game:GetService("Players").LocalPlayer
-local RunService = game:GetService("RunService")
 
--- Initialize the state
-local isToggled = false
-
-spin:AddToggle(
-    "Enable SpinBot",
-    {
-        Text = "Spin Bot",
-        Default = false,
-        Tooltip = "Enable",
-        Callback = function(state)
-            isToggled = state
-        end
-    }
-)
-
--- Add a slider to control the speed with rounding
-spin:AddSlider(
-    "SpinBot Speed",
-    {
-        Text = "Speed",
-        Min = 1,
-        Max = 100,
-        Default = speed,
-        Rounding = 1,  -- Round the value to the nearest 1
-        Compact = false,
-        Tooltip = "Set the speed of the rotation",
-        Callback = function(Value)
-            speed = Value  -- Directly update speed with the rounded value
-        end
-    }
-)
-
--- Factor to make the rotation faster (change the value to adjust speed)
-local speedMultiplier = 12  -- You can adjust this multiplier for faster/slower rotation
-
-RunService.RenderStepped:Connect(function(Delta)
-    if isToggled then
-        -- Apply a multiplier to increase the speed effect
-        LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(speed * speedMultiplier) * Delta, 0)
-        LocalPlayer.Character:FindFirstChild("Humanoid").AutoRotate = false
-    else
-        LocalPlayer.Character:FindFirstChild("Humanoid").AutoRotate = true
-    end
-end)
 
 -- Highest Roblox velocity is 128^2 or 16384
 local velMax = (128 ^ 2)
@@ -1587,7 +1540,7 @@ local Camera = Workspace.CurrentCamera
 
 
 getgenv().venus = {
-    ["Enabled"] = true,
+    ["Enabled"] = false,
     ["AimPart"] = "Head",
     ["Prediction"] = 0.12588,
     ["Smoothness"] = 1,
@@ -1617,14 +1570,14 @@ getgenv().Fov = {
 }
 
 getgenv().targetaim= {
-    ["enabled"] = true,
+    ["enabled"] = false,
     ["targetPart"] = "UpperTorso",
     ["prediction"] = 0.12588
 }
 
 getgenv().desync = {
     ["sky"] = false,
-    ["invis"] = true,
+    ["invis"] = false,
     ["jump"] = false,
     ["network"] = false
 }
@@ -1635,7 +1588,7 @@ getgenv().Misc = {
 
 getgenv().FPSunlocker = {
     ["Enabled"] = true,
-    ["FPSCap"] = 999
+    ["FPSCap"] = 9999
 }
 
 getgenv().Triggerbot = {

@@ -6,7 +6,7 @@ getgenv().Ethical = {
   ["Start Up"] = {
       ["Intro"] = false,
   },
-  ["Enabled"] = true,
+  ["Enabled"] = false,
   ["Prediction"] = 0.05,
   ["KeyBind"] = "C",
   ["Smoothness"] = 1,
@@ -17,7 +17,7 @@ getgenv().Ethical = {
 }
   
 getgenv().TargetAim = {
-    ["Enabled"] = true,
+    ["Enabled"] = false,
     ["Prediction"] = 0.072,
     ["TargetPart"] = "Head",
 }

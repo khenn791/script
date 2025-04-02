@@ -3,7 +3,6 @@
 
 setfpscap(1000)
 
- 
 
 local function cooked(Sex3)
 
@@ -1262,7 +1261,7 @@ end))
 
 local crosshair_position = "Middle"
 
-local Cursor = loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/m/refs/heads/alt/cursor.lua.txt",true))()
+local Cursor = loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script-khen/refs/heads/main/cursor.lua",true))()
 getgenv().crosshair.color = Library.Accent
     getgenv().crosshair.mode = "Middle"
     getgenv().crosshair.sticky = false
@@ -3202,10 +3201,10 @@ local dick = os.date("%Y-%m-%d")
 
 
 
-local role = "WNCRYUSER"
-if LocalPlayer.Name == "WNCRY" then
+local role = "KHEN"
+if LocalPlayer.Name == "GameLuaNhau" then
   role = "BurritoCat"
-elseif LocalPlayer.Name == "WNCRY" then
+elseif LocalPlayer.Name == "GameLuaNhau" then
   role = "Taco"
 end
 

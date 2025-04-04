@@ -56,6 +56,9 @@ getgenv().venus = {
     ["FPSunlocker"] = {
         ["Enabled"] = true,
         ["FPSCap"] = 999
+    },
+    ["Resolver"] = {
+        ["Enable"] = false, -- new update.
     }
 }
 
@@ -326,8 +329,6 @@ local assist = Tabs.Main:AddLeftGroupbox("Aim Assist")
 
 local air = Tabs.Main:AddLeftGroupbox("Air Settings")
 
-local spin = Tabs.Main:AddLeftGroupbox("Spin Bot")
-
 local set = Tabs.Main:AddRightGroupbox("Prediction config")
 
 local tar = Tabs.Main:AddRightGroupbox("Target Strafe")
@@ -498,6 +499,35 @@ assist:AddToggle(
         Tooltip = "Enable",
         Callback = function(state)
             targetaim.enabled = state
+        end
+    }
+)
+
+
+local scriptEnabled = false
+local connection
+
+local function onHeartbeat()
+    for _, Target in pairs(Players:GetPlayers()) do
+        if Target ~= localPlayer and Target.Character then
+            for _, Part in pairs(Target.Character:GetDescendants()) do
+                if Part:IsA("BasePart") then
+                    Part.Velocity = Target.Character.Humanoid.MoveDirection * 16
+                    Part.AssemblyLinearVelocity = Target.Character.Humanoid.MoveDirection * 16
+                end
+            end
+        end
+    end
+end
+
+assist:AddToggle(
+    "Enable Resolver",
+    {
+        Text = "Resolver",
+        Default = false,
+        Tooltip = "Resolver!",
+        Callback = function(state)
+            scriptEnabled = state
         end
     }
 )

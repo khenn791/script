@@ -1,10 +1,11 @@
--- URL Notification System
--- Hệ thống thông báo với các hình ảnh và icon từ URL
+--[[
+https://discord.gg/hdbcxvEPFK
+]]
 
 local URLNotify = {}
 URLNotify.__index = URLNotify
 
--- Cài đặt mặc định
+-- Default settings
 local DefaultSettings = {
     NotificationDuration = 3,
     NotificationPosition = "TopRight", -- TopRight, TopLeft, BottomRight, BottomLeft
@@ -21,11 +22,11 @@ local DefaultSettings = {
     }
 }
 
--- Khởi tạo hệ thống thông báo
+-- Initialize notification system
 function URLNotify.new(settings)
     local self = setmetatable({}, URLNotify)
     
-    -- Kết hợp các cài đặt từ người dùng với cài đặt mặc định
+    -- Merge user settings with defaults
     self.Settings = {}
     for option, default in pairs(DefaultSettings) do
         if type(default) == "table" then
@@ -44,20 +45,20 @@ function URLNotify.new(settings)
     return self
 end
 
--- Tạo giao diện thông báo
+-- Build notification UI
 function URLNotify:BuildNotificationUI()
     if self.NotificationUI then return end
     
-    -- Tạo ScreenGui
+    -- Create ScreenGui
     self.NotificationUI = Instance.new("ScreenGui")
     self.NotificationUI.Name = "URLNotificationSystem"
     self.NotificationUI.ResetOnSpawn = false
     self.NotificationUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     
-    -- Đặt ScreenGui vào đúng vị trí
+    -- Place ScreenGui in appropriate location
     local playerGui
     local success, result = pcall(function()
-        -- Thử CoreGui trước
+        -- Try CoreGui first
         if game:GetService("RunService"):IsStudio() then
             error("Running in Studio")
         end
@@ -66,12 +67,12 @@ function URLNotify:BuildNotificationUI()
     end)
     
     if not success then
-        -- Nếu không được, sử dụng PlayerGui
+        -- If unsuccessful, use PlayerGui
         playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
         self.NotificationUI.Parent = playerGui
     end
     
-    -- Tạo các container cho từng vị trí
+    -- Create containers for each position
     local positions = {
         TopRight = {Position = UDim2.new(1, -20, 0, 20), AnchorPoint = Vector2.new(1, 0)},
         TopLeft = {Position = UDim2.new(0, 20, 0, 20), AnchorPoint = Vector2.new(0, 0)},
@@ -96,16 +97,16 @@ function URLNotify:BuildNotificationUI()
     end
 end
 
--- Hàm tạo thông báo mới
+-- Create a new notification
 function URLNotify:Notify(notifType, title, message, options)
     options = options or {}
     
-    -- Đảm bảo UI đã được tạo
+    -- Ensure UI is built
     if not self.NotificationUI then
         self:BuildNotificationUI()
     end
     
-    -- Vị trí thông báo
+    -- Notification position
     local position = options.position or self.Settings.NotificationPosition
     local container = self.NotificationUI:FindFirstChild(position .. "Container")
     
@@ -114,7 +115,7 @@ function URLNotify:Notify(notifType, title, message, options)
         return
     end
     
-    -- Tạo frame thông báo
+    -- Create notification frame
     local notification = Instance.new("Frame")
     notification.Name = "Notification_" .. tostring(#self.Notifications + 1)
     notification.Size = UDim2.new(1, 0, 0, 0)
@@ -122,12 +123,12 @@ function URLNotify:Notify(notifType, title, message, options)
     notification.BackgroundColor3 = options.backgroundColor or Color3.fromRGB(30, 30, 30)
     notification.BorderSizePixel = 0
     
-    -- Bo tròn góc
+    -- Rounded corners
     local cornerRadius = Instance.new("UICorner")
     cornerRadius.CornerRadius = UDim.new(0, 8)
     cornerRadius.Parent = notification
     
-    -- Thêm hiệu ứng đổ bóng
+    -- Add shadow effect
     local shadow = Instance.new("ImageLabel")
     shadow.Name = "Shadow"
     shadow.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -142,7 +143,7 @@ function URLNotify:Notify(notifType, title, message, options)
     shadow.SliceCenter = Rect.new(23, 23, 277, 277)
     shadow.Parent = notification
     
-    -- Nội dung thông báo
+    -- Notification content
     local contentPadding = Instance.new("UIPadding")
     contentPadding.PaddingBottom = UDim.new(0, 12)
     contentPadding.PaddingLeft = UDim.new(0, 12)
@@ -150,7 +151,7 @@ function URLNotify:Notify(notifType, title, message, options)
     contentPadding.PaddingTop = UDim.new(0, 12)
     contentPadding.Parent = notification
     
-    -- Tạo container cho nội dung
+    -- Create container for content
     local contentFrame = Instance.new("Frame")
     contentFrame.Name = "Content"
     contentFrame.Size = UDim2.new(1, 0, 0, 0)
@@ -158,7 +159,7 @@ function URLNotify:Notify(notifType, title, message, options)
     contentFrame.BackgroundTransparency = 1
     contentFrame.Parent = notification
     
-    -- Thêm hình ảnh thông báo
+    -- Add notification image
     local iconSize = 24
     local iconImage = Instance.new("ImageLabel")
     iconImage.Name = "Icon"
@@ -166,11 +167,11 @@ function URLNotify:Notify(notifType, title, message, options)
     iconImage.Size = UDim2.new(0, iconSize, 0, iconSize)
     iconImage.Position = UDim2.new(0, 0, 0, 0)
     
-    -- Chọn URL icon dựa trên loại thông báo
+    -- Choose icon URL based on notification type
     local iconURL = options.iconURL or self.Settings.IconURL[notifType] or self.Settings.IconURL.Info
     iconImage.Image = iconURL
     
-    -- Màu icon dựa trên loại thông báo
+    -- Icon color based on notification type
     local iconColors = {
         Success = Color3.fromRGB(0, 200, 0),
         Error = Color3.fromRGB(255, 0, 0),
@@ -180,7 +181,7 @@ function URLNotify:Notify(notifType, title, message, options)
     iconImage.ImageColor3 = options.iconColor or iconColors[notifType] or Color3.fromRGB(255, 255, 255)
     iconImage.Parent = contentFrame
     
-    -- Tiêu đề thông báo
+    -- Notification title
     local titleLabel = Instance.new("TextLabel")
     titleLabel.Name = "Title"
     titleLabel.Size = UDim2.new(1, -iconSize - 10, 0, 0)
@@ -194,11 +195,11 @@ function URLNotify:Notify(notifType, title, message, options)
     titleLabel.TextStrokeColor3 = self.Settings.TextStrokeColor
     titleLabel.TextXAlignment = Enum.TextXAlignment.Left
     titleLabel.TextWrapped = true
-    titleLabel.Text = title or "Thông báo"
+    titleLabel.Text = title or "Notification"
     titleLabel.RichText = true
     titleLabel.Parent = contentFrame
     
-    -- Nội dung thông báo
+    -- Notification message
     local messageLabel = Instance.new("TextLabel")
     messageLabel.Name = "Message"
     messageLabel.Size = UDim2.new(1, 0, 0, 0)
@@ -217,7 +218,7 @@ function URLNotify:Notify(notifType, title, message, options)
     messageLabel.RichText = true
     messageLabel.Parent = contentFrame
     
-    -- Thêm thanh tiến trình
+    -- Add progress bar
     local progressBar = Instance.new("Frame")
     progressBar.Name = "ProgressBar"
     progressBar.BackgroundColor3 = iconImage.ImageColor3
@@ -231,14 +232,14 @@ function URLNotify:Notify(notifType, title, message, options)
     progressBarCorner.CornerRadius = UDim.new(0, 2)
     progressBarCorner.Parent = progressBar
     
-    -- Thêm notification vào container
+    -- Add notification to container
     notification.Parent = container
     table.insert(self.Notifications, notification)
     
-    -- Thiết lập animation cho notification
+    -- Set up animation for notification
     notification.BackgroundTransparency = 1
     
-    -- Animation hiện lên
+    -- Fade in animation
     local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
     local tweenProperties = {
         BackgroundTransparency = 0
@@ -247,7 +248,7 @@ function URLNotify:Notify(notifType, title, message, options)
     local tween = game:GetService("TweenService"):Create(notification, tweenInfo, tweenProperties)
     tween:Play()
     
-    -- Animation cho thanh tiến trình
+    -- Progress bar animation
     local duration = options.duration or self.Settings.NotificationDuration
     local progressTween = game:GetService("TweenService"):Create(
         progressBar,
@@ -256,12 +257,12 @@ function URLNotify:Notify(notifType, title, message, options)
     )
     progressTween:Play()
     
-    -- Xóa notification sau khi hiển thị đủ thời gian
+    -- Remove notification after display time
     local function removeNotification()
-        -- Nếu notification không còn tồn tại, không làm gì cả
+        -- If notification no longer exists, do nothing
         if not notification or not notification.Parent then return end
         
-        -- Xóa khỏi danh sách notifications
+        -- Remove from notifications list
         for i, notif in ipairs(self.Notifications) do
             if notif == notification then
                 table.remove(self.Notifications, i)
@@ -269,7 +270,7 @@ function URLNotify:Notify(notifType, title, message, options)
             end
         end
         
-        -- Animation ẩn đi
+        -- Fade out animation
         local fadeTween = game:GetService("TweenService"):Create(
             notification,
             TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
@@ -277,14 +278,14 @@ function URLNotify:Notify(notifType, title, message, options)
         )
         fadeTween:Play()
         
-        -- Xóa sau khi animation kết thúc
+        -- Remove after animation completes
         wait(0.35)
         notification:Destroy()
     end
     
     delay(duration, removeNotification)
     
-    -- Thêm nút đóng thông báo
+    -- Add close button
     local closeButton = Instance.new("TextButton")
     closeButton.Name = "CloseButton"
     closeButton.Size = UDim2.new(0, 20, 0, 20)
@@ -297,33 +298,33 @@ function URLNotify:Notify(notifType, title, message, options)
     closeButton.Text = "×"
     closeButton.Parent = notification
     
-    -- Sự kiện click nút đóng
+    -- Close button click event
     closeButton.MouseButton1Click:Connect(removeNotification)
     
     return notification
 end
 
--- Thông báo thành công
+-- Success notification
 function URLNotify:Success(title, message, options)
     return self:Notify("Success", title, message, options)
 end
 
--- Thông báo lỗi
+-- Error notification
 function URLNotify:Error(title, message, options)
     return self:Notify("Error", title, message, options)
 end
 
--- Thông báo cảnh báo
+-- Warning notification
 function URLNotify:Warning(title, message, options)
     return self:Notify("Warning", title, message, options)
 end
 
--- Thông báo thông tin
+-- Info notification
 function URLNotify:Info(title, message, options)
     return self:Notify("Info", title, message, options)
 end
 
--- Xóa tất cả thông báo
+-- Clear all notifications
 function URLNotify:ClearAll()
     for _, notification in ipairs(self.Notifications) do
         if notification and notification.Parent then
@@ -335,3 +336,31 @@ function URLNotify:ClearAll()
 end
 
 return URLNotify
+
+--[[ Usage Guide:
+
+local notifications = notificationLibrary.new({            
+    NotificationDuration = 3, 
+    NotificationPosition = "TopRight",
+    TextFont = Enum.Font.GothamSemibold,
+    TextColor = Color3.fromRGB(255, 255, 255),
+    TextSize = 14
+})
+
+notifications:BuildNotificationUI()
+
+-- Display notification types
+notifications:Success("Success", "Operation completed successfully!")
+notifications:Error("Error", "An error occurred!")
+notifications:Warning("Warning", "This is a warning!")
+notifications:Info("Information", "This is useful information!")
+
+-- With options
+notifications:Success("Success", "Operation completed successfully!", {
+    duration = 5,                              -- Display duration
+    position = "BottomRight",                  -- Notification position
+    backgroundColor = Color3.fromRGB(40, 40, 40), -- Background color
+    iconColor = Color3.fromRGB(0, 255, 0),     -- Icon color
+    iconURL = "http://www.roblox.com/asset/?id=3944680095" -- Icon URL
+})
+]]

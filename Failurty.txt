@@ -3,8 +3,8 @@
 
 game.StarterGui:SetCore("SendNotification", {
     Title = "UPDATE DONE!"; 
-    Text = "Script has fixed all error functions by khen.cc."; 
-    Duration = 20;
+    Text = "Script has fixed all error functions by khen.cc and elias."; 
+    Duration = 15;
 })
 task.wait(0.5)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))() 
@@ -30,11 +30,9 @@ getgenv().venus = {
         ["StrafeHeight"] = 3,
         ["RandomizerMode"] = false
     },
-    ["targetaim"] = {
-        ["Toggled"] = false,
-        ["enabled"] = true,
-        ["targetPart"] = "UpperTorso",
-        ["prediction"] = 0.12588
+     ["AntiGroundShots"] = {
+        ["enabled"] = false,
+        ["value"] = 0.5,
     },
     ["FOV"] = {
         ["Enabled"] = true,
@@ -331,6 +329,8 @@ local air = Tabs.Main:AddLeftGroupbox("Air Settings")
 
 local set = Tabs.Main:AddRightGroupbox("Prediction config")
 
+local safe = Tabs.Main:AddRightGroupbox("Safety")
+
 local tar = Tabs.Main:AddRightGroupbox("Target Strafe")
 
 local fov = Tabs.Main:AddLeftGroupbox("Fov")
@@ -362,6 +362,33 @@ assist:AddToggle(
         end
     }
 )
+
+safe:AddToggle(
+    "Enable AntiGroundShots",
+    {
+        Text = "Enable Antigroundshots",
+        Default = false,
+        Tooltip = "Enable for safety",
+        Callback = function(state)
+            venus.Safety = state
+        end
+    }
+) 
+
+safe:AddInput(
+        "Value",
+        {
+            Default = "0.5",
+            Numeric = true,
+            Finished = false,
+            Text = "Value",
+            Tooltip = "Change if you would like to",
+            Placeholder = "0.5",
+            Callback = function(value)
+                venus.Safety = value
+            end
+        }
+    )
 
 set:AddToggle(
     "Enable AutoPrediction",
@@ -655,6 +682,50 @@ local function Init()
     Root.CFrame *= Angle(0, Radian(-rootAng), 0)
     Root.Velocity = rootVel
 end
+
+-- AntiGroundShot Function
+
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local GROUND_SHOT_THRESHOLD = 5 -- Maximum distance from feet to consider a ground shot
+local DETECTION_RANGE = 20 -- How far away to check for ground shots
+
+local function isGroundShot(hitPosition)
+    -- Check if shot landed near player's feet
+    local rootPart = character:FindFirstChild("HumanoidRootPart")
+    if not rootPart then return false end
+    
+    local feetPosition = rootPart.Position - Vector3.new(0, character:FindFirstChild("Humanoid").HipHeight, 0)
+    local distanceToFeet = (hitPosition - feetPosition).Magnitude
+    
+    return distanceToFeet <= GROUND_SHOT_THRESHOLD
+end
+
+local function onCharacterAdded(newCharacter)
+    character = newCharacter
+    humanoid = character:WaitForChild("Humanoid")
+end
+
+localPlayer.CharacterAdded:Connect(onCharacterAdded)
+
+-- Listen for bullets near player
+workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
+    workspace.CurrentCamera.ChildAdded:Connect(function(child)
+        if child:IsA("BasePart") and child.Name == "Bullet" then
+            if (child.Position - character:WaitForChild("HumanoidRootPart").Position).Magnitude <= DETECTION_RANGE then
+                if isGroundShot(child.Position) then
+                    warn("[..] Detected potential ground shot at position:", child.Position)
+                    -- Add your response logic here (dodge, alert, etc.)
+                end
+            end
+        end
+    end)
+end)
+
+print("€")
 
 -- Toggle control
 local desyncEnabled = false
@@ -2121,3 +2192,6 @@ if Misc.LowGfx == true then
 game:GetService("CorePackages").Packages:Destroy()
 end
 
+if FPSunlocker.Enabled then
+    setfpscap(venus.FPSunlocker.FPSCap)
+end

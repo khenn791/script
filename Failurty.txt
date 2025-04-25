@@ -6,7 +6,7 @@ game.StarterGui:SetCore("SendNotification", {
     Text = "Script has fixed all error functions by khen.cc and elias."; 
     Duration = 15;
 })
-task.wait(0.5)
+task.wait(0.2)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))() 
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script-khen/refs/heads/main/larplarpbypasser.txt"))()

@@ -1,5 +1,6 @@
 --// fix hahah by khen.cc and update more
 --// https://discord.gg/UgQAPcBtpy
+--// hi
 
 game.StarterGui:SetCore("SendNotification", {
     Title = "UPDATE DONE!"; 
@@ -1413,7 +1414,6 @@ spawn(function()
                 else
                     -- Revert to original properties
                     part.Material = Enum.Material.SmoothPlastic -- Change this to the original material you want
-                    part.Color = Color3.fromRGB(255, 255, 255) -- Change this to the original color you want (white)
                 end
             end
         end
@@ -2193,5 +2193,5 @@ game:GetService("CorePackages").Packages:Destroy()
 end
 
 if FPSunlocker.Enabled then
-    setfpscap(venus.FPSunlocker.FPSCap)
+    setfpscap(FPSunlocker.FPSCap)
 end

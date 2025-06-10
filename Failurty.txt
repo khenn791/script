@@ -1,4 +1,3 @@
---// fix hahah by khen.cc and update more
 --// https://discord.gg/UgQAPcBtpy
 --// hi
 
@@ -7,7 +6,7 @@ game.StarterGui:SetCore("SendNotification", {
     Text = "Script has fixed all error functions by khen.cc and elias."; 
     Duration = 15;
 })
-task.wait(0.2)
+task.wait(0.1)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))() 
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script-khen/refs/heads/main/larplarpbypasser.txt"))()
@@ -290,6 +289,7 @@ local Window = Library:CreateWindow({
 local Tabs = {
         Main = Window:AddTab("Main"),
         Rage = Window:AddTab("Visuals"),
+        Others = Window:AddTab("Others"),
         ["UI Settings"] = Window:AddTab("Configuration")
     }
 
@@ -336,21 +336,25 @@ local tar = Tabs.Main:AddRightGroupbox("Target Strafe")
 
 local fov = Tabs.Main:AddLeftGroupbox("Fov")
 
-local cframe = Tabs.Rage: AddRightGroupbox("Cframe")
+local cframe = Tabs.Rage:AddRightGroupbox("Cframe")
 
-local visuals = Tabs.Rage: AddLeftGroupbox("Visuals")
+local visuals = Tabs.Rage:AddLeftGroupbox("Visuals")
 
-local fog = Tabs.Rage: AddRightGroupbox("Fog Costumization")
+local fog = Tabs.Rage:AddRightGroupbox("Fog Costumization")
 
-local esp = Tabs.Rage: AddLeftGroupbox("Esp")
+local esp = Tabs.Rage:AddLeftGroupbox("Esp")
 
-local anti = Tabs.Rage: AddLeftGroupbox("Desync")
+local anti = Tabs.Rage:AddLeftGroupbox("Desync")
 
-local net = Tabs.Rage: AddLeftGroupbox("Fast Flags")
+local net = Tabs.Rage:AddLeftGroupbox("Fast Flags")
 
-local ant = Tabs.Rage: AddRightGroupbox("Anti Lock")
+local ant = Tabs.Rage:AddRightGroupbox("Anti Lock")
 
-local fly = Tabs.Rage: AddRightGroupbox("Fly Costumization")
+local fly = Tabs.Rage:AddRightGroupbox("Fly Costumization")
+
+local antiaimviewer = Tabs.Others:AddLeftGroupbox("Anti Aimviewer")
+
+local aimviewer = Tabs.Others:AddRightGroupbox("Aimviewer")
 
 assist:AddToggle(
     "Enable Camlock",
@@ -1585,11 +1589,86 @@ circleInstance.Visible = circleEnabled
 
 
 
+antiaimviewer:AddToggle(
+    "Enable AntiAimviewer",
+    {
+        Text = "Enable Anti Aimviewer",
+        Default = false,
+        Tooltip = "Enable",
+        Callback = function(state)
+            getgenv().AntiAimViewer = state
+            print("ok")
+        end
+    }
+)
+
+
+getgenv().AntiAimViewer = false
+
+
+local China = setmetatable({}, {
+    __index = function(_, service)
+        return game:GetService(service)
+    end
+})
+
+
+local Players = China.Players
+local ReplicatedStorage = China.ReplicatedStorage
+local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local MainEvent = ReplicatedStorage:FindFirstChild("MainEvent")
+
+-- Tool handler
+local function Bypass(Entity)
+    Entity.ChildAdded:Connect(function(Child)
+        if Child:IsA("Tool") then
+            Child.Activated:Connect(function()
+                if MainEvent then
+                    MainEvent:FireServer("UpdateMousePos", Mouse.Hit.Position)
+                end
+            end)
+        end
+    end)
+end
+
+local function Alive(Player)
+    return Player and Player.Character and Player.Character:FindFirstChild("Humanoid") and Player.Character:FindFirstChild("Head")
+end
+
+LocalPlayer.CharacterAdded:Connect(function(Character)
+    Bypass(Character)
+end)
+
+
+if getgenv().AntiAimViewer then
+    if Alive(LocalPlayer) then
+        LocalPlayer.Character.Humanoid:UnequipTools()
+        Bypass(LocalPlayer.Character)
+    end
+end
+
+
+local Hook
+Hook = hookmetamethod(game, "__namecall", function(self, ...)
+    local Args = {...}
+    local Method = getnamecallmethod()
+
+    if not checkcaller() and Method == "FireServer" and self.Name == "MainEvent" and Args[1] == "UpdateMousePos" then
+        if getgenv().AntiAimViewer then
+            Args[2] = Mouse.Hit.Position
+        end
+        return self.FireServer(self, unpack(Args))
+    end
+
+    return Hook(self, ...)
+end)
 
 
 
 
-
+        
+        
 local MenuGroup = Tabs['UI Settings']:AddRightGroupbox('Menu')
 
 MenuGroup:AddButton('Unload', function() Library:Unload() end)
@@ -1971,20 +2050,25 @@ setreadonly(mt, false)
 mt.__namecall = newcclosure(function(Self, ...)
     local args = {...}
     local methodName = getnamecallmethod()
+
+    -- Kiểm tra điều kiện để xử lý prediction
     if not checkcaller() and methodName == "FireServer" and targetaim.enabled then
-        for i, Argument in ipairs(args) do
-            if typeof(Argument) == "Vector3" and target and target.Character then
-                local targetPart = target.Character[targetaim.targetPart]
-                if targetPart then
-                    args[i] = targetPart.Position 
-                        + targetPart.Velocity * venus.Prediction
-                        + Vector3.new(0, venus.JumpOffset, 0)
-                    return oldNameCall(Self, unpack(args))
+        if target and target.Character then
+            local targetPart = target.Character[targetaim.targetPart]
+            if targetPart then
+                for i, arg in ipairs(args) do
+                    if typeof(arg) == "Vector3" then
+                        args[i] = targetPart.Position
+                            + targetPart.Velocity * venus.Prediction
+                            + Vector3.new(0, venus.JumpOffset, 0)
+                        break -- Chỉ chỉnh sửa đối số Vector3 đầu tiên
+                    end
                 end
             end
         end
     end
-    return oldNameCall(Self, ...)
+
+    return oldNameCall(Self, unpack(args))
 end)
 
 setreadonly(mt, true)

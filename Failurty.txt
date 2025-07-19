@@ -2,19 +2,10 @@
 --// hi
 
 game.StarterGui:SetCore("SendNotification", {
-    Title = "UPDATE DONE!"; 
-    Text = "Script has fixed all error functions by khen.cc and elias."; 
+    Title = "hi"; 
+    Text = "Later we update new script"; 
     Duration = 15;
 })
-
-local Players = game:GetService("Players")
-local OldNameCall = nil
-
---// Anti Kick Hook
-
-OldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
-    local NameCallMethod = getnamecallmethod()
---// i think it work :l
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script-khen/refs/heads/main/larplarpbypasser.txt"))()
 

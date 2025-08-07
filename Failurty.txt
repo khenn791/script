@@ -1913,40 +1913,38 @@ end
 
 venus.Loaded = true
 
-local function GetClosestPlayer()
+local function FindClosestPlayerToCenter()
     local closestPlayer = nil
-    local shortestScore = math.huge
-    local centerScreen = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
-    local maxAngle = 30 -- Maximum angle limit in degrees (adjust this for wider or narrower locking range)
+    local closestDistance = math.huge
+    local screenCenter = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y / 2)
+    local localPlayer = game.Players.LocalPlayer -- Ensure LocalPlayer is defined
 
-    for _, plr in pairs(Players:GetPlayers()) do
-        if plr ~= player and plr.Character and plr.Character:FindFirstChild(venus.AimPart) and plr.Character:FindFirstChild("Humanoid") and plr.Character.Humanoid.Health > 0 then
-            local part = plr.Character[venus.AimPart]
-            local relativePos = part.Position - Camera.CFrame.Position
-            local playerDistance = relativePos.Magnitude
-            local screenPosition, onScreen = Camera:WorldToViewportPoint(part.Position)
+    if not workspace.CurrentCamera then return nil end -- Safety check for camera
 
-            if onScreen then
-                local angle = math.deg(math.acos(Camera.CFrame.LookVector:Dot(relativePos.Unit)))
-                
-                -- Only consider players within a specific angle range (in front of you)
-                if angle <= maxAngle then
-                    local mouseDistance = (Vector2.new(screenPosition.X, screenPosition.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            local character = player.Character
+            local humanoid = character:FindFirstChild("Humanoid")
+            if humanoid and humanoid.Health > 0 then -- Check if player is alive
+                local rootPart = character.HumanoidRootPart
+                local position, onScreen = workspace.CurrentCamera:WorldToViewportPoint(rootPart.Position)
 
-                    -- Adjust score to prioritize players more in front and reduce side locks
-                    local score = mouseDistance * 0.02 + angle * 0.03 -- Increase angle weight to penalize wider angles
-                    
-                    if angle < 5 then
-                        score = score * 0.001 -- Further reduce score for players directly in front
-                    end
-
-                    local ray = Ray.new(Camera.CFrame.Position, relativePos.Unit * playerDistance)
-                    local hitPart = WS:FindPartOnRayWithIgnoreList(ray, {player.Character})
-
-                    if (not hitPart or hitPart:IsDescendantOf(plr.Character)) and score < shortestScore then
-                        closestPlayer = plr
-                        shortestScore = score
-                    end
+                if onScreen then
+                    local distance = (screenCenter - Vector2.new(position.X, position.Y)).Magnitude
+                    -- Optional team check (uncomment if needed)
+                    -- if not _G.TeamCheck or (player.TeamColor ~= localPlayer.TeamColor) then
+                        if distance < closestDistance then
+                            -- Raycast to ensure no obstruction
+                            local raycastParams = RaycastParams.new()
+                            raycastParams.FilterDescendantsInstances = {localPlayer.Character}
+                            raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
+                            local ray = workspace:Raycast(workspace.CurrentCamera.CFrame.Position, (rootPart.Position - workspace.CurrentCamera.CFrame.Position).Unit * (rootPart.Position - workspace.CurrentCamera.CFrame.Position).Magnitude, raycastParams)
+                            if not ray or ray.Instance:IsDescendantOf(player.Character) then
+                                closestPlayer = player
+                                closestDistance = distance
+                            end
+                        end
+                    -- end
                 end
             end
         end
@@ -1954,10 +1952,6 @@ local function GetClosestPlayer()
 
     return closestPlayer
 end
-
-
-
-
 
 local notificationsEnabled = false -- Default state for notifications
 
@@ -1973,57 +1967,35 @@ assist:AddToggle(
     }
 )
 
-
 local function ToggleLock()
-    if AimlockState then
-        Locked = not Locked
-        if Locked then
-            Victim = GetClosestPlayer()
-            target = Victim
-            if Victim and Victim.Character and Victim.Character:FindFirstChild(venus.AimPart) then
-                -- Change image to locked state when a valid target is found
-                if LockButton then
-                    LockButton.Image = "rbxassetid://96734356722259" -- Image for the lock when locked
-                end
-                if venus.Enabled and notificationsEnabled then
-                    NotificationSystem:Notify("Camlock: Locked onto " .. tostring(Victim.Name), 5)
-                elseif targetaim.enabled and notificationsEnabled then
-                    NotificationSystem:Notify("Target Lock: Locked onto " .. tostring(target.Name), 5)
-                end
-            else
-                -- No valid target found, revert to unlocked state
-                Locked = false
-                Victim = nil
-                target = nil
-                if LockButton then
-                    LockButton.Image = "rbxassetid://88399410034249" -- Image for the lock when unlocked
-                end
-                if venus.Enabled and notificationsEnabled then
-                    NotificationSystem:Notify("Camlock: No target found", 5)
-                elseif targetaim.enabled and notificationsEnabled then
-                    NotificationSystem:Notify("Target Lock: No target found", 5)
-                end
+    if not AimlockState then return end
+    Locked = not Locked
+    if Locked then
+        Victim = FindClosestPlayerToCenter()
+        target = Victim
+        if Victim and Victim.Character and Victim.Character:FindFirstChild(venus.AimPart) then
+            if LockButton then LockButton.Image = "rbxassetid://96734356722259" end
+            if notificationsEnabled and NotificationSystem then
+                NotificationSystem:Notify("Locked onto " .. (Victim.Name or "unknown"), 5)
             end
         else
-            -- Unlock state
-            if LockButton then
-                LockButton.Image = "rbxassetid://88399410034249" -- Image for the lock when unlocked
-            end
+            Locked = false
             Victim = nil
             target = nil
-            if venus.Enabled and notificationsEnabled then
-                NotificationSystem:Notify("Camlock: Unlocked!", 5)
-            elseif targetaim.enabled and notificationsEnabled then
-                NotificationSystem:Notify("Target Lock: Unlocked!", 5)
+            if LockButton then LockButton.Image = "rbxassetid://88399410034249" end
+            if notificationsEnabled and NotificationSystem then
+                NotificationSystem:Notify("No valid target", 5)
             end
         end
     else
-        if not venus.Enabled and notificationsEnabled then
-            NotificationSystem:Notify("Camlock not enabled", 5)
+        if LockButton then LockButton.Image = "rbxassetid://88399410034249" end
+        Victim = nil
+        target = nil
+        if notificationsEnabled and NotificationSystem then
+            NotificationSystem:Notify("Unlocked!", 5)
         end
     end
 end
-
 
 
 
@@ -2088,83 +2060,102 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
     spawnButton()
 end)
 
-RS.RenderStepped:Connect(function()
-    if AimlockState and Victim and Victim.Character and Victim.Character:FindFirstChild("Humanoid") and Victim.Character:FindFirstChild(venus.AimPart) then
-        local humanoid = Victim.Character.Humanoid
-        
-        -- Kiểm tra KO Check: Nếu bật và máu dưới 20 thì bỏ khóa
-        if venus.KOCheckEnabled and humanoid.Health <= 14 then
+
+
+
+
+RunService.RenderStepped:Connect(function(deltaTime)
+    if not AimlockState or not LocalPlayer or not LocalPlayer.Character or not Camera then
+        if Locked then
             Locked = false
             Victim = nil
             target = nil
             if LockButton then
-                LockButton.Image = "rbxassetid://88399410034249" -- Hình ảnh nút khóa khi không khóa
+                LockButton.Image = "rbxassetid://88399410034249"
             end
-            if notificationsEnabled then
-                NotificationSystem:Notify("ez", 5)
+            if notificationsEnabled and NotificationSystem then
+                NotificationSystem:Notify("System reset: Missing essentials", 5)
             end
-        else
-            -- Code hiện có cho aimlock và các tính năng khác
-            local aimPart = Victim.Character[venus.AimPart]
+        end
+        return
+    end
 
-            -- Tính toán vị trí dự đoán
-            local predictedPosition = aimPart.Position 
-                + aimPart.Velocity * venus.Prediction
-                + Vector3.new(0, venus.JumpOffset, 0)
-
-            -- Look at the target smoothly only if LookAt is enabled and target aim is active
-            if venus.LookAtEnabled and targetaim.enabled then
-                local lookPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
-                Camera.CFrame = Camera.CFrame:Lerp(lookPosition, venus.Smoothness)
-
-                local playerHRP = player.Character.HumanoidRootPart
-                playerHRP.CFrame = CFrame.new(playerHRP.Position, Vector3.new(predictedPosition.X, playerHRP.Position.Y, predictedPosition.Z))
+    -- Kiểm tra Victim
+    if not Victim or not Victim.Character or not Victim.Character:FindFirstChild("Humanoid") or not Victim.Character:FindFirstChild(venus.AimPart) then
+        if Locked then
+            Locked = false
+            Victim = nil
+            target = nil
+            if LockButton then
+                LockButton.Image = "rbxassetid://88399410034249"
             end
-
-            -- Camlock functionality
-            if AimlockState then
-                local playerHRP = player.Character.HumanoidRootPart
-                local camlockPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
-                Camera.CFrame = Camera.CFrame:Lerp(camlockPosition, venus.Smoothness)
-
-                -- Target strafe functionality (Orbiting)
-                if venus.cframe.TargetStrafe.Enabled then
-                    local lp = player.Character
-                    local targpos = Victim.Character.HumanoidRootPart.Position
-                    
-                    -- Calculate strafe offset for orbiting
-                    local angle = tick() * venus.cframe.TargetStrafe.StrafeSpeed
-                    local strafeOffset = Vector3.new(
-                        math.cos(angle) * venus.cframe.TargetStrafe.StrafeRadius,
-                        venus.cframe.TargetStrafe.Height,
-                        math.sin(angle) * venus.cframe.TargetStrafe.StrafeRadius
-                    )
-
-                    local strafePosition = targpos + strafeOffset
-                    strafePosition = Vector3.new(strafePosition.X, math.max(strafePosition.Y, targpos.Y), strafePosition.Z)
-                    
-                    lp:SetPrimaryPartCFrame(CFrame.new(strafePosition))
-                    playerHRP.CFrame = CFrame.new(
-                        playerHRP.Position,
-                        Vector3.new(targpos.X, playerHRP.Position.Y, targpos.Z)
-                    )
-                end
+            if notificationsEnabled and NotificationSystem then
+                NotificationSystem:Notify("Target lost", 5)
             end
+        end
+        return
+    end
 
-            -- Auto Air functionality
-            if venus.AutoAirEnabled then
-                local TargetRootPart = Victim.Character:FindFirstChild("HumanoidRootPart")
-                if TargetRootPart then
-                    local TargetVel = TargetRootPart.Velocity
-                    if TargetVel.Y > 25 then
-                        local Character = LocalPlayer.Character
-                        if Character then
-                            local Tool = Character:FindFirstChildOfClass("Tool")
-                            if Tool then
-                                Tool:Activate()
-                            end
-                        end
-                    end
+    local humanoid = Victim.Character.Humanoid
+    local playerHRP = LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+
+    -- Kiểm tra KO
+    if venus.KOCheckEnabled and humanoid.Health <= 14 then
+        Locked = false
+        Victim = nil
+        target = nil
+        if LockButton then
+            LockButton.Image = "rbxassetid://88399410034249"
+        end
+        if notificationsEnabled and NotificationSystem then
+            NotificationSystem:Notify("ez", 5)
+        end
+        return
+    end
+
+    -- Tính toán aimlock
+    local aimPart = Victim.Character[venus.AimPart]
+    local predictedPosition = aimPart.Position + (aimPart.Velocity * venus.Prediction) + Vector3.new(0, venus.JumpOffset, 0)
+
+    if playerHRP then
+        -- LookAt functionality
+        if venus.LookAtEnabled and targetaim.enabled then
+            local lookPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
+            Camera.CFrame = Camera.CFrame:Lerp(lookPosition, venus.Smoothness)
+            playerHRP.CFrame = CFrame.new(playerHRP.Position, Vector3.new(predictedPosition.X, playerHRP.Position.Y, predictedPosition.Z))
+        end
+
+        -- Camlock functionality
+        if AimlockState then
+            local camlockPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
+            Camera.CFrame = Camera.CFrame:Lerp(camlockPosition, venus.Smoothness)
+
+            -- Target Strafe
+            if venus.cframe.TargetStrafe.Enabled then
+                local targpos = Victim.Character.HumanoidRootPart.Position
+                local angle = tick() * venus.cframe.TargetStrafe.StrafeSpeed
+                local strafeOffset = Vector3.new(
+                    math.cos(angle) * venus.cframe.TargetStrafe.StrafeRadius,
+                    venus.cframe.TargetStrafe.Height,
+                    math.sin(angle) * venus.cframe.TargetStrafe.StrafeRadius
+                )
+                local strafePosition = targpos + strafeOffset
+                strafePosition = Vector3.new(strafePosition.X, math.max(strafePosition.Y, targpos.Y), strafePosition.Z)
+                LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(strafePosition))
+                playerHRP.CFrame = CFrame.new(playerHRP.Position, Vector3.new(targpos.X, playerHRP.Position.Y, targpos.Z))
+            end
+        end
+    end
+
+    -- Auto Air
+    if venus.AutoAirEnabled then
+        local TargetRootPart = Victim.Character:FindFirstChild("HumanoidRootPart")
+        if TargetRootPart and TargetRootPart.Velocity.Y > 25 then
+            local character = LocalPlayer.Character
+            if character then
+                local Tool = character:FindFirstChildOfClass("Tool")
+                if Tool then
+                    Tool:Activate()
                 end
             end
         end

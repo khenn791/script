@@ -1,1 +1,2410 @@
-("khen.cc saying i hate girls sm"):gsub('.+', (function(a) _TKmtVpUShrdy = a; end)); return(function(y,...)local o;local h;local r;local f;local e;local t;local n=24915;local l=#{};local d={};while l<895 do l=l+1;while l<0x380 and n%0x91a<0x48d do l=l+1 n=(n-868)%32342 local a=l+n if(n%0x129e)>=0x94f then n=(n-0x43)%0x2059 while l<0x3aa and n%0x2e56<0x172b do l=l+1 n=(n*980)%26869 local o=l+n if(n%0x3556)>=0x1aab then n=(n+0x3e4)%0x15ce local e=12049 if not d[e]then d[e]=0x1 t=(not t)and _ENV or t;end elseif n%2~=#{}then n=(n*0x3ef)%0x89bc local n=99723 if not d[n]then d[n]=0x1 e={};end else n=(n-0xc5)%0xc2f5 l=l+1 local e=11774 if not d[e]then d[e]=0x1 t=getfenv and getfenv();end end end elseif n%2~=#{}then n=(n+0x2de)%0xa301 while l<0x1d8 and n%0x4d80<0x26c0 do l=l+1 n=(n-494)%36136 local e=l+n if(n%0x3210)<0x1908 then n=(n*0x231)%0x2050 local e=415 if not d[e]then d[e]=0x1 h=tonumber;end elseif n%2~=#{}then n=(n+0x3d4)%0x7c7d local e=37032 if not d[e]then d[e]=0x1 f=string;end else n=(n*0x3f3)%0x1ee9 l=l+1 local e=58652 if not d[e]then d[e]=0x1 end end end else n=(n*0x9e)%0xa060 l=l+1 while l<0x2c9 and n%0x8ec<0x476 do l=l+1 n=(n-231)%5786 local a=l+n if(n%0x1866)>=0xc33 then n=(n-0x165)%0x11fb local n=46412 if not d[n]then d[n]=0x1 o=function(d)local n=0x01 local function l(e)n=n+e return d:sub(n-e,n-0x01)end while true do local d=l(0x01)if(d=="\5")then break end local n=f.byte(l(0x01))local n=l(n)if d=="\2"then n=e.qbrFOiEo(n)elseif d=="\3"then n=n~="\0"elseif d=="\6"then t[n]=function(n,e)return y(8,nil,y,e,n)end elseif d=="\4"then n=t[n]elseif d=="\0"then n=t[n][l(f.byte(l(0x01)))];end local l=l(0x08)e[l]=n end end end elseif n%2~=#{}then n=(n-0x2e0)%0x9942 local e=66661 if not d[e]then d[e]=0x1 r="\4\8\116\111\110\117\109\98\101\114\113\98\114\70\79\105\69\111\0\6\115\116\114\105\110\103\4\99\104\97\114\100\79\84\85\87\103\66\75\0\6\115\116\114\105\110\103\3\115\117\98\79\116\100\71\79\79\69\113\0\6\115\116\114\105\110\103\4\98\121\116\101\101\121\81\122\79\99\90\76\0\5\116\97\98\108\101\6\99\111\110\99\97\116\65\110\90\86\90\71\77\82\0\5\116\97\98\108\101\6\105\110\115\101\114\116\103\107\102\73\100\101\107\101\5";end else n=(n+0x3c0)%0x8900 l=l+1 local e=54438 if not d[e]then d[e]=0x1 end end end end end n=(n*246)%29357 end o(r);local l={};for n=0x0,0xff do local e=e.dOTUWgBK(n);l[n]=e;l[e]=n;end local function c(e)return l[e];end local r=(function(a,o)local r,d=0x01,0x10 local l={{},{},{}}local t=-0x01 local n=0x01 local f=a while true do l[0x03][e.OtdGOOEq(o,n,(function()n=r+n return n-0x01 end)())]=(function()t=t+0x01 return t end)()if t==(0x0f)then t=""d=0x000 break end end local t=#o while n<t+0x01 do l[0x02][d]=e.OtdGOOEq(o,n,(function()n=r+n return n-0x01 end)())d=d+0x01 if d%0x02==0x00 then d=0x00 e.gkfIdeke(l[0x01],(c((((l[0x03][l[0x02][0x00]]or 0x00)*0x10)+(l[0x03][l[0x02][0x01]]or 0x00)+f)%0x100)));f=a+f;end end return(function(n)local e;e='';for l=0x01,#n do e=e..n[l];end return e end)(l[0x01])end);o(r(186,"wY)g;7_2/(6SJcoa;/(Ym;;o(1c/Yc2)c7)c76/(}2);/o_)62YJ2acJY)7S6:aSY(/Y_;6(Ya2SSo)_7S()kq7Y(/__6c)Y_JS7bo/)S/ko))2;cIaaa;gSSga2gc(;c()(/co)Yg;S6g/)JSgo/gJcda72coYYg66_a7Y;_26J(Jo;726yo))6(/a6Y(2)S3Ygg7272MS2gY2{S2ga__J(aY772:J2)_ao;7S6T_;66c:ag62_caaJ_76g/Jcg;(/Jc27/2gogac_YS/ccg;Y6_gc2Yc_/6Joa7/S/o/)2/o6So/7gg;2JoagS26J);(_%c)<2g;(ScYg)4/;aJ6Tc;aco));6/7oc)a/)6)(_cc7Y(JcJ;)/Yo6g)26S_cSgA);_6oY)J6/cagg7)(Sj77;(M_JS7)22gS(ao;;(6o);7(JS23__96Y/_Jo;Y/6c)Y/6)c;ao;JS6cYY27g766YYS7c6ga2_oS.a6Y7//J2>;o/)a6goag2/Ja3;Y7o6Sa_72222_Scg)26Sa)62Y6(o/;o/;cSY;i;;cJ?m(;S(*c27g((oxy277S_o7YSYo__c()2_J66Y)7?6;mS)c/_c/rSa)g(S7aSg/J;o2gc_6c;a(;26z/&J7go(;a2ga(JJSa;_;(g/)J2gaJ7o/);(WJS+(_)/o/;J(;rS2oog;/SS/a_;)2a/_JS;7(o>0;a2gJ;))7YSY//Jc;/Sr%;776)S7aS;26Y/6cY;_/ac_;S/cJgaS;_(/a2;YY/7oc;Y//Yc7}6;7SgoaYc_a_P6_Yc_)oJ)o2/S6aY;7_;626/oo_;6()o;oJgo(g(/)J25cafg_6caY_/((c/;J(7S2&J76g//Da;g//)JS)c/o6()7;)(JJ()gCJ7;J2BJ7;(S5H;g/co;i67JJ)cJo.)_(ao);7/oJ(#o7((J*/;))/_oog)o/)aoYg_(S7a)g((;20S_)S2!oc;7/2J(3()6(6J_S/ao2_S(ga2S6;v)7g(SoJY5W<;_Sc>g/6SYo(g2(5oYKo76;//o*_;6csd(;Y/gJ:)7_6(o(Hc_7z((a671(7J346266(o7c/Yo(;oY7a22aggY7_6So27Y)K__oY))(Sc7g_7;(6o/;g_Y_/6o)72Ya_Yo2S67o)gS/_S/SBa__oS_g6__6/oS)Y26J)a;a/goSSa(/gS2aY)2/7J)L;;2;Q/_ao;(S7N77P2oc6acga6Y//Jo;S/Sa)7(22Sg)?_7(JJJctY_/oc:7/2(SoY67;67aY;7Y/7ocgYc2/oJ)27a(6F;;__c_g"));o(r(158,"HrWPkbSh:^pgR) =SWRp^^=RbRgbrRhhhSP:pgTbSp)SrSh=R^kS:p=Rkghq)PpE=bbbRWWkhk ^WPp==PSg):krWg^rb RWrg:W pkSpr==khpSW:::R: :bGr=:W WPgpW=)=)Rhr)^W Pkp^ rS:W)^rWhp=bk:bkgp:b)gb1pSpbS R:Wgpw=pP):==kSP bPh: =R>-SpPP:h=:bPp)r S) WPr^kwEbgg)sgSb ZWggW=Pb)SR)Wp7=)SPRSWSh= Skrph==brRPc)^) pPRkRgP:k)PPSpW=)A})rWR^F PkhgrEW:rg=PR^ =SSkR:gRW*=rkRg*nPSh)rWrh  PP:g =hSk=%)RP=ERheR^P3^:= k)Rk  SSghkR:k^p7kRrWr^W )khg:2hhRRgW ^p=bPkRk4hbg)kbS:b )ESSpP^:)=SbrgrWkbggpk pS)RS)p^PkWW::bPp^r hkhPPS^ (PSbRprkhS  kPpgrbb R^R="));local n=(-e.B_qXAyPt+(function()local f,o=e.MdTWVkCe,e.GDfUFnyz;(function(d,l,n,e)n(l(n,n,e,l),n(e and n,d,d,l),n(e,l,n and l,d),e(e,e,e and n,e))end)(function(t,d,l,n)if f>e.LzjzHTjS then return n end f=f+e.GDfUFnyz o=(o*e.DCMkzeWi)%e.taDjsLYX if(o%e.ZvObZwSM)>=e.sTqSqFWp then return d(t(n,d,d,d),t(l,n,n,d)and l(l and n,n,t,n),n(l and l,t,l,n)and t(n,l and l,l and d,n),t(t,l,n,d))else return d end return l end,function(n,t,l,d)if f>e.SoTJmDg_ then return d end f=f+e.GDfUFnyz o=(o-e.pEoCarQb)%e.VpZStKBg if(o%e.sDp_FgWr)>=e.zxZOqmzT then return t else return d(l(d,n,d,d),l(n,n,n,l),l(n,d and t,n,n),l(n,t,n,d))end return n(n(d and n,n,d,l),n(n,l,l,d),n(d,l,l,d),l(t,n,l,t))end,function(d,n,t,l)if f>e.PIlnpfET then return n end f=f+e.GDfUFnyz o=(o*e.n_mFImvl)%e.FHevKThc if(o%e.zfJRzKKA)<e.ArnrGtmd then return t else return l(d(d,n and n,l,n),n(n,t,d,d and l)and n(n,n,t,d),n(t,l,l,d),d(l and d,t,n,t))end return n(t(l,l,t and n,l),l(d,l and d,t,d),d(d,t,n,l),l(d and t,n,l,t and l))end,function(d,n,l,t)if f>e.HfqHOToI then return n end f=f+e.GDfUFnyz o=(o-e.XYKDdTeX)%e.gghIQlUE if(o%e.RJXyUhta)<e.vScJnMUh then return d else return n(d(t and t,l,l,n),t(n,t,d and n,n)and l(n,n and l,d,l),l(n,n,n and n,d)and d(t,t,t,t),n(n,n,d,n))end return t(l(d,t and l,n and d,d),l(n and d,l,l,l)and l(d,l,l,n),n(l,t and d,d,d),t(n,d,n,t)and d(n,l,t,n))end)return o;end)())local u=e.YTWJnEPz or e.ZwSnndpr;local j=(getfenv)or(function()return _ENV end);local c=e.DaczcFpY;local o=e.sPFlaYlR;local t=e.cTTeLDJA;local ee=e.GDfUFnyz;local function z(g,...)local s=r(n,"= 9fyN{ZSc+HW^0r{{HS yZ,WrfNSy0dfWrZyScH cZWH+fxZ WHfW+9r%{ yZHcrWNSHy{+^ f+cf^fy cHrfyfWb +{^W09fSHHWfcc&0Wyc+0^^{WWS99jr{rWy9;ZW9B+SPyNWSr4cZyN^HS yZeWW9SSy0>ZWcHr0Nj+WiS^V9rZ^^WyZ+yr0N H9OZrrWyHy :{WfOcSryyW+HW0 rZH +{N^Z0+Zr^^yycyr^y{HNUrN^W{ fZH^{fSSN0+yW{9rfNHHN^f{ H^rEy{+SrrNZ0Hycc^2Z{PWN9 fZc{r9Ny+rvN{{rhyWZ+!9{OHc SyZcW?>NS0{prccrZN9+r^+{+cN0^Z^+Hfy{9HSyZZZ>w9HHZ {f^WHrf{{^^y +*YNN0HW ^9NS00SfW+9rNN{rSNSHwcHr^Na+WgSWf9^SrW+jSZ{.f9,cZ+feqNSHy X^f9cc 0N^rN{cyrsyW f{WWN9+y{^ZffyWrHyNHcPN{{HH^3ZNSS9WS r?f^NyrZNNH+ BZfZW9HS Z WW9SSy0hfWcS0ySr+W/S{yW: WS0^yfCSW0SN +7rWNSHN ){WWSf{c+^WfScyr9yW+SpyZ9^N SZy^lffSS0yyYHW  NyH_PW{SWy9+ZW0+N.ci0^yS+HbKNWHSfyZfWW9cSy0 fWcWryNtH^7S{yWO 0ZS^{f*c9rSyy+trW{9Hy  {WWS9ySy0yfScyrKN{+S*N{QW_9;Zy^a9Wc 0yy cW/+NSH_6W{SWN9(ZW^SN+c 0WyS+y#0NWHc yZcWW9WSW0TfWcS}9N.+^oS{yWZ WZS^yf SW0SyyH9*hNSHy oZ WS9yS.00fScyr yWH(Qy{bHWfSSZ^K9^SS0NyFcrrS{{HW:W{HWy9{ZW^Sfyc(ryyS+N&GNrHS yZ5WWyySy0BfWcSryN9+WFSZ9Wg WZS^NfdS^0SyyH{rWNSHy  {WWS9y");local l=e.MdTWVkCe;e.ZmEoQgry(function()l=l+e.GDfUFnyz end)local function a(n)return e.eyQzOcZL(n);end local function n(e,n)if n then return l end;l=e+l;end local d,l,r=y(e.MdTWVkCe,y,n,s,e.eyQzOcZL);local function f()local l,d=e.eyQzOcZL(s,n(e.GDfUFnyz,e.sPFlaYlR),n(e.HdmKVnWq,e.XfqxEEK_)+e.cTTeLDJA);n(e.cTTeLDJA);return(d*e.eaQCHTmq)+l;end;local function _(e)if e==0x03 then return a(e);else return'';end end local a=true;local _=e.MdTWVkCe local function ne()local n=l();local l=l();local o=e.GDfUFnyz;local t=(d(l,e.GDfUFnyz,e.SaPEmcKW)*(e.cTTeLDJA^e.vrvrcqJG))+n;local n=d(l,e.pJyYcfee,e.bMFtwSbj);local l=((-e.GDfUFnyz)^d(l,e.vrvrcqJG));if(n==#{})then if(t==_)then return l*e.MdTWVkCe;else n=e.GDfUFnyz;o=e.MdTWVkCe;end;elseif(n==e.SnCyPdK_)then return(t==#{})and(l*(e.GDfUFnyz/e.MdTWVkCe))or(l*(e.MdTWVkCe/e.MdTWVkCe));end;return e.QADQqaVb(l,n-e.ROSdDPpD)*(o+(t/(e.cTTeLDJA^e.ORGFKHnb)));end;local z=l;local b=#e.kaQaIwbR(h('\49.\48'))~=e.GDfUFnyz local a=l;local function m(...)return{...},e.IFxnBqKt('#',...)end local function p()local y={};local h={};local a={};local u={y,h,nil,a};local k=l()local a={}for f=e.GDfUFnyz,k do local d=r();local l;if(d==e.MdTWVkCe)then l=(r()~=#{});elseif(d==e.GDfUFnyz)then local n=ne();if b and e.ZpzoFLeV(e.kaQaIwbR(n),'.(\48+)$')then n=e.ZZpciqXa(n);end l=n;elseif(d==e.sPFlaYlR)then local t;local o=false;local d=z();if(d==#{})then o=true;end;if not o then t=e.OtdGOOEq(s,n(e.GDfUFnyz,e.sPFlaYlR),n(e.HdmKVnWq,e.XfqxEEK_)+d-e.GDfUFnyz);n(d)local n=''for d=(e.GDfUFnyz+_),#t do n=n..e.OtdGOOEq(t,d,d)end l=n;else l=''end end;a[f]=l;end;for n=e.GDfUFnyz,l()do h[n-(#{e.GDfUFnyz})]=p();end;u[e.sPFlaYlR]=r();for u=e.GDfUFnyz,l()do local n=r();if(d(n,e.GDfUFnyz,e.GDfUFnyz)==e.MdTWVkCe)then local r=d(n,e.cTTeLDJA,e.sPFlaYlR);local h=d(n,e.DaczcFpY,e.XfqxEEK_);local n={f(),f(),nil,nil};if(r==e.MdTWVkCe)then n[o]=f();n[c]=f();elseif(r==#{e.GDfUFnyz})then n[o]=l();elseif(r==g[e.cTTeLDJA])then n[o]=l()-(e.cTTeLDJA^e.DzIY_VWl)elseif(r==g[e.sPFlaYlR])then n[o]=l()-(e.cTTeLDJA^e.DzIY_VWl)n[c]=f();end;if(d(h,e.GDfUFnyz,e.GDfUFnyz)==e.GDfUFnyz)then n[t]=a[n[t]]end if(d(h,e.cTTeLDJA,e.cTTeLDJA)==e.GDfUFnyz)then n[o]=a[n[o]]end if(d(h,e.sPFlaYlR,e.sPFlaYlR)==e.GDfUFnyz)then n[c]=a[n[c]]end y[u]=n;end end;return u;end;local function z(d,n,l)local t=n;local t=l;return h(e.ZpzoFLeV(e.ZpzoFLeV(({e.ZmEoQgry(d)})[e.cTTeLDJA],n),l))end local function ne(g,n,a)local function j(...)local r,p,f,z,s,d,h,k,_,b,j,l;local n=e.MdTWVkCe;while-e.GDfUFnyz<n do if e.sPFlaYlR>n then if n>=e.GDfUFnyz then if e.MdTWVkCe~=n then for l=e.gyuqkFpV,e.ORGFKHnb do if n>e.GDfUFnyz then d=-e.qgJbmozX;h=-e.GDfUFnyz;break;end;f=y(e.XfqxEEK_,e.tUGObmTZ,e.sPFlaYlR,e.reWSJihV,g);s=m z=e.MdTWVkCe;break;end;else f=y(e.XfqxEEK_,e.tUGObmTZ,e.sPFlaYlR,e.reWSJihV,g);s=m z=e.MdTWVkCe;end else r=y(e.XfqxEEK_,e.TdcHLv_U,e.GDfUFnyz,e.qCyqP_Uy,g);p=y(e.XfqxEEK_,e.eYtLLTiA,e.cTTeLDJA,e.xZqUL_dP,g);end else if e.HdmKVnWq<=n then if n>=e.DaczcFpY then for d=e.tZVSCVXD,e.ucWG_VRO do if e.XfqxEEK_~=n then l={}break;end;n=-e.cTTeLDJA;break;end;else l={}end else if n>e.MdTWVkCe then for l=e._inVlIEa,e.TuMCjiZD do if n<e.DaczcFpY then k={};_={...};break;end;b=e.IFxnBqKt('#',...)-e.GDfUFnyz;j={};break;end;else k={};_={...};end end end n=n+e.GDfUFnyz;end;for n=e.MdTWVkCe,b do if(n>=f)then k[n-f]=_[n+e.GDfUFnyz];else l[n]=_[n+e.GDfUFnyz];end;end;local n=b-f+e.GDfUFnyz local n;local f;_msR4Fw8S={e.BpQCZzGM,l}while true do if d<-e.rMLbVagu then d=d+e.reWSJihV end n=r[d];f=n[ee];if f<e.Jxm_TxtU then if f<=6 then if f<=2 then if 1>f then local e,y,_,g,f;l[n[t]]=a[n[o]];d=d+1;n=r[d];e=n[t];y=l[n[o]];l[e+1]=y;l[e]=y[n[c]];d=d+1;n=r[d];l[n[t]]=n[o];d=d+1;n=r[d];e=n[t]_,g=s(l[e](u(l,e+1,n[o])))h=g+e-1 f=0;for e=e,h do f=f+1;l[e]=_[f];end;d=d+1;n=r[d];e=n[t]l[e]=l[e](u(l,e+1,h))d=d+1;n=r[d];l[n[t]]();d=d+1;n=r[d];do return end;else if f>=0 then for e=47,64 do if f~=1 then local e=n[t]l[e]=l[e](l[e+1])break;end;if(l[n[t]]~=n[c])then d=d+1;else d=n[o];end;break;end;else local e=n[t]l[e]=l[e](l[e+1])end end else if 5>f then if f==4 then l[n[t]]=a[n[o]];else l[n[t]]=l[n[o]][n[c]];end else if f~=2 then for e=45,88 do if f~=6 then l[n[t]]=(n[o]~=0);break;end;l[n[t]]=(n[o]~=0);break;end;else l[n[t]]=(n[o]~=0);end end end else if f<=10 then if f<9 then if 3<f then repeat if 8>f then do return end;break;end;d=n[o];until true;else do return end;end else if 6~=f then repeat if 9~=f then local e=n[t]local d,n=s(l[e](u(l,e+1,n[o])))h=n+e-1 local n=0;for e=e,h do n=n+1;l[e]=d[n];end;break;end;if(l[n[t]]~=n[c])then d=d+1;else d=n[o];end;until true;else local e=n[t]local d,n=s(l[e](u(l,e+1,n[o])))h=n+e-1 local n=0;for e=e,h do n=n+1;l[e]=d[n];end;end end else if f<13 then if 12>f then l[n[t]]=l[n[o]][n[c]];else local e=n[t];local d=l[n[o]];l[e+1]=d;l[e]=d[n[c]];end else if 12~=f then repeat if 13~=f then l[n[t]]();break;end;local f;for e=0,6 do if 3>e then if e<=0 then l[n[t]]=(n[o]~=0);d=d+1;n=r[d];else if-2<e then for f=19,98 do if 1~=e then l[n[t]]=a[n[o]];d=d+1;n=r[d];break;end;a[n[o]]=l[n[t]];d=d+1;n=r[d];break;end;else l[n[t]]=a[n[o]];d=d+1;n=r[d];end end else if 5<=e then if e>=1 then repeat if e>5 then f=n[t]l[f]=l[f](l[f+1])break;end;l[n[t]]=l[n[o]][n[c]];d=d+1;n=r[d];until true;else f=n[t]l[f]=l[f](l[f+1])end else if e>=2 then repeat if e~=3 then l[n[t]]=a[n[o]];d=d+1;n=r[d];break;end;l[n[t]]=l[n[o]][n[c]];d=d+1;n=r[d];until true;else l[n[t]]=a[n[o]];d=d+1;n=r[d];end end end end until true;else local f;for e=0,6 do if 3>e then if e<=0 then l[n[t]]=(n[o]~=0);d=d+1;n=r[d];else if-2<e then for f=19,98 do if 1~=e then l[n[t]]=a[n[o]];d=d+1;n=r[d];break;end;a[n[o]]=l[n[t]];d=d+1;n=r[d];break;end;else l[n[t]]=a[n[o]];d=d+1;n=r[d];end end else if 5<=e then if e>=1 then repeat if e>5 then f=n[t]l[f]=l[f](l[f+1])break;end;l[n[t]]=l[n[o]][n[c]];d=d+1;n=r[d];until true;else f=n[t]l[f]=l[f](l[f+1])end else if e>=2 then repeat if e~=3 then l[n[t]]=a[n[o]];d=d+1;n=r[d];break;end;l[n[t]]=l[n[o]][n[c]];d=d+1;n=r[d];until true;else l[n[t]]=a[n[o]];d=d+1;n=r[d];end end end end end end end end else if 22<=f then if 25>=f then if f<=23 then if f~=22 then local d,r,c,a,f;local e=0;while e>-1 do if e>2 then if e<=4 then if 3<e then f=d[c];else a=d[r];end else if 6>e then l[f]=a;else e=-2;end end else if e>0 then if 1==e then r=o;else c=t;end else d=n;end end e=e+1 end else do return end;end else if 24<f then local d,c,f,r,a;local e=0;while e>-1 do if e>=3 then if e<5 then if 4>e then r=d[c];else a=d[f];end else if e==6 then e=-2;else l[a]=r;end end else if 0<e then if e>-1 then repeat if 2~=e then c=o;break;end;f=t;until true;else f=t;end else d=n;end end e=e+1 end else local e=n[t]l[e]=l[e](u(l,e+1,h))end end else if f<=27 then if 26<f then l[n[t]]();else l[n[t]]=a[n[o]];end else if 25<=f then repeat if 29>f then local e=n[t]l[e]=l[e](u(l,e+1,h))break;end;if l[n[t]]then d=d+1;else d=n[o];end;until true;else local e=n[t]l[e]=l[e](u(l,e+1,h))end end end else if f>=18 then if 19<f then if 21~=f then local d,y,r,h,u,f,c;local e=0;while e>-1 do if 4<=e then if e<6 then if e>1 then repeat if e~=4 then f=d[r];break;end;u=d[h];until true;else f=d[r];end else if 6<e then if 3<=e then for n=24,68 do if 7<e then e=-2;break;end;a[f]=c;break;end;else a[f]=c;end else c=l[u];end end else if 1<e then if 0<e then for n=23,66 do if e<3 then r=o;break;end;h=t;break;end;else r=o;end else if e<1 then d=n;else y=a;end end end e=e+1 end else local e=n[t]local d,n=s(l[e](u(l,e+1,n[o])))h=n+e-1 local n=0;for e=e,h do n=n+1;l[e]=d[n];end;end else if 16~=f then repeat if 18<f then local d=n[t];local e=l[n[o]];l[d+1]=e;l[d]=e[n[c]];break;end;local e=n[t]l[e]=l[e](l[e+1])until true;else local e=n[t];local d=l[n[o]];l[e+1]=d;l[e]=d[n[c]];end end else if f<=15 then d=n[o];else if 13<=f then repeat if f<17 then if l[n[t]]then d=d+1;else d=n[o];end;break;end;local d,y,c,f,r,h,u;local e=0;while e>-1 do if e<=3 then if 1<e then if 2==e then c=o;else f=t;end else if e==0 then d=n;else y=a;end end else if 5>=e then if e>2 then for n=35,76 do if 5~=e then r=d[f];break;end;h=d[c];break;end;else r=d[f];end else if 6<e then if 7<e then e=-2;else a[h]=u;end else u=l[r];end end end e=e+1 end until true;else if l[n[t]]then d=d+1;else d=n[o];end;end end end end end d=1+d;end;end;return j end;local t=0xff;local a={};local f=(1);local d='';(function(n)local l=n local o=0x00 local e=0x00 l={(function(d)if o>0x31 then return d end o=o+1 e=(e+0x478-d)%0x47 return(e%0x03==0x2 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x4);a[f]=j();f=f+t;end return true end)'lMSKE'and l[0x1](0xcf+d))or(e%0x03==0x1 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x8c);end return true end)'HuVZb'and l[0x3](d+0x3ae))or(e%0x03==0x0 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x46);end return true end)'vVKLr'and l[0x2](d+0x1b4))or d end),(function(r)if o>0x2f then return r end o=o+1 e=(e+0x969-r)%0x15 return(e%0x03==0x2 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x68);d='\37';t={function()t()end};d=d..'\100\43';end return true end)'wfAgK'and l[0x3](0x160+r))or(e%0x03==0x0 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x5f);end return true end)'QlgeX'and l[0x2](r+0x22a))or(e%0x03==0x1 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x5b);t[2]=(t[2]*(z(function()a()end,u(d))-z(t[1],u(d))))+1;a[f]={};t=t[2];f=f+t;end return true end)'VULch'and l[0x1](r+0x9e))or r end),(function(r)if o>0x21 then return r end o=o+1 e=(e+0x836-r)%0x2f return(e%0x03==0x0 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x7c);end return true end)'KYEJa'and l[0x3](0xed+r))or(e%0x03==0x1 and(function(l)if not n[l]then e=e+0x01 n[l]=(0xcb);end return true end)'lXebY'and l[0x1](r+0x3c3))or(e%0x03==0x2 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x95);d={d..'\58 a',d};a[f]=p();f=f+(1);d[1]='\58'..d[1];t[2]=0xff;end return true end)'qzZOn'and l[0x2](r+0x34b))or r end)}l[0x2](0x19b4)end){};local e=ne(u(a));return e(...);end return z((function()local l={}local n=0x01;local d;if e.zX_GbDTA then d=e.zX_GbDTA(z)else d=''end if e.ZpzoFLeV(d,e.ngcIFfdB)then n=n+0;else n=n+1;end l[n]=0x02;l[l[n]+0x01]=0x03;return l;end)(),...)end)((function(l,e,n,d,t,o)local o;if 3<l then if l<6 then if 2<l then repeat if l~=5 then local l=d;local f,o,t=t(2);do return function()local e,n,d,r=e(n,l(l,l),l(l,l)+3);l(4);return(r*f)+(d*o)+(n*t)+e;end;end;break;end;local l=d;do return function()local e=e(n,l(l,l),l(l,l));l(1);return e;end;end;until true;else local l=d;local r,f,d=t(2);do return function()local t,o,e,n=e(n,l(l,l),l(l,l)+3);l(4);return(n*r)+(e*f)+(o*d)+t;end;end;end else if l>6 then if 5~=l then repeat if 8>l then do return setmetatable({},{['__\99\97\108\108']=function(e,l,d,t,n)if n then return e[n]elseif t then return e else e[l]=d end end})end break;end;do return n(l,nil,n);end until true;else do return n(l,nil,n);end end else do return t[n]end;end end else if l<=1 then if l~=-1 then for o=36,58 do if 0~=l then do return function(n,e,l)if l then local e=(n/2^(e-1))%2^((l-1)-(e-1)+1);return e-e%1;else local e=2^(e-1);return(n%(e+e)>=e)and 1 or 0;end;end;end;break;end;do return e(1),e(4,t,d,n,e),e(5,t,d,n)end;break;end;else do return e(1),e(4,t,d,n,e),e(5,t,d,n)end;end else if l==2 then do return 16777216,65536,256 end;else do return e(1),e(4,t,d,n,e),e(5,t,d,n)end;end end end end),...)
+-- i hate girls bc all cheating
+-- skid if you want.
+-- i'm quit
+
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script-khen/refs/heads/main/larplarpbypasser.txt"))()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))()
+-----
+
+getgenv().venus = {
+    ["Enabled"] = true,
+    ["AimPart"] = "Head",
+    ["Prediction"] = 0.12588,
+    ["Smoothness"] = 1,
+    ["ShakeValue"] = 0,
+    ["AutoPred"] = true,
+    ["Loaded"] = false,
+    ["TTKO"] = false,
+    ["Mode"] = "Controller",
+    ["KOCheckEnabled"] = false,
+    ["cframe"] = {
+        ["enabled"] = false,
+        ["speed"] = 2,
+        ["TargetStrafe"] = {
+            ["Enabled"] = false,
+            ["StrafeSpeed"] = 10,
+            ["StrafeRadius"] = 7,
+            ["StrafeHeight"] = 3,
+            ["RandomizerMode"] = true
+        }
+    }
+}
+
+getgenv().Fov = {
+    ["FOVSize"] = 90,
+    ["FOVColor"] = Color3.fromRGB(255, 0, 0),
+    ["FOVVisible"] = true,
+    ["FOVShape"] = "Circle"
+}
+
+getgenv().targetaim = {
+    ["enabled"] = false,
+    ["targetPart"] = "UpperTorso",
+    ["prediction"] = 0.12588
+}
+
+getgenv().desync = {
+    ["sky"] = false,
+    ["invis"] = false,
+    ["jump"] = false,
+    ["network"] = false
+}
+
+getgenv().Misc = {
+    ["LowGfx"] = false,
+}
+
+getgenv().FPSunlocker = {
+    ["Enabled"] = true,
+    ["FPSCap"] = 9999
+}
+
+getgenv().Triggerbot = {
+    ["ClosestPart"] = {
+        ["HitParts"] = {"Head", "UpperTorso", "LowerTorso", "HumanoidRootPart", "RightFoot", "LeftFoot"}
+    },
+    ["FOV"] = {
+        ["Enabled"] = true,
+        ["Size"] = 13,
+        ["Centered FOV"] = true,
+        ["Visible"] = false,
+        ["Filled"] = false,
+        ["Color"] = Color3.fromRGB(255, 0, 0)
+    },
+    ["Settings"] = {
+        ["Prediction"] = 0.111,
+        ["Click Delay"] = 0.1,
+        ["Activation Delay"] = 2,
+        ["IgnoreFriends"] = false,
+        ["Automatically Fire"] = false,
+    }
+}
+
+local InnalillahiMataKiri = Instance.new("ScreenGui")
+InnalillahiMataKiri.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+InnalillahiMataKiri.Parent = game:GetService("CoreGui") -- Ensures the GUI is parented to CoreGui
+
+local Notifications_Frame = Instance.new("Frame")
+Notifications_Frame.Name = "Notifications"
+Notifications_Frame.BackgroundTransparency = 1
+Notifications_Frame.Size = UDim2.new(1, 0, 1, 36)
+Notifications_Frame.Position = UDim2.fromOffset(0, -36)
+Notifications_Frame.ZIndex = 5
+Notifications_Frame.Parent = InnalillahiMataKiri
+
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+
+local NotificationSystem = {}
+local ActiveNotifications = {}
+
+local function GetDictionaryLength(dictionary)
+    local count = 0
+    for _ in pairs(dictionary) do
+        count += 1
+    end
+    return count
+end
+
+function NotificationSystem:Notify(Content: string, Delay: number)
+    assert(typeof(Content) == "string", "missing argument #1, (string expected got " .. typeof(Content) .. ")")
+    local Delay = typeof(Delay) == "number" and Delay or 3
+
+    local Text = Instance.new("TextLabel")
+    local Notification = {
+        self = Text,
+        Class = "Notification"
+    }
+
+    Text.Name = "Notification"
+    Text.BackgroundTransparency = 1
+    -- Position kept on the left, slightly moved down (-130 instead of -150)
+    Text.Position = UDim2.new(0.5, -190, 1, -130 - (GetDictionaryLength(ActiveNotifications) * 15)) -- Left side, slightly down
+    Text.Size = UDim2.new(0, 200, 0, 15) -- Reduced height from 20 to 15
+    Text.Text = Content
+    Text.Font = Enum.Font.SourceSans
+    Text.TextSize = 14 -- Reduced text size from 17 to 14
+    Text.TextColor3 = Color3.new(1, 1, 1)
+    Text.TextStrokeTransparency = 0.2
+    Text.TextTransparency = 1
+    Text.RichText = true
+    Text.ZIndex = 4
+    Text.Parent = Notifications_Frame
+
+    local function CustomTweenOffset(Offset: number)
+        spawn(function()
+            local Steps = 33
+            for i = 1, Steps do
+                Text.Position += UDim2.fromOffset(Offset / Steps, 0)
+                RunService.RenderStepped:Wait()
+            end
+        end)
+    end
+
+    function Notification:Destroy()
+        ActiveNotifications[Notification] = nil
+        Text:Destroy()
+
+        for _, v in pairs(ActiveNotifications) do
+            v.self.Position += UDim2.fromOffset(0, 15) -- Spacing adjusted for smaller text
+        end
+    end
+
+    ActiveNotifications[Notification] = Notification
+
+    local TweenIn = TweenService:Create(Text, TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0), { TextTransparency = 0 })
+    local TweenOut = TweenService:Create(Text, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0), { TextTransparency = 1 })
+
+    TweenIn:Play()
+    CustomTweenOffset(100)
+
+    TweenIn.Completed:Connect(function()
+        delay(Delay, function()
+            TweenOut:Play()
+            CustomTweenOffset(100)
+
+            TweenOut.Completed:Connect(function()
+                Notification:Destroy()
+            end)
+        end)
+    end)
+end
+
+repeat wait() until game:IsLoaded()
+
+
+
+local repo = 'https://raw.githubusercontent.com/khen791/library/main/'
+
+
+local Library = loadstring(game:HttpGet(repo .. 'main.txt'))()
+
+local ThemeManager = loadstring(game:HttpGet(repo .. 'nini/ThemeManager.lua'))()
+
+local SaveManager = loadstring(game:HttpGet(repo .. 'nini/SaveManager.lua'))()
+
+
+Library:Notify('khen.cc')
+wait(1)
+
+
+local Ui22 = Instance.new("ScreenGui")
+Ui22.Name = "Ui22"
+Ui22.Parent = game.CoreGui
+Ui22.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Ui22.ResetOnSpawn = false
+
+-- Nút Show/Hide UI
+local Image3 = Instance.new("TextButton")
+Image3.Name = "Image3"
+Image3.Parent = Ui22
+Image3.Active = true
+Image3.Draggable = true
+Image3.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- màu nền dịu
+Image3.BackgroundTransparency = 0.3
+Image3.Size = UDim2.new(0, 100, 0, 50)
+Image3.Position = UDim2.new(1, -150, 0, 20) -- lệch trái một chút
+Image3.Text = "Show UI"
+Image3.TextColor3 = Color3.fromRGB(200, 200, 200) -- chữ xám nhạt
+Image3.TextScaled = false
+Image3.TextSize = 16
+Image3.Font = Enum.Font.Gotham
+Image3.BorderSizePixel = 0
+
+-- Bo góc
+local Ui2corner = Instance.new("UICorner")
+Ui2corner.CornerRadius = UDim.new(0, 15)
+Ui2corner.Parent = Image3
+
+-- Viền trắng nhẹ
+local UIStroke = Instance.new("UIStroke")
+UIStroke.Color = Color3.fromRGB(255, 255, 255)
+UIStroke.Thickness = 2
+UIStroke.Parent = Image3
+
+-- Hiệu ứng hover
+Image3.MouseEnter:Connect(function()
+    Image3.BackgroundTransparency = 0.1
+    UIStroke.Color = Color3.fromRGB(200, 200, 200)
+    Image3.TextColor3 = Color3.fromRGB(255, 255, 255) -- sáng hơn khi hover
+end)
+
+Image3.MouseLeave:Connect(function()
+    Image3.BackgroundTransparency = 0.3
+    UIStroke.Color = Color3.fromRGB(255, 255, 255)
+    Image3.TextColor3 = Color3.fromRGB(200, 200, 200) -- quay lại xám nhạt
+end)
+
+-- Khi bấm nút
+Image3.MouseButton1Click:Connect(function()
+    Open = not Open
+    Library:Toggle(Open)
+
+    if Open then
+        Image3.Text = "Hide UI"
+        Image3.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    else
+        Image3.Text = "Show UI"
+        Image3.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    end
+end)
+
+
+
+
+local Window = Library:CreateWindow({
+    Title = "Failurty.cc [khen.cc] v1.0.5",
+    Center = true,
+    AutoShow = true,
+    Size = UDim2.new(0, 450, 0, 380)
+})
+
+local Tabs = {
+        Main = Window:AddTab("Main"),
+        Rage = Window:AddTab("Visuals"),
+        More = Window:AddTab("Buttons"),
+        ["UI Settings"] = Window:AddTab("Configs")
+    }
+
+Library:SetWatermarkVisibility(true)
+
+local FrameTimer = tick()
+local FrameCounter = 0
+local Ping = 0
+
+local WatermarkConnection = game:GetService('RunService').RenderStepped:Connect(function()
+    Ping = math.floor(game:GetService('Stats').Network.ServerStatsItem['Data Ping']:GetValue())
+
+    Library:SetWatermark(('imkhen | %d ms'):format(Ping))
+end)
+
+Library:OnUnload(function()
+    WatermarkConnection:Disconnect()
+
+    print('Unloaded!')
+    Library.Unloaded = true
+end)
+
+local assist = Tabs.Main:AddLeftGroupbox("Aim Assist")
+
+local air = Tabs.Main:AddLeftGroupbox("Air Settings")
+
+local set = Tabs.Main:AddRightGroupbox("Prediction config")
+
+local safe = Tabs.Main:AddRightGroupbox("Safety")
+
+local tar = Tabs.Main:AddRightGroupbox("Target Strafe")
+
+local fov = Tabs.Main:AddLeftGroupbox("Fov")
+
+local cframe = Tabs.More:AddRightGroupbox("Cframe")
+
+local visuals = Tabs.Rage:AddLeftGroupbox("Visuals")
+
+local esp = Tabs.Rage:AddLeftGroupbox("Esp")
+
+local anti = Tabs.Rage:AddRightGroupbox("Desync")
+
+local net = Tabs.Rage:AddLeftGroupbox("Fast Flags")
+
+local ant = Tabs.Rage:AddRightGroupbox("Anti Lock")
+
+local walkspeed = Tabs.More:AddLeftGroupbox("Walk Speed")
+
+assist:AddToggle(
+    "Enable Camlock",
+    {
+        Text = "Enable Aim assist",
+        Default = false,
+        Tooltip = "Enable",
+        Callback = function(state)
+            venus.Enabled = state
+        end
+    }
+)
+
+safe:AddToggle(
+    "Enable AntiGroundShots",
+    {
+        Text = "Enable Antigroundshots",
+        Default = false,
+        Tooltip = "Enable for safety",
+        Callback = function(state)
+            venus.Safety = state
+        end
+    }
+) 
+
+safe:AddInput(
+        "Value",
+        {
+            Default = "0.5",
+            Numeric = true,
+            Finished = false,
+            Text = "Value",
+            Tooltip = "Change if you would like to",
+            Placeholder = "0.5",
+            Callback = function(value)
+                venus.Safety = value
+            end
+        }
+    )
+
+set:AddToggle(
+    "Enable AutoPrediction",
+    {
+        Text = "Enable AutoPrediction",
+        Default = false,
+        Tooltip = "Enable",
+        Callback = function(state)
+            venus.AutoPred = state
+            venus.CamlockEnabled = state -- Enable auto prediction for camlock
+            venus.TargetAimEnabled = state -- Enable auto prediction for target aim
+        end
+    }
+)
+
+set:AddInput(
+    "Prediction",
+    {
+        Default = "Prediction",
+        Numeric = true,
+        Finished = false,
+        Text = "Prediction",
+        Tooltip = "Change Prediction for Target and Camlock",
+        Placeholder = "0.1",
+        Callback = function(value)
+            venus.Prediction = tonumber(value) or 1
+        end
+    }
+)
+
+set:AddInput(
+        "Smoothness",
+        {
+            Default = "Smoothness",
+            Numeric = false,
+            Finished = false,
+            Text = "Smoothness",
+            Tooltip = "Change smoothing For Target",
+            Placeholder = "0.1",
+            Callback = function(value)
+                venus.Smoothness = value
+            end
+        }
+    )
+
+assist:AddToggle(
+    "Enable LookAt",
+    {
+        Text = "Enable Look At",
+        Default = false,  -- Set default to true (enabled) or false (disabled)
+        Tooltip = "Enable or disable the LookAt functionality",
+        Callback = function(state)
+            venus.LookAtEnabled = state
+        end
+    }
+)
+
+tar:AddToggle(
+    "Enable Target Strafe",
+    {
+        Text = "Target Strafe",
+        Default = false,
+        Tooltip = "Toggle Target Strafe (Orbiting)",
+        Callback = function(state)
+            venus.cframe.TargetStrafe.Enabled = state
+        end
+    }
+)
+
+tar:AddInput(
+    "Target Strafe Distance",
+    {
+        Default = "15",
+        Numeric = true,
+        Finished = false,
+        Text = "Distance",
+        Tooltip = "Adjust the distance for target strafe (orbit radius)",
+        Placeholder = "20",
+        Callback = function(value)
+            venus.cframe.TargetStrafe.StrafeRadius = tonumber(value) or venus.cframe.TargetStrafe.StrafeRadius
+        end
+    }
+)
+
+tar:AddInput(
+    "Target Strafe Speed",
+    {
+        Default = "5",
+        Numeric = true,
+        Finished = false,
+        Text = "Speed",
+        Tooltip = "Adjust the speed for target strafe (orbiting)",
+        Placeholder = "10",
+        Callback = function(value)
+            venus.cframe.TargetStrafe.StrafeSpeed = tonumber(value) or venus.cframe.TargetStrafe.StrafeSpeed
+        end
+    }
+)
+
+tar:AddInput(
+    "Target Strafe Height",
+    {
+        Default = "10",
+        Numeric = true,
+        Finished = false,
+        Text = "Height",
+        Tooltip = "Adjust the height for target strafe (orbiting)",
+        Placeholder = "5",
+        Callback = function(value)
+            venus.cframe.TargetStrafe.Height = tonumber(value) or venus.cframe.TargetStrafe.Height
+        end
+    }
+)
+
+set:AddDropdown(
+    "Hitpart",
+    {
+        Values = {"Head", "UpperTorso", "HumanoidRootPart", "LowerTorso", "LeftUpperArm", "RightUpperArm", "LeftLeg", "RightLeg"},
+        Default = 1,  -- Default selection is "UpperTorso" (index 1)
+        Multi = false,  -- Single selection (not multiple)
+        Text = "Hitpart",
+        Tooltip = "Choose the hit part",
+        Callback = function(value)
+            venus.AimPart = value  -- Update the AimPart for targeting
+            camlock.AimPart = value -- Ensure camlock uses the same AimPart
+        end
+    }
+)
+
+assist:AddToggle(
+    "Enable TargetAim",
+    {
+        Text = "Enable Target Aim",
+        Default = false,
+        Tooltip = "Enable",
+        Callback = function(state)
+            targetaim.enabled = state
+        end
+    }
+)
+
+
+
+local RecalculateEnabled = false
+local SelectedResolver = "Recalculate Velocity"
+local AimingEnabled = false
+local ResolverConnection
+local Recalculate = nil
+
+local function GetMoveVelocity(Player)
+    if Player and Player.Character and Player.Character:FindFirstChildOfClass("Humanoid") and Player.Character:FindFirstChild("HumanoidRootPart") then
+        local PlayerHumanoid = Player.Character:FindFirstChildOfClass("Humanoid")
+        local MoveVelocity = PlayerHumanoid.MoveDirection * PlayerHumanoid.WalkSpeed
+        return MoveVelocity
+    end
+    return Vector3.new(0, 0, 0)
+end
+
+-- Function to setup Recalculate Velocity resolver
+local function SetupRecalculateResolver()
+    Recalculate = function(Character)
+        if not Character or not Character:FindFirstChild(venus.AimPart) then
+            return Vector3.new(0, 0, 0)
+        end
+        
+        local Pos = Character[venus.AimPart].Position
+        local Tick = tick()
+
+        task.wait(0.1)
+
+        if not Character:FindFirstChild(venus.AimPart) then
+            return Vector3.new(0, 0, 0)
+        end
+
+        local NewPos = Character[venus.AimPart].Position
+        local NewTick = tick()
+
+        local Delta = (NewTick - Tick)
+        if Delta == 0 then
+            return Vector3.new(0, 0, 0)
+        end
+        
+        local PositionDifference = (NewPos - Pos)
+        local Velocity = PositionDifference / Delta
+
+        targetaim.Prediction = venus.Prediction
+        return Velocity
+    end
+end
+
+-- Function to setup Aiming resolver
+local function SetupAimingResolver()
+    ResolverConnection = game:GetService("RunService").Heartbeat:Connect(function()
+        pcall(function()
+            for _, v in pairs(game.Players:GetChildren()) do
+                if v ~= game.Players.LocalPlayer and v.Character then
+                    local hrp = v.Character:FindFirstChild("HumanoidRootPart")
+                    if hrp then
+                        local AimPart = v.Character:FindFirstChild(venus.AimPart) or v.Character:FindFirstChild(targetaim.targetPart)
+                        if AimPart and venus.Prediction and venus.Prediction > 0 then
+                            local aimVelocity = (hrp.Position - AimPart.Position) / venus.Prediction
+                            hrp.Velocity = Vector3.new(aimVelocity.X, 0, aimVelocity.Z)
+                            hrp.AssemblyLinearVelocity = Vector3.new(aimVelocity.X, 0, aimVelocity.Z)
+                        end
+                    end
+                end
+            end
+        end)
+    end)
+end
+
+-- Function to setup MoveDirection resolver
+local function SetupMoveDirectionResolver()
+    ResolverConnection = game:GetService("RunService").Heartbeat:Connect(function()
+        pcall(function()
+            for _, v in pairs(game.Players:GetChildren()) do
+                if v ~= game.Players.LocalPlayer and v.Character then
+                    local MoveVelocity = GetMoveVelocity(v)
+                    local hrp = v.Character:FindFirstChild("HumanoidRootPart")
+                    if hrp then
+                        hrp.Velocity = Vector3.new(MoveVelocity.X, 0, MoveVelocity.Z)
+                        hrp.AssemblyLinearVelocity = Vector3.new(MoveVelocity.X, 0, MoveVelocity.Z)
+                    end
+                end
+            end
+        end)
+    end)
+end
+
+-- Function to apply the selected resolver
+local function ApplyResolver()
+    -- Disconnect any existing connection
+    if ResolverConnection then
+        ResolverConnection:Disconnect()
+        ResolverConnection = nil
+    end
+    
+    -- Reset Recalculate function
+    Recalculate = nil
+    
+    if not RecalculateEnabled then
+        return
+    end
+
+    if SelectedResolver == "Recalculate Velocity" then
+        SetupRecalculateResolver()
+    elseif SelectedResolver == "Aiming" then
+        SetupAimingResolver()
+    elseif SelectedResolver == "MoveDirection" then
+        SetupMoveDirectionResolver()
+    end
+end
+
+assist:AddToggle(
+    "Enable Resolver",
+    {
+        Text = "Resolver",
+        Default = false,
+        Tooltip = "Enable or disable the resolver",
+        Callback = function(state)
+            RecalculateEnabled = state
+            AimingEnabled = state
+            ApplyResolver()
+        end
+    }
+)
+
+assist:AddDropdown(
+    "Resolver Mode",
+    {
+        Values = {"Recalculate Velocity", "Aiming", "MoveDirection"},
+        Default = 2, -- 
+        Multi = false,
+        Text = "Resolver Mode",
+        Tooltip = "Select the resolver mode",
+        Callback = function(value)
+            SelectedResolver = value
+            ApplyResolver()
+        end
+    }
+)
+
+
+
+air:AddToggle(
+    "Enable Auto Air",
+    {
+        Text = "Auto Air",
+        Default = false,
+        Tooltip = "Toggle Auto Air",
+        Callback = function(state)
+            venus.AutoAirEnabled = state
+        end
+    }
+)
+
+air:AddInput(
+    "JumpOffset",
+    {
+        Default = "Air Offset",
+        Numeric = true,
+        Finished = false,
+        Text = "Offset",
+        Tooltip = "Change Air Offset for Target and Camlock",
+        Placeholder = "0",
+        Callback = function(value)
+            venus.JumpOffset = tonumber(value) or 0
+        end
+    }
+)
+
+local cframeSpeed = 0
+local cframeGui = nil
+local isCFrameToggleEnabled = false
+local cframeConnection = nil
+
+-- Venus table structure
+if not venus then
+    venus = {}
+end
+if not venus.cframe then
+    venus.cframe = {
+        enabled = false,
+        speed = 0
+    }
+end
+
+local function createCFrameGUI()
+    if cframeGui then
+        cframeGui:Destroy()
+    end
+
+    cframeGui = Instance.new("ScreenGui")
+    cframeGui.Name = "CFrameSpeedGui"
+    cframeGui.Parent = game.CoreGui
+    cframeGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    cframeGui.ResetOnSpawn = false
+
+    -- Nút CFrame dịu mắt
+    local button = Instance.new("TextButton")
+    button.Name = "CFrameButton"
+    button.Parent = cframeGui
+    button.Active = true
+    button.Draggable = true
+    button.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    button.BackgroundTransparency = 0.3
+    button.Size = UDim2.new(0, 120, 0, 50)
+    button.Position = UDim2.new(1, -150, 0, 140)
+    button.Text = "CFrame OFF"
+    button.TextColor3 = Color3.fromRGB(180, 220, 200) -- xanh ngọc nhạt
+    button.TextScaled = false
+    button.TextSize = 14
+    button.Font = Enum.Font.Gotham
+    button.BorderSizePixel = 0
+
+    -- Bo góc
+    local buttonCorner = Instance.new("UICorner")
+    buttonCorner.CornerRadius = UDim.new(0, 15)
+    buttonCorner.Parent = button
+
+    -- Viền xanh dịu
+    local buttonStroke = Instance.new("UIStroke")
+    buttonStroke.Color = Color3.fromRGB(200, 255, 200)
+    buttonStroke.Thickness = 2
+    buttonStroke.Parent = button
+
+    -- CFrame functionality
+    local isEnabled = false
+
+    local function startCFrameMovement()
+        if cframeConnection then
+            cframeConnection:Disconnect()
+        end
+        
+        cframeConnection = game:GetService("RunService").Stepped:Connect(function()
+            if isEnabled and game.Players.LocalPlayer.Character then
+                local character = game.Players.LocalPlayer.Character
+                local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+                local humanoid = character:FindFirstChild("Humanoid")
+                
+                if humanoidRootPart and humanoid then
+                    if humanoid.MoveDirection.Magnitude > 0 then
+                        humanoidRootPart.CFrame = humanoidRootPart.CFrame + (humanoid.MoveDirection * venus.cframe.speed)
+                    end
+                end
+            end
+        end)
+    end
+
+    local function stopCFrameMovement()
+        if cframeConnection then
+            cframeConnection:Disconnect()
+            cframeConnection = nil
+        end
+    end
+
+    local function UpdateButtonAppearance()
+        if isEnabled then
+            button.BackgroundColor3 = Color3.fromRGB(50, 100, 50) -- xanh lá dịu khi bật
+            button.Text = "CFrame ON"
+            buttonStroke.Color = Color3.fromRGB(150, 255, 150)
+        else
+            button.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- xám khi tắt
+            button.Text = "CFrame OFF"
+            buttonStroke.Color = Color3.fromRGB(200, 255, 200)
+        end
+    end
+
+    -- Click toggle
+    button.MouseButton1Click:Connect(function()
+        isEnabled = not isEnabled
+        venus.cframe.enabled = isEnabled
+        
+        if isEnabled then
+            startCFrameMovement()
+        else
+            stopCFrameMovement()
+        end
+        
+        UpdateButtonAppearance()
+    end)
+
+    -- Hover
+    button.MouseEnter:Connect(function()
+        button.BackgroundTransparency = 0.1
+        button.TextColor3 = Color3.fromRGB(220, 255, 230) -- sáng hơn khi hover
+        if isEnabled then
+            buttonStroke.Color = Color3.fromRGB(180, 255, 180)
+        else
+            buttonStroke.Color = Color3.fromRGB(180, 240, 200)
+        end
+    end)
+
+    button.MouseLeave:Connect(function()
+        button.BackgroundTransparency = 0.3
+        button.TextColor3 = Color3.fromRGB(180, 220, 200) -- quay về dịu
+        UpdateButtonAppearance()
+    end)
+
+    -- Initial
+    UpdateButtonAppearance()
+end
+
+-- Phím tăng giảm tốc
+game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+    
+    if input.KeyCode == Enum.KeyCode.LeftBracket then
+        venus.cframe.speed = math.max(0, venus.cframe.speed - 0.5)
+        print("CFrame Speed: " .. venus.cframe.speed)
+        
+    elseif input.KeyCode == Enum.KeyCode.RightBracket then
+        venus.cframe.speed = math.min(50, venus.cframe.speed + 0.5)
+        print("CFrame Speed: " .. venus.cframe.speed)
+    end
+end)
+
+-- Linoria Integration
+cframe:AddToggle(
+    "Enable cframe",
+    {
+        Text = "CFrame Speed GUI",
+        Default = false,
+        Tooltip = "Show/Hide",
+        Callback = function(state)
+            isCFrameToggleEnabled = state
+            if state then
+                createCFrameGUI()
+            else
+                if cframeGui then
+                    cframeGui:Destroy()
+                    cframeGui = nil
+                end
+                -- Stop movement when GUI is hidden
+                if cframeConnection then
+                    cframeConnection:Disconnect()
+                    cframeConnection = nil
+                end
+                venus.cframe.enabled = false
+            end
+        end
+    }
+)
+
+cframe:AddInput(
+    "CFrame Speed Amount",
+    {
+        Default = tostring(venus.cframe.speed),
+        Numeric = true,
+        Finished = true,
+        Text = "Amount",
+        Tooltip = "Speed",
+        Placeholder = "25",
+        Callback = function(value)
+            venus.cframe.speed = tonumber(value) or venus.cframe.speed
+            cframeSpeed = venus.cframe.speed
+        end
+    }
+)
+
+
+-- Cleanup when player leaves
+game.Players.LocalPlayer.AncestryChanged:Connect(function()
+    if not game.Players.LocalPlayer.Parent then
+        if cframeConnection then
+            cframeConnection:Disconnect()
+        end
+        if cframeGui then
+            cframeGui:Destroy()
+        end
+    end
+end)
+
+
+
+-- Highest Roblox velocity is 128^2 or 16384
+local velMax = (128 ^ 2)
+
+-- Time to release and choke the replication packets
+local timeRelease, timeChoke = 0.015, 0.105
+
+-- Function aliases
+local Property, Wait = sethiddenproperty, wait
+local Radian, Random, Ceil = math.rad, math.random, math.ceil
+local Angle = CFrame.Angles
+local Vector = Vector3.new
+local Service = game.GetService
+
+-- Services
+local Run = Service(game, 'RunService')
+local statPing = Service(game, 'Stats').PerformanceStats.Ping
+local Root = Service(game, 'Players').LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+
+-- Connections
+local runRen, runBeat = Run.RenderStepped, Run.Heartbeat
+local runRenWait, runRenCon = runRen.Wait, runRen.Connect
+local runBeatCon = runBeat.Connect
+
+-- Ping function
+local Ping = statPing.GetValue
+
+-- Client replication choking/sleeping
+local function Sleep()
+    Property(Root, 'NetworkIsSleeping', true)
+end
+
+-- Initialization function
+local function Init()
+    local rootVel = Root.Velocity
+    local rootAng = Random(-180, 180)
+    local rootOffset = Vector(
+        Random(-velMax, velMax),
+        -Random(0, velMax),
+        Random(-velMax, velMax)
+    )
+
+    Root.CFrame *= Angle(0, Radian(rootAng), 0)
+    Root.Velocity = rootOffset
+
+    runRenWait(runRen) -- Sync velocity smoothly with render
+    Root.CFrame *= Angle(0, Radian(-rootAng), 0)
+    Root.Velocity = rootVel
+end
+
+-- AntiGroundShot Function
+
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local GROUND_SHOT_THRESHOLD = 5 -- Maximum distance from feet to consider a ground shot
+local DETECTION_RANGE = 20 -- How far away to check for ground shots
+
+local function isGroundShot(hitPosition)
+    -- Check if shot landed near player's feet
+    local rootPart = character:FindFirstChild("HumanoidRootPart")
+    if not rootPart then return false end
+    
+    local feetPosition = rootPart.Position - Vector3.new(0, character:FindFirstChild("Humanoid").HipHeight, 0)
+    local distanceToFeet = (hitPosition - feetPosition).Magnitude
+    
+    return distanceToFeet <= GROUND_SHOT_THRESHOLD
+end
+
+local function onCharacterAdded(newCharacter)
+    character = newCharacter
+    humanoid = character:WaitForChild("Humanoid")
+end
+
+localPlayer.CharacterAdded:Connect(onCharacterAdded)
+
+-- Listen for bullets near player
+workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
+    workspace.CurrentCamera.ChildAdded:Connect(function(child)
+        if child:IsA("BasePart") and child.Name == "Bullet" then
+            if (child.Position - character:WaitForChild("HumanoidRootPart").Position).Magnitude <= DETECTION_RANGE then
+                if isGroundShot(child.Position) then
+                    warn("[..] Detected potential ground shot at position:", child.Position)
+                    -- Add your response logic here (dodge, alert, etc.)
+                end
+            end
+        end
+    end)
+end)
+
+print("€")
+
+-- Toggle control
+local desyncEnabled = false
+local desyncLoop
+
+-- Function to toggle desync
+local function toggleDesync(state)
+    desyncEnabled = state
+    if desyncEnabled then
+        -- Start desync loop
+        desyncLoop = Run.Heartbeat:Connect(function()
+            Init()
+            Wait(timeRelease)
+            
+            local chokeClient, chokeServer = runBeatCon(runBeat, Sleep), runRenCon(runRen, Sleep)
+            Wait(Ceil(Ping(statPing)) / 1000)
+            
+            chokeClient:Disconnect()
+            chokeServer:Disconnect()
+        end)
+    else
+        -- Stop desync loop
+        if desyncLoop then
+            desyncLoop:Disconnect()
+            desyncLoop = nil
+        end
+    end
+end
+
+-- Toggle button setup
+anti:AddToggle(
+    "Enable Desync",
+    {
+        Text = "Invisible Desync",
+        Default = false,
+        Tooltip = "Enable or Disable the desync feature",
+        Callback = function(state)
+            toggleDesync(state)  -- Enable or disable desync based on button state
+        end
+    }
+)
+
+-- UI setup (example using your UI structure)
+net:AddToggle(
+    "Enable Network Sleep",
+    {
+        Text = "Network FF",
+        Default = false,
+        Tooltip = "Toggle to simulate network sleep and enhance lag",
+        Callback = function(state)
+            if state then
+                -- Enable the "network sleep" behavior
+                setfflag("S2PhysicsSenderRate", 2)
+                local UserInputService = game:GetService("UserInputService")
+                local Players = game:GetService("Players")
+                local Client = Players.LocalPlayer
+
+                local MainThread = task.spawn(function()
+                    while state do
+                        if Client.Character and Client.Character:FindFirstChild("HumanoidRootPart") then
+                            sethiddenproperty(Client.Character.HumanoidRootPart, "NetworkIsSleeping", true)
+                            task.wait()
+                            sethiddenproperty(Client.Character.HumanoidRootPart, "NetworkIsSleeping", false)
+                        end
+                        task.wait()
+                    end
+                end)
+            else
+                -- Disable the "network sleep" behavior
+                setfflag("S2PhysicsSenderRate", 13)
+                local Client = Players.LocalPlayer
+                if Client.Character and Client.Character:FindFirstChild("HumanoidRootPart") then
+                    sethiddenproperty(Client.Character.HumanoidRootPart, "NetworkIsSleeping", false)
+                end
+            end
+        end
+    }
+)
+
+-- Main Script
+game:GetService("RunService").Heartbeat:Connect(function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local humanoidRootPart = character.HumanoidRootPart
+        local vel = humanoidRootPart.Velocity
+
+        -- CFrame Speed Toggle
+        if getgenv().cframespeedtoggle == true then
+            humanoidRootPart.CFrame = humanoidRootPart.CFrame +
+                character.Humanoid.MoveDirection * getgenv().speedvalue / 0.5
+        end
+
+        -- Anti Lock Functionality
+        if getgenv().Venus and getgenv().Venus.AntiEnabled then
+            if getgenv().Venus.AntiLock == "Predbreaker" then
+                humanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+            elseif getgenv().Venus.AntiLock == "Sky" then
+                humanoidRootPart.Velocity = Vector3.new(0, 100, 0)
+            end
+        end
+
+        game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.Velocity = vel
+    end
+end)
+
+-- UI Toggle Button to Enable Anti Lock
+ant:AddToggle(
+    "Enable Anti Lock",
+    {
+        Text = "Enable Anti Lock",
+        Default = false,  -- Default state is disabled
+        Tooltip = "Toggle Anti Lock",
+        Callback = function(state)
+            getgenv().Venus = getgenv().Venus or {}  -- Ensure Venus table exists
+            getgenv().Venus.AntiEnabled = state  -- Set AntiEnabled based on toggle state
+        end
+    }
+)
+
+-- Dropdown for Anti Lock Modes
+ant:AddDropdown(
+    "AntiLockMode",
+    {
+        Values = {"Sky", "Predbreaker"},
+        Default = 1,  -- Default selection is "Sky"
+        Multi = false,  -- Single selection
+        Text = "Anti Lock Mode",
+        Tooltip = "Choose Anti Lock mode",
+        Callback = function(value)
+            getgenv().Venus = getgenv().Venus or {}  -- Ensure Venus table exists
+            getgenv().Venus.AntiLock = value  -- Set AntiLock mode
+        end
+    }
+)
+
+-- Create the toggle button in the UI
+anti:AddToggle(
+    "Desync Velocity",
+    {
+        Text = "Velocity Manipulation",
+        Default = false,
+        Tooltip = "Toggles the manipulation of velocity",
+        Callback = function(state)
+            getgenv().demisethebest = state  -- Toggle the velocity manipulation state
+        end
+    }
+)
+
+-- The script that manipulates the velocity
+game:GetService("RunService").heartbeat:Connect(function()
+    if getgenv().demisethebest == true then 
+        local abc = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(1,1,1) * (2^16)
+        game:GetService("RunService").RenderStepped:Wait()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = abc
+    end 
+end)
+
+local Plr = game.Players.LocalPlayer
+local StateEnabled = false  -- Tracks if the feature is enabled or not
+
+-- Add the toggle button
+anti:AddToggle(
+    "Enable Freefall Speed",
+    {
+        Text = "Freefall Velocity Boost",
+        Default = false,
+        Tooltip = "Enable faster freefall",
+        Callback = function(state)
+            StateEnabled = state  -- Update the state when the toggle is pressed
+        end
+    }
+)
+
+-- StateChanged event listener with the toggle
+Plr.Character:WaitForChild("Humanoid").StateChanged:Connect(function(old, new)
+    if StateEnabled and new == Enum.HumanoidStateType.Freefall then
+        wait(0.27)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, -15, 0)
+    end
+end)
+
+-- Toggle button for enabling/disabling Underground
+net:AddToggle(
+    "Enable Underground",
+    {
+        Text = "Underground",
+        Default = false,
+        Tooltip = "Toggles the underground velocity manipulation",
+        Callback = function(state)
+            getgenv().Underground = state
+        end
+    }
+)
+
+-- Add an input to adjust the UndergroundAmount
+net:AddInput(
+    "Underground Amount",
+    {
+        Default = tostring(getgenv().UndergroundAmount),
+        Numeric = true,
+        Finished = true,
+        Text = "Amount",
+        Tooltip = "Adjust the downward velocity for the underground effect",
+        Placeholder = "825",
+        Callback = function(value)
+            getgenv().UndergroundAmount = tonumber(value) or getgenv().UndergroundAmount
+        end
+    }
+)
+
+-- The script that manipulates underground velocity
+getgenv().UndergroundAmount = 825
+game:GetService("RunService").heartbeat:Connect(function()
+    if getgenv().Underground then
+        local vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, -getgenv().UndergroundAmount, 0)
+        game:GetService("RunService").RenderStepped:Wait()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = vel
+    end
+end)
+
+
+
+
+local lplr = game.Players.LocalPlayer
+local camera = game:GetService("Workspace").CurrentCamera
+local CurrentCamera = workspace.CurrentCamera
+local worldToViewportPoint = CurrentCamera.worldToViewportPoint
+
+local healthBarEnabled = false -- Use true or false to toggle health bars
+
+-- Toggle Button for Venus (which also controls health bars)
+esp:AddToggle(
+    "Boxes & Health Bars",
+    {
+        Text = "Boxes & Health Bars",
+        Default = false,
+        Tooltip = "Enable or Disable Boxes and Health Bars",
+        Callback = function(state)
+            healthBarEnabled = state
+        end
+    }
+)
+
+local HeadOff = Vector3.new(0, 0.5, 0)
+local LegOff = Vector3.new(0, 3, 0)
+
+local function createJamkleBox(v)
+    local BoxOutline = Drawing.new("Square")
+    BoxOutline.Visible = false -- Keep this invisible
+    BoxOutline.Color = Color3.new(0, 0, 0)
+    BoxOutline.Thickness = 3
+    BoxOutline.Transparency = 1
+    BoxOutline.Filled = false
+
+    local Box = Drawing.new("Square")
+    Box.Visible = false -- This will be set to true when the player is visible
+    Box.Color = Color3.new(1, 1, 1) -- White box
+    Box.Thickness = 1
+    Box.Transparency = 1
+    Box.Filled = false
+
+    local HealthBarOutline = Drawing.new("Line")
+    HealthBarOutline.Thickness = 1.5 -- Stroke thickness
+    HealthBarOutline.Color = Color3.new(0, 0, 0) -- Black stroke color
+    HealthBarOutline.Visible = false
+
+    local HealthBar = Drawing.new("Line")
+    HealthBar.Thickness = 1.5 -- Line thickness for health bar
+    HealthBar.Visible = false
+
+    local function boxesp()
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if v.Character and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("HumanoidRootPart") and v.Character.Humanoid.Health > 0 then
+                local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                local RootPart = v.Character.HumanoidRootPart
+                local Head = v.Character.Head
+                local RootPosition, RootVis = worldToViewportPoint(CurrentCamera, RootPart.Position)
+                local HeadPosition = worldToViewportPoint(CurrentCamera, Head.Position + HeadOff)
+                local LegPosition = worldToViewportPoint(CurrentCamera, RootPart.Position - LegOff)
+
+                if onScreen and healthBarEnabled then
+                    -- Remove the BoxOutline drawing
+                    -- BoxOutline.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
+                    -- BoxOutline.Position = Vector2.new(RootPosition.X - BoxOutline.Size.X / 2, RootPosition.Y - BoxOutline.Size.Y / 2)
+                    -- BoxOutline.Visible = true -- Keep BoxOutline invisible
+
+                    Box.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
+                    Box.Position = Vector2.new(RootPosition.X - Box.Size.X / 2, RootPosition.Y - Box.Size.Y / 2)
+                    Box.Visible = true -- Only the white box is visible
+
+                    -- Health bar
+                    HealthBarOutline.From = Vector2.new(Box.Position.X - 6, Box.Position.Y)
+                    HealthBarOutline.To = Vector2.new(Box.Position.X - 6, Box.Position.Y + (HeadPosition.Y - LegPosition.Y))
+                    HealthBarOutline.Visible = true
+
+                    local healthRatio = v.Character.Humanoid.Health / v.Character.Humanoid.MaxHealth
+                    HealthBar.From = Vector2.new(Box.Position.X - 6, Box.Position.Y)
+                    HealthBar.To = Vector2.new(Box.Position.X - 6, Box.Position.Y + (HeadPosition.Y - LegPosition.Y) * healthRatio)
+                    HealthBar.Color = Color3.fromRGB(255 * (1 - healthRatio), 255 * healthRatio, 0) -- Health color
+                    HealthBar.Visible = true
+                else
+                    Box.Visible = false -- Hide the white box if conditions aren't met
+                    HealthBarOutline.Visible = false
+                    HealthBar.Visible = false
+                end
+            else
+                Box.Visible = false -- Hide the white box if the character isn't valid
+                HealthBarOutline.Visible = false
+                HealthBar.Visible = false
+            end
+        end)
+    end
+    coroutine.wrap(boxesp)()
+end
+
+for _, v in pairs(game.Players:GetChildren()) do
+    createJamkleBox(v)
+end
+
+game.Players.PlayerAdded:Connect(function(v)
+    createJamkleBox(v)
+end)
+
+local lplr = game.Players.LocalPlayer
+local camera = game:GetService("Workspace").CurrentCamera
+local CurrentCamera = workspace.CurrentCamera
+local worldToViewportPoint = CurrentCamera.worldToViewportPoint
+
+_G.TeamCheck = false -- Default team check is off
+local tracersEnabled = false -- Default tracers are off
+
+-- Add Toggle for Tracers
+esp:AddToggle(
+    "Tracers",
+    {
+        Text = "Tracers",
+        Default = false,
+        Tooltip = "Enable or disable Tracers",
+        Callback = function(state)
+            tracersEnabled = state
+        end
+    }
+)
+
+for i,v in pairs(game.Players:GetChildren()) do
+    local Tracer = Drawing.new("Line")
+    Tracer.Visible = false
+    Tracer.Color = Color3.new(1, 1, 1)
+    Tracer.Thickness = 1
+    Tracer.Transparency = 1
+
+    function lineesp()
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if tracersEnabled and v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
+                local Vector, OnScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                if OnScreen then
+                    Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
+                    Tracer.To = Vector2.new(Vector.X, Vector.Y)
+
+                    if _G.TeamCheck and v.TeamColor == lplr.TeamColor then
+                        -- Teammates
+                        Tracer.Visible = false
+                    else
+                        -- Enemies
+                        Tracer.Visible = true
+                    end
+                else
+                    Tracer.Visible = false
+                end
+            else
+                Tracer.Visible = false
+            end
+        end)
+    end
+    coroutine.wrap(lineesp)()
+end
+
+game.Players.PlayerAdded:Connect(function(v)
+    local Tracer = Drawing.new("Line")
+    Tracer.Visible = false
+    Tracer.Color = Color3.new(1, 1, 1)
+    Tracer.Thickness = 1
+    Tracer.Transparency = 1
+
+    function lineesp()
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if tracersEnabled and v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
+                local Vector, OnScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                if OnScreen then
+                    Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
+                    Tracer.To = Vector2.new(Vector.X, Vector.Y)
+
+                    if _G.TeamCheck and v.TeamColor == lplr.TeamColor then
+                        -- Teammates
+                        Tracer.Visible = false
+                    else
+                        -- Enemies
+                        Tracer.Visible = true
+                    end
+                else
+                    Tracer.Visible = false
+                end
+            else
+                Tracer.Visible = false
+            end
+        end)
+    end
+    coroutine.wrap(lineesp)()
+end)
+
+-- Separate functionality loop
+game:GetService("RunService").Heartbeat:Connect(function()
+    if getgenv().FeatureEnabled then
+        -- Place your functionality code here
+        -- This code will only execute if FeatureEnabled is true
+    end
+end)
+
+-- Dropdown list for Crosshair Toggle
+local CrosshairEnabled = false
+
+visuals:AddToggle(
+    "Crosshair",
+    {
+        Text = "Crosshair",
+        Default = false,
+        Tooltip = "Enable or disable Crosshair",
+        Callback = function(state)
+            CrosshairEnabled = state
+        end
+    }
+)
+
+-- Crosshair settings
+getgenv().crosshair = {
+    enabled = true,
+    refreshrate = 0.015,
+    mode = 'center',
+    position = Vector2.new(0, 0),
+    width = 2.5,
+    length = 10,
+    radius = 11,
+    color = Color3.fromRGB(86, 87, 142),  -- Color for the crosshair lines
+    spin = true,
+    spin_speed = 150,
+    spin_max = 340,
+    spin_style = Enum.EasingStyle.Circular,
+    resize = true,
+    resize_speed = 150,
+    resize_min = 5,
+    resize_max = 22,
+}
+
+local old; old = hookfunction(Drawing.new, function(class, properties)
+    local drawing = old(class)
+    for i, v in next, properties or {} do
+        drawing[i] = v
+    end
+    return drawing
+end)
+
+local runservice = game:GetService('RunService')
+local inputservice = game:GetService('UserInputService')
+local tweenservice = game:GetService('TweenService')
+local camera = workspace.CurrentCamera
+
+local last_render = 0
+
+local drawings = {
+    crosshair = {},
+    text = {
+        Drawing.new('Text', {Size = 13, Font = 2, Outline = true, Text = 'Failurty', Color = Color3.new(255, 255, 255)}),
+        Drawing.new('Text', {Size = 13, Font = 2, Outline = true, Text = ' .CC', Color = Color3.fromRGB(86, 87, 142)}),
+    }
+}
+
+for idx = 1, 4 do
+    drawings.crosshair[idx] = Drawing.new('Line')
+    drawings.crosshair[idx + 4] = Drawing.new('Line')
+end
+
+function solve(angle, radius)
+    return Vector2.new(
+        math.sin(math.rad(angle)) * radius,
+        math.cos(math.rad(angle)) * radius
+    )
+end
+
+runservice.PostSimulation:Connect(function()
+    local _tick = tick()
+
+    if _tick - last_render > crosshair.refreshrate then
+        last_render = _tick
+
+        local position = camera.ViewportSize / 2
+
+        local text_1 = drawings.text[1]
+        local text_2 = drawings.text[2]
+
+        text_1.Visible = CrosshairEnabled
+        text_2.Visible = CrosshairEnabled
+
+        if CrosshairEnabled then
+            local text_x = text_1.TextBounds.X + text_2.TextBounds.X
+
+            text_1.Position = position + Vector2.new(-text_x / 2, crosshair.radius + (crosshair.resize and crosshair.resize_max or crosshair.length) + 5)
+            text_2.Position = text_1.Position + Vector2.new(text_1.TextBounds.X, 0)
+            text_2.Color = Color3.fromRGB(86, 87, 142)
+
+            for idx = 1, 4 do
+                local outline = drawings.crosshair[idx]
+                local inline = drawings.crosshair[idx + 4]
+
+                local angle = (idx - 1) * 90
+                local length = crosshair.length
+
+                if crosshair.spin then
+                    local spin_angle = -_tick * crosshair.spin_speed % crosshair.spin_max
+                    angle = angle + tweenservice:GetValue(spin_angle / 360, crosshair.spin_style, Enum.EasingDirection.InOut) * 360
+                end
+
+                if crosshair.resize then
+                    local resize_length = tick() * crosshair.resize_speed % 180
+                    length = crosshair.resize_min + math.sin(math.rad(resize_length)) * crosshair.resize_max
+                end
+
+                inline.Visible = true
+                inline.Color = Color3.fromRGB(86, 87, 142)  -- Set color for all inline lines
+                inline.From = position + solve(angle, crosshair.radius)
+                inline.To = position + solve(angle, crosshair.radius + length)
+                inline.Thickness = crosshair.width
+
+                outline.Visible = true
+                outline.From = position + solve(angle, crosshair.radius - 1)
+                outline.To = position + solve(angle, crosshair.radius + length + 1)
+                outline.Thickness = crosshair.width + 1.5    
+            end
+        else
+            for idx = 1, 4 do
+                drawings.crosshair[idx].Visible = false
+                drawings.crosshair[idx + 4].Visible = false
+            end
+        end
+    end
+end)
+
+local effectEnabled = false -- Variable to control the toggle state
+local forceFieldColor = Color3.fromRGB(128, 0, 128) -- Default force field color (purple)
+
+-- Toggle Button for Effect
+visuals:AddToggle(
+    "Visuals",
+    {
+        Text = "Force Field", -- 
+        Default = false,
+        Tooltip = "Enable or disable the effect on MeshParts ",
+        Callback = function(state)
+            effectEnabled = state
+        end
+    }
+)
+
+-- Color Picker for Force Field Color
+Toggles.Visuals:AddColorPicker(
+    "Color",
+    {
+        Default = Color3.fromRGB(128, 0, 128), -- Default purple color
+        Title = "Force Field Color", -- Tooltip for the picker
+        Callback = function(color)
+            forceFieldColor = color -- Update the color variable dynamically
+        end
+    }
+)
+
+-- Apply effect if enabled
+spawn(function()
+    while wait() do
+        for _, part in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+            if part:IsA("MeshPart") then
+                if effectEnabled then
+                    part.Material = Enum.Material.ForceField
+                    part.Color = forceFieldColor -- Use the dynamically updated color
+                else
+                    -- Revert to original properties
+                    part.Material = Enum.Material.SmoothPlastic -- Change this to the original material you want
+                end
+            end
+        end
+    end
+end)
+
+visuals:AddLabel('')
+
+
+
+local circle  -- Declare the circle variable outside the function
+
+-- Function to create or get the circle
+local function getCircle()
+    if not circle then
+        -- Initialize the circle if it doesn't exist
+        circle = Drawing.new("Circle")
+        circle.Position = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y / 2)  -- Centered on the screen
+        circle.Radius = 120  -- Default radius
+        circle.Color = Color3.fromRGB(255, 255, 255)  -- Default color (white)
+        circle.Thickness = 1
+        circle.Filled = false  -- Default filled state
+    end
+    return circle
+end
+
+-- State variable to track circle visibility
+local circleEnabled = false
+
+-- State variable to track circle fill
+local circleFilled = false
+
+-- Toggle button for circle visibility
+fov:AddToggle(
+    "Enable Circle", 
+    {
+        Text = "Enable Circle",
+        Default = false,
+        Tooltip = "Toggle to enable or disable the circle",
+        Callback = function(state)
+            circleEnabled = state
+            local circleInstance = getCircle()
+            circleInstance.Visible = circleEnabled
+        end
+    }
+)
+
+-- Toggle button for filling the circle
+fov:AddToggle(
+    "Filled",
+    {
+        Text = "Filled",
+        Default = false,
+        Tooltip = "Toggle to fill the circle",
+        Callback = function(state)
+            circleFilled = state
+            local circleInstance = getCircle()  -- Get the circle instance
+            circleInstance.Filled = circleFilled  -- Update filled state
+        end
+    }
+)
+
+-- Slider for circle size adjustment
+fov:AddSlider(
+    "Circle Size",
+    {
+        Min = 20,  -- Minimum size
+        Max = 300,  -- Maximum size
+        Default = 120,  -- Default size (initial radius)
+        Rounding = 0,  -- Add rounding value
+        Text = "Circle Size",
+        Tooltip = "Adjust the size of the circle",
+        Callback = function(size)
+            local circleInstance = getCircle()  -- Get the circle instance
+            if circleInstance then  -- Ensure circleInstance is valid
+                circleInstance.Radius = size  -- Set the new radius
+            end
+        end
+    }
+)
+
+-- Color Picker to change circle color
+fov:AddLabel('Circle Color'):AddColorPicker('ColorPicker', {
+    Default = circle and circle.Color or Color3.fromRGB(255, 255, 255),  -- Start with the current circle color or default to white
+    Title = 'Circle Color',  -- Title for the color picker
+    Transparency = nil,  -- Optional. Enables transparency changing for this color picker (leave as nil to disable)
+
+    Callback = function(Value)
+        local circleInstance = getCircle()  -- Get the circle instance
+        if circleInstance then  -- Ensure circleInstance is valid
+            circleInstance.Color = Value  -- Change the circle color
+        end
+        print('[cb] Color changed!', Value)
+    end
+})
+
+fov:AddLabel('')
+
+-- Initial drawing of the circle based on the default state
+local circleInstance = getCircle()
+circleInstance.Visible = circleEnabled
+
+
+
+assist:AddToggle(
+    "Enable KO Check",
+    {
+        Text = "Enable KO Check",
+        Default = false,
+        Tooltip = "",
+        Callback = function(state)
+            venus.KOCheckEnabled = state
+        end
+    }
+)
+
+-- Variables
+local speedd = 50
+local screenGui = nil
+local isToggleEnabled = false
+
+local function createWalkSpeedGUI()
+    if screenGui then
+        screenGui:Destroy()
+    end
+
+    screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "WalkSpeedGui"
+    screenGui.Parent = game.CoreGui
+    screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    screenGui.ResetOnSpawn = false
+
+    -- Nút WalkSpeed với style mới
+    local button = Instance.new("TextButton")
+    button.Name = "WalkSpeedButton"
+    button.Parent = screenGui
+    button.Active = true
+    button.Draggable = true
+    button.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- nền dịu
+    button.BackgroundTransparency = 0.3
+    button.Size = UDim2.new(0, 120, 0, 50)
+    button.Position = UDim2.new(1, -150, 0, 80)
+    button.Text = "WalkSpeed OFF"
+    button.TextColor3 = Color3.fromRGB(180, 220, 200) -- xanh ngọc nhạt dịu mắt
+    button.TextScaled = false
+    button.TextSize = 14
+    button.Font = Enum.Font.Gotham
+    button.BorderSizePixel = 0
+
+    -- Bo góc
+    local buttonCorner = Instance.new("UICorner")
+    buttonCorner.CornerRadius = UDim.new(0, 15)
+    buttonCorner.Parent = button
+
+    -- Viền
+    local buttonStroke = Instance.new("UIStroke")
+    buttonStroke.Color = Color3.fromRGB(200, 255, 200) -- viền xanh nhạt
+    buttonStroke.Thickness = 2
+    buttonStroke.Parent = button
+
+    -- WalkSpeed functionality
+    local humanoid
+    local isEnabled = false
+    local originalSpeed = 16
+
+    local function UpdateWalkSpeed()
+        if humanoid then
+            if isEnabled then
+                humanoid.WalkSpeed = speedd
+            else
+                humanoid.WalkSpeed = originalSpeed
+            end
+        end
+    end
+
+    local function UpdateButtonAppearance()
+        if isEnabled then
+            button.BackgroundColor3 = Color3.fromRGB(50, 120, 50) -- xanh lá khi bật
+            button.Text = "WalkSpeed ON"
+            buttonStroke.Color = Color3.fromRGB(150, 255, 180)
+        else
+            button.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- xám khi tắt
+            button.Text = "WalkSpeed OFF"
+            buttonStroke.Color = Color3.fromRGB(200, 255, 200)
+        end
+    end
+
+    local function onCharacterAdded(character)
+        humanoid = character:WaitForChild("Humanoid")
+        originalSpeed = humanoid.WalkSpeed
+        
+        -- Monitor walkspeed changes
+        local connection
+        connection = humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+            if isEnabled and humanoid.WalkSpeed ~= speedd then
+                humanoid.WalkSpeed = speedd
+            elseif not isEnabled and humanoid.WalkSpeed ~= originalSpeed then
+                originalSpeed = humanoid.WalkSpeed
+            end
+        end)
+        
+        -- Clean up connection when character is removed
+        character.AncestryChanged:Connect(function()
+            if not character.Parent then
+                connection:Disconnect()
+            end
+        end)
+        
+        UpdateWalkSpeed()
+        UpdateButtonAppearance()
+    end
+
+    -- Connect character events
+    local player = game.Players.LocalPlayer
+    player.CharacterAdded:Connect(onCharacterAdded)
+
+    if player.Character then
+        onCharacterAdded(player.Character)
+    end
+
+    -- Button click to toggle on/off
+    button.MouseButton1Click:Connect(function()
+        isEnabled = not isEnabled
+        UpdateWalkSpeed()
+        UpdateButtonAppearance()
+    end)
+
+    -- Hover effects
+    button.MouseEnter:Connect(function()
+        button.BackgroundTransparency = 0.15
+        button.TextColor3 = Color3.fromRGB(220, 255, 230) -- sáng hơn chút khi hover
+        if isEnabled then
+            buttonStroke.Color = Color3.fromRGB(150, 255, 150)
+        else
+            buttonStroke.Color = Color3.fromRGB(150, 255, 180)
+        end
+    end)
+
+    button.MouseLeave:Connect(function()
+        button.BackgroundTransparency = 0.3
+        button.TextColor3 = Color3.fromRGB(180, 220, 200) -- quay về dịu
+        UpdateButtonAppearance()
+    end)
+end
+
+-- Linoria Integration (only if walkspeed variable exists)
+if walkspeed then
+    walkspeed:AddToggle(
+        "WalkSpeedToggle",
+        {
+            Text = "Walk Speed GUI",
+            Default = false,
+            Tooltip = "Show/Hide WalkSpeed GUI",
+            Callback = function(state)
+                isToggleEnabled = state
+                if state then
+                    createWalkSpeedGUI()
+                else
+                    if screenGui then
+                        screenGui:Destroy()
+                        screenGui = nil
+                    end
+                end
+            end
+        }
+    )
+
+    walkspeed:AddInput(
+        "WalkSpeedValue",
+        {
+            Default = "50",
+            Numeric = true,
+            Finished = false,
+            Text = "WalkSpeed Value",
+            Tooltip = "Set custom walkspeed value (default: 50)",
+            Placeholder = "Enter speed value",
+            Callback = function(value)
+                local num = tonumber(value)
+                if num and num > 0 and num <= 1000 then -- Add reasonable upper limit
+                    speedd = num
+                    print("WalkSpeed set to: " .. num) -- Debug output
+                else
+                    warn("Invalid walkspeed value. Must be between 1-1000")
+                end
+            end
+        }
+    )
+else
+    warn("lol")
+end
+
+
+        
+local MenuGroup = Tabs['UI Settings']:AddRightGroupbox('Menu')
+
+MenuGroup:AddButton('Unload', function() Library:Unload() end)
+MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'End', NoUI = true, Text = 'Menu keybind' })
+
+Library.ToggleKeybind = Options.MenuKeybind
+
+ThemeManager:SetLibrary(Library)
+SaveManager:SetLibrary(Library)
+
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
+
+if not isfolder("failurty") then makefolder("failurty") end
+if not isfolder("failurty/configss") then makefolder("failurty/configss") end
+
+ThemeManager:SetFolder('failurty.CC')
+SaveManager:SetFolder('failurty/configss')
+
+SaveManager:BuildConfigSection(Tabs['UI Settings'])
+ThemeManager:ApplyToTab(Tabs['UI Settings'])
+
+SaveManager:LoadAutoloadConfig()
+
+
+
+
+
+print("hahah")
+
+
+
+local userInputService = game:GetService("UserInputService")
+local Players = game:GetService("Players")
+local RS = game:GetService("RunService")
+local WS = game:GetService("Workspace")
+local GS = game:GetService("GuiService")
+
+
+local LP = Players.LocalPlayer
+local Mouse = LP:GetMouse()
+local Camera = WS.CurrentCamera
+local GetGuiInset = GS.GetGuiInset
+
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local Workspace = game:GetService("Workspace")
+
+local LocalPlayer = Players.LocalPlayer
+local Camera = Workspace.CurrentCamera
+
+
+
+
+local userInputService = game:GetService("UserInputService")
+
+local AimlockState = true
+local Locked = false
+local Victim
+local target
+
+if venus.Loaded then
+    notify("lmao")
+    return
+end
+
+venus.Loaded = true
+
+local function GetClosestPlayer()
+    local closestPlayer = nil
+    local shortestScore = math.huge
+    local centerScreen = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+    local maxAngle = 30 -- Maximum angle limit in degrees (adjust this for wider or narrower locking range)
+
+    for _, plr in pairs(Players:GetPlayers()) do
+        if plr ~= player and plr.Character and plr.Character:FindFirstChild(venus.AimPart) and plr.Character:FindFirstChild("Humanoid") and plr.Character.Humanoid.Health > 0 then
+            local part = plr.Character[venus.AimPart]
+            local relativePos = part.Position - Camera.CFrame.Position
+            local playerDistance = relativePos.Magnitude
+            local screenPosition, onScreen = Camera:WorldToViewportPoint(part.Position)
+
+            if onScreen then
+                local angle = math.deg(math.acos(Camera.CFrame.LookVector:Dot(relativePos.Unit)))
+                
+                -- Only consider players within a specific angle range (in front of you)
+                if angle <= maxAngle then
+                    local mouseDistance = (Vector2.new(screenPosition.X, screenPosition.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
+
+                    -- Adjust score to prioritize players more in front and reduce side locks
+                    local score = mouseDistance * 0.02 + angle * 0.03 -- Increase angle weight to penalize wider angles
+                    
+                    if angle < 5 then
+                        score = score * 0.001 -- Further reduce score for players directly in front
+                    end
+
+                    local ray = Ray.new(Camera.CFrame.Position, relativePos.Unit * playerDistance)
+                    local hitPart = WS:FindPartOnRayWithIgnoreList(ray, {player.Character})
+
+                    if (not hitPart or hitPart:IsDescendantOf(plr.Character)) and score < shortestScore then
+                        closestPlayer = plr
+                        shortestScore = score
+                    end
+                end
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+
+
+
+
+local notificationsEnabled = false -- Default state for notifications
+
+assist:AddToggle(
+    "Enable Notifications",
+    {
+        Text = "Notifications",
+        Default = false,
+        Tooltip = "Enable or disable notifications",
+        Callback = function(state)
+            notificationsEnabled = state
+        end
+    }
+)
+
+
+local function ToggleLock()
+    if AimlockState then
+        Locked = not Locked
+        if Locked then
+            Victim = GetClosestPlayer()
+            target = Victim
+            if Victim and Victim.Character and Victim.Character:FindFirstChild(venus.AimPart) then
+                -- Change image to locked state when a valid target is found
+                if LockButton then
+                    LockButton.Image = "rbxassetid://96734356722259" -- Image for the lock when locked
+                end
+                if venus.Enabled and notificationsEnabled then
+                    NotificationSystem:Notify("Camlock: Locked onto " .. tostring(Victim.Name), 5)
+                elseif targetaim.enabled and notificationsEnabled then
+                    NotificationSystem:Notify("Target Lock: Locked onto " .. tostring(target.Name), 5)
+                end
+            else
+                -- No valid target found, revert to unlocked state
+                Locked = false
+                Victim = nil
+                target = nil
+                if LockButton then
+                    LockButton.Image = "rbxassetid://88399410034249" -- Image for the lock when unlocked
+                end
+                if venus.Enabled and notificationsEnabled then
+                    NotificationSystem:Notify("Camlock: No target found", 5)
+                elseif targetaim.enabled and notificationsEnabled then
+                    NotificationSystem:Notify("Target Lock: No target found", 5)
+                end
+            end
+        else
+            -- Unlock state
+            if LockButton then
+                LockButton.Image = "rbxassetid://88399410034249" -- Image for the lock when unlocked
+            end
+            Victim = nil
+            target = nil
+            if venus.Enabled and notificationsEnabled then
+                NotificationSystem:Notify("Camlock: Unlocked!", 5)
+            elseif targetaim.enabled and notificationsEnabled then
+                NotificationSystem:Notify("Target Lock: Unlocked!", 5)
+            end
+        end
+    else
+        if not venus.Enabled and notificationsEnabled then
+            NotificationSystem:Notify("Camlock not enabled", 5)
+        end
+    end
+end
+
+
+
+
+
+-- Function for the "Button" mode
+function spawnButton()
+    local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    
+    local function setupGui()
+        local screenGui = playerGui:FindFirstChild("LockScreenGui")
+
+        if not screenGui then
+            screenGui = Instance.new("ScreenGui")
+            screenGui.Name = "LockScreenGui"
+            screenGui.Parent = playerGui
+            screenGui.ResetOnSpawn = false -- Prevent GUI from resetting on respawn
+        end
+
+        LockButton = screenGui:FindFirstChild("LockButton")
+
+        if not LockButton then
+            LockButton = Instance.new("ImageButton")
+            LockButton.Name = "LockButton"
+            LockButton.Size = UDim2.new(0, 80, 0, 80)
+            LockButton.Position = UDim2.new(0.5, -250, 0.8, -225)
+            LockButton.Image = "rbxassetid://88399410034249" -- Default image for the lock (not locked)
+            LockButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+            LockButton.BackgroundTransparency = 0.450
+            LockButton.Parent = screenGui
+            LockButton.Active = true
+            LockButton.Draggable = true
+
+            local UICorner = Instance.new("UICorner")
+            UICorner.CornerRadius = UDim.new(0, 10)
+            UICorner.Parent = LockButton
+
+            LockButton.MouseButton1Click:Connect(function()
+                ToggleLock() -- Trigger ToggleLock when clicked
+            end)
+        end
+    end
+
+    setupGui()
+
+    -- Re-setup the GUI when the character respawns
+    game.Players.LocalPlayer.CharacterAdded:Connect(function()
+        setupGui()
+        -- Ensure the button image reflects the current lock state after respawn
+        if Locked and Victim then
+            LockButton.Image = "rbxassetid://96734356722259"
+        else
+            LockButton.Image = "rbxassetid://88399410034249"
+        end
+    end)
+end
+
+-- Immediately call the function to create the button
+spawnButton()
+
+-- Re-setup the GUI when the character respawns
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    spawnButton()
+end)
+
+RS.RenderStepped:Connect(function()
+    if AimlockState and Victim and Victim.Character and Victim.Character:FindFirstChild("Humanoid") and Victim.Character:FindFirstChild(venus.AimPart) then
+        local humanoid = Victim.Character.Humanoid
+        
+        -- Kiểm tra KO Check: Nếu bật và máu dưới 20 thì bỏ khóa
+        if venus.KOCheckEnabled and humanoid.Health <= 14 then
+            Locked = false
+            Victim = nil
+            target = nil
+            if LockButton then
+                LockButton.Image = "rbxassetid://88399410034249" -- Hình ảnh nút khóa khi không khóa
+            end
+            if notificationsEnabled then
+                NotificationSystem:Notify("ez", 5)
+            end
+        else
+            -- Code hiện có cho aimlock và các tính năng khác
+            local aimPart = Victim.Character[venus.AimPart]
+
+            -- Tính toán vị trí dự đoán
+            local predictedPosition = aimPart.Position 
+                + aimPart.Velocity * venus.Prediction
+                + Vector3.new(0, venus.JumpOffset, 0)
+
+            -- Look at the target smoothly only if LookAt is enabled and target aim is active
+            if venus.LookAtEnabled and targetaim.enabled then
+                local lookPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
+                Camera.CFrame = Camera.CFrame:Lerp(lookPosition, venus.Smoothness)
+
+                local playerHRP = player.Character.HumanoidRootPart
+                playerHRP.CFrame = CFrame.new(playerHRP.Position, Vector3.new(predictedPosition.X, playerHRP.Position.Y, predictedPosition.Z))
+            end
+
+            -- Camlock functionality
+            if AimlockState then
+                local playerHRP = player.Character.HumanoidRootPart
+                local camlockPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
+                Camera.CFrame = Camera.CFrame:Lerp(camlockPosition, venus.Smoothness)
+
+                -- Target strafe functionality (Orbiting)
+                if venus.cframe.TargetStrafe.Enabled then
+                    local lp = player.Character
+                    local targpos = Victim.Character.HumanoidRootPart.Position
+                    
+                    -- Calculate strafe offset for orbiting
+                    local angle = tick() * venus.cframe.TargetStrafe.StrafeSpeed
+                    local strafeOffset = Vector3.new(
+                        math.cos(angle) * venus.cframe.TargetStrafe.StrafeRadius,
+                        venus.cframe.TargetStrafe.Height,
+                        math.sin(angle) * venus.cframe.TargetStrafe.StrafeRadius
+                    )
+
+                    local strafePosition = targpos + strafeOffset
+                    strafePosition = Vector3.new(strafePosition.X, math.max(strafePosition.Y, targpos.Y), strafePosition.Z)
+                    
+                    lp:SetPrimaryPartCFrame(CFrame.new(strafePosition))
+                    playerHRP.CFrame = CFrame.new(
+                        playerHRP.Position,
+                        Vector3.new(targpos.X, playerHRP.Position.Y, targpos.Z)
+                    )
+                end
+            end
+
+            -- Auto Air functionality
+            if venus.AutoAirEnabled then
+                local TargetRootPart = Victim.Character:FindFirstChild("HumanoidRootPart")
+                if TargetRootPart then
+                    local TargetVel = TargetRootPart.Velocity
+                    if TargetVel.Y > 25 then
+                        local Character = LocalPlayer.Character
+                        if Character then
+                            local Tool = Character:FindFirstChildOfClass("Tool")
+                            if Tool then
+                                Tool:Activate()
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+
+-- Metatable Hook for Target Aim Adjustments
+local mt = getrawmetatable(game)
+local oldNameCall = mt.__namecall
+setreadonly(mt, false)
+
+mt.__namecall = newcclosure(function(Self, ...)
+    local args = {...}
+    local methodName = getnamecallmethod()
+
+    -- Kiểm tra điều kiện để xử lý prediction
+    if not checkcaller() and methodName == "FireServer" and targetaim.enabled then
+        if target and target.Character then
+            local targetPart = target.Character[targetaim.targetPart]
+            if targetPart then
+                for i, arg in ipairs(args) do
+                    if typeof(arg) == "Vector3" then
+                        args[i] = targetPart.Position
+                            + targetPart.Velocity * venus.Prediction
+                            + Vector3.new(0, venus.JumpOffset, 0)
+                        break -- Chỉ chỉnh sửa đối số Vector3 đầu tiên
+                    end
+                end
+            end
+        end
+    end
+
+    return oldNameCall(Self, unpack(args))
+end)
+
+setreadonly(mt, true)
+
+while task.wait() do
+    if venus.Enabled and venus.AutoPred then
+        local pingValue = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
+        local ping = tonumber((pingValue:match("%d+")))
+
+        if ping then
+            if ping > 225 then
+                venus.Prediction = 0.166547
+            elseif ping > 215 then
+                venus.Prediction = 0.15692
+            elseif ping > 205 then
+                venus.Prediction = 0.165732
+            elseif ping > 190 then
+                venus.Prediction = 0.1690
+            elseif ping > 185 then
+                venus.Prediction = 0.1235666
+            elseif ping > 180 then
+                venus.Prediction = 0.16779123
+            elseif ping > 175 then
+                venus.Prediction = 0.165455312399999
+            elseif ping > 170 then
+                venus.Prediction = 0.16
+            elseif ping > 165 then
+                venus.Prediction = 0.15
+            elseif ping > 160 then
+                venus.Prediction = 0.1223333
+            elseif ping > 155 then
+                venus.Prediction = 0.125333
+            elseif ping > 150 then
+                venus.Prediction = 0.1652131
+            elseif ping > 145 then
+                venus.Prediction = 0.129934
+            elseif ping > 140 then
+                venus.Prediction = 0.1659921
+            elseif ping > 135 then
+                venus.Prediction = 0.1659921
+            elseif ping > 130 then
+                venus.Prediction = 0.12399
+            elseif ping > 125 then
+                venus.Prediction = 0.15465
+            elseif ping > 110 then
+                venus.Prediction = 0.142199
+            elseif ping > 105 then
+                venus.Prediction = 0.141199
+            elseif ping > 100 then
+                venus.Prediction = 0.134143
+            elseif ping > 90 then
+                venus.Prediction = 0.1433333333392
+            elseif ping > 80 then
+                venus.Prediction = 0.143214443
+            elseif ping > 70 then
+                venus.Prediction = 0.14899911
+            elseif ping > 60 then
+                venus.Prediction = 0.148325
+            elseif ping > 50 then
+                venus.Prediction = 0.128643
+            elseif ping > 40 then
+                venus.Prediction = 0.12766
+            elseif ping > 30 then
+                venus.Prediction = 0.124123
+            elseif ping > 20 then
+                venus.Prediction = 0.12435
+            elseif ping > 10 then
+                venus.Prediction = 0.1234555
+            elseif ping < 10 then
+                venus.Prediction = 0.1332
+            else
+                venus.Prediction = 0.1342
+            end
+        end
+    end
+end
+
+
+
+
+
+
+if desync.sky == true then
+    getgenv().VenusSky = true 
+    getgenv().SkyAmount = 90
+
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if getgenv().VenusSky then 
+            local vel = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, getgenv().SkyAmount, 0) 
+            game:GetService("RunService").RenderStepped:Wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = vel
+        end
+    end)
+end
+
+if desync.jump == true then
+    getgenv().jumpanti = true
+    
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if getgenv().jumpanti then    
+            local CurrentVelocity = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(1000, 1000, 1000)
+            game:GetService("RunService").RenderStepped:Wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = CurrentVelocity
+        end
+    end)
+end
+
+if desync.jump == true then
+
+-- Maximum Roblox velocity (128^2 or 16384)
+local velMax = (128 ^ 2)
+
+local timeRelease, timeChoke = 0.015, 0.105
+
+local Property, Wait = sethiddenproperty, task.wait
+local Radian, Random, Ceil = math.rad, math.random, math.ceil
+local Angle = CFrame.Angles
+local Vector = Vector3.new
+local Service = game.GetService
+
+local Run = Service(game, 'RunService')
+local Stats = Service(game, 'Stats')
+local Players = Service(game, 'Players')
+local LocalPlayer = Players.LocalPlayer
+local statPing = Stats.PerformanceStats.Ping
+local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local Root = Character:WaitForChild("HumanoidRootPart")
+local Mouse = LocalPlayer:GetMouse()
+
+local runRen, runBeat = Run.RenderStepped, Run.Heartbeat
+local runRenWait, runRenCon = runRen.Wait, runRen.Connect
+local runBeatCon = runBeat.Connect
+
+local function Ping()
+    return statPing:GetValue()
+end
+
+local function Sleep()
+    Property(Root, 'NetworkIsSleeping', true)
+end
+
+local function FireGun()
+    local tool = LocalPlayer.Character:FindFirstChildOfClass("Tool")
+    if tool and tool:FindFirstChild("Shoot") then
+        local ShootEvent = tool.Shoot
+        ShootEvent:FireServer(Mouse.Hit.Position)
+    end
+end
+
+local function Init()
+    if not Root then return end
+
+    local rootVel = Root.Velocity
+    local rootCFrame = Root.CFrame
+
+   
+    local rootAng = Random(-180, 180)
+    local rootOffset do
+        local X = Random(-velMax, velMax)
+        local Y = Random(0, velMax)
+        local Z = Random(-velMax, velMax)
+        rootOffset = Vector(X, -Y, Z)
+    end
+
+    Root.CFrame = Angle(0, Radian(rootAng), 0)
+    Root.Velocity = rootOffset
+
+   
+    FireGun()
+
+
+    runRenWait(runRen)
+    Root.CFrame = rootCFrame
+    Root.Velocity = rootVel
+end
+
+runBeatCon(runBeat, Init)
+
+-- Main loop for choking replication
+while Wait(timeRelease) do
+    -- Stable replication packets
+    local chokeClient, chokeServer = runBeatCon(runBeat, Sleep), runRenCon(runRen, Sleep)
+
+    Wait(Ceil(Ping()) / 1000)
+
+    chokeClient:Disconnect()
+    chokeServer:Disconnect()
+
+end
+end
+
+if desync.network == true then
+local RunService = game:GetService("RunService")
+
+local function onHeartbeat()
+    setfflag("S2PhysicsSenderRate", 1)
+end
+
+RunService.Heartbeat:Connect(onHeartbeat)
+end
+
+if Misc.LowGfx == true then
+game:GetService("CorePackages").Packages:Destroy()
+end
+
+if FPSunlocker.Enabled then
+    setfpscap(FPSunlocker.FPSCap)
+end

@@ -19,6 +19,7 @@ getgenv().venus = {
     ["TTKO"] = false,
     ["Mode"] = "Controller",
     ["KOCheckEnabled"] = false,
+    ["AutoAirEnabled"] = false,
     ["cframe"] = {
         ["enabled"] = false,
         ["speed"] = 2,
@@ -255,7 +256,7 @@ end)
 
 
 local Window = Library:CreateWindow({
-    Title = "Failurty.cc [khen.cc] v1.0.8",
+    Title = "Failurty.cc [khen.cc] v1.0.9",
     Center = true,
     AutoShow = true,
     Size = UDim2.new(0, 450, 0, 380)
@@ -470,13 +471,13 @@ set:AddDropdown(
     "Hitpart",
     {
         Values = {"Head", "UpperTorso", "HumanoidRootPart", "LowerTorso", "LeftUpperArm", "RightUpperArm", "LeftLeg", "RightLeg"},
-        Default = 1,  -- Default selection is "UpperTorso" (index 1)
-        Multi = false,  -- Single selection (not multiple)
+        Default = 1,
+        Multi = false,
         Text = "Hitpart",
         Tooltip = "Choose the hit part",
         Callback = function(value)
-            venus.AimPart = value  -- Update the AimPart for targeting
-            camlock.AimPart = value -- Ensure camlock uses the same AimPart
+            venus.AimPart = value
+            targetaim.targetPart = Value
         end
     }
 )
@@ -1648,8 +1649,6 @@ fov:AddLabel('Circle Color'):AddColorPicker('ColorPicker', {
     end
 })
 
-fov:AddLabel('')
-
 -- Initial drawing of the circle based on the default state
 local circleInstance = getCircle()
 circleInstance.Visible = circleEnabled
@@ -1667,8 +1666,6 @@ assist:AddToggle(
         end
     }
 )
-
-
 
 
 

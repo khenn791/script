@@ -477,7 +477,7 @@ set:AddDropdown(
         Tooltip = "Choose the hit part",
         Callback = function(value)
             venus.AimPart = value
-            targetaim.targetPart = Value
+            camlock.targetPart = Value
         end
     }
 )

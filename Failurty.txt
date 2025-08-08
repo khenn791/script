@@ -14,7 +14,7 @@ getgenv().venus = {
     ["Prediction"] = 0.12588,
     ["Smoothness"] = 1,
     ["ShakeValue"] = 0,
-    ["AutoPred"] = true,
+    ["AutoPred"] = false,
     ["Loaded"] = false,
     ["TTKO"] = false,
     ["Mode"] = "Controller",
@@ -255,7 +255,7 @@ end)
 
 
 local Window = Library:CreateWindow({
-    Title = "Failurty.cc [khen.cc] v1.0.7",
+    Title = "Failurty.cc [khen.cc] v1.0.8",
     Center = true,
     AutoShow = true,
     Size = UDim2.new(0, 450, 0, 380)
@@ -265,7 +265,8 @@ local Tabs = {
         Main = Window:AddTab("Main"),
         Rage = Window:AddTab("Visuals"),
         More = Window:AddTab("Buttons"),
-        ["UI Settings"] = Window:AddTab("Configs")
+        ["UI Settings"] = Window:AddTab("Configs"),
+        Credit = Window:AddTab("Credit")
     }
 
 Library:SetWatermarkVisibility(true)
@@ -1437,8 +1438,8 @@ local last_render = 0
 local drawings = {
     crosshair = {},
     text = {
-        Drawing.new('Text', {Size = 13, Font = 2, Outline = true, Text = 'Failurty', Color = Color3.new(255, 255, 255)}),
-        Drawing.new('Text', {Size = 13, Font = 2, Outline = true, Text = ' .CC', Color = Color3.fromRGB(86, 87, 142)}),
+        Drawing.new('Text', {Size = 13, Font = 2, Outline = true, Text = 'im', Color = Color3.new(255, 255, 255)}),
+        Drawing.new('Text', {Size = 13, Font = 2, Outline = true, Text = 'khen', Color = Color3.fromRGB(86, 87, 142)}),
     }
 }
 
@@ -1667,6 +1668,16 @@ assist:AddToggle(
     }
 )
 
+
+
+
+
+
+
+
+
+
+
 -- Variables
 local speedd = 50
 local screenGui = nil
@@ -1843,6 +1854,131 @@ else
 end
 
 
+
+
+local macroGroup = Tabs.More:AddRightGroupbox("Macro")
+
+
+local function spawnMacroButton()
+    local player = game.Players.LocalPlayer
+    local playerGui = player:WaitForChild("PlayerGui")
+    local userInputService = game:GetService("UserInputService")
+    local lastMacroPosition = nil -- Biến lưu vị trí MacroButton
+
+    local function setupGui()
+        local screenGui = playerGui:FindFirstChild("MacroScreenGui") or Instance.new("ScreenGui", playerGui)
+        screenGui.Name = "MacroScreenGui"
+        screenGui.ResetOnSpawn = false
+
+        local MacroButton = screenGui:FindFirstChild("MacroButton") or Instance.new("TextButton", screenGui)
+        MacroButton.Name = "MacroButton"
+        MacroButton.Size = UDim2.new(0, 100, 0, 50)
+        MacroButton.Position = lastMacroPosition or UDim2.new(0.5, 150, 0.8, -225)
+        MacroButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+        MacroButton.BackgroundTransparency = 0.45
+        MacroButton.Text = "Macro OFF"
+        MacroButton.TextColor3 = Color3.fromRGB(200, 200, 200)
+        MacroButton.TextScaled = false
+        MacroButton.TextSize = 14
+        MacroButton.Font = Enum.Font.Gotham
+        MacroButton.BorderSizePixel = 0
+        MacroButton.Active = true
+        MacroButton.Draggable = true
+
+        local UICorner = Instance.new("UICorner", MacroButton)
+        UICorner.CornerRadius = UDim.new(0, 15)
+
+        local UIStroke = Instance.new("UIStroke", MacroButton)
+        UIStroke.Color = Color3.fromRGB(255, 255, 255)
+        UIStroke.Thickness = 2
+
+        local isMacroEnabled = false
+        local macroConnection
+
+        local function updateMacroButtonAppearance()
+            if isMacroEnabled then
+                MacroButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+                MacroButton.Text = "Macro ON"
+                UIStroke.Color = Color3.fromRGB(150, 255, 150)
+            else
+                MacroButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+                MacroButton.Text = "Macro OFF"
+                UIStroke.Color = Color3.fromRGB(255, 255, 255)
+            end
+        end
+
+        MacroButton.MouseButton1Click:Connect(function()
+            isMacroEnabled = not isMacroEnabled
+            updateMacroButtonAppearance()
+
+            if isMacroEnabled then
+                macroConnection = game:GetService("RunService").RenderStepped:Connect(function()
+                    local character = player.Character
+                    if character and character:FindFirstChild("HumanoidRootPart") then
+                        local camera = workspace.CurrentCamera
+                        local rootPart = character.HumanoidRootPart
+                        local cameraDirection = camera.CFrame.LookVector
+                        rootPart.CFrame = CFrame.new(rootPart.Position, rootPart.Position + Vector3.new(cameraDirection.X, 0, cameraDirection.Z))
+                    end
+                end)
+                if notificationsEnabled then
+                    NotificationSystem:Notify("Macro Enabled", 3)
+                end
+            else
+                if macroConnection then
+                    macroConnection:Disconnect()
+                    macroConnection = nil
+                end
+                if notificationsEnabled then
+                    NotificationSystem:Notify("Macro Disabled", 3)
+                end
+            end
+        end)
+
+        MacroButton.MouseEnter:Connect(function()
+            MacroButton.BackgroundTransparency = 0.1
+            MacroButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            UIStroke.Color = isMacroEnabled and Color3.fromRGB(180, 255, 180) or Color3.fromRGB(200, 200, 200)
+        end)
+
+        MacroButton.MouseLeave:Connect(function()
+            MacroButton.BackgroundTransparency = 0.45
+            MacroButton.TextColor3 = Color3.fromRGB(200, 200, 200)
+            updateMacroButtonAppearance()
+        end)
+
+        MacroButton:GetPropertyChangedSignal("Position"):Connect(function()
+            lastMacroPosition = MacroButton.Position
+        end)
+
+        updateMacroButtonAppearance()
+    end
+
+    setupGui()
+
+    game.Players.LocalPlayer.CharacterAdded:Connect(function()
+        setupGui()
+    end)
+end
+
+
+
+macroGroup:AddButton('Load Macro', function()
+    spawnMacroButton()
+
+    if notificationsEnabled then
+        Library:Notify('Macro Button Loaded', 3)
+    end
+end)
+
+local creditGroup = Tabs.Credit:AddLeftGroupbox("Credits")
+
+creditGroup:AddLabel("")
+creditGroup:AddLabel("Developer: Tuan Khen")
+creditGroup:AddLabel("")
+creditGroup:AddLabel("Ideator: @doibuonjwkkjjk\n in tiktok")
+
+
         
 local MenuGroup = Tabs['UI Settings']:AddRightGroupbox('Menu')
 
@@ -1959,6 +2095,9 @@ local function GetClosestPlayer()
     return closestPlayer
 end
 
+
+
+
 local notificationsEnabled = false -- Default state for notifications
 
 assist:AddToggle(
@@ -1972,6 +2111,17 @@ assist:AddToggle(
         end
     }
 )
+
+
+-- ok
+
+
+
+
+
+
+
+
 
 local function ToggleLock()
     if AimlockState then

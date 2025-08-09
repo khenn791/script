@@ -2366,24 +2366,24 @@ setreadonly(mt, false)
 mt.__namecall = newcclosure(function(Self, ...)
     local args = {...}
     local methodName = getnamecallmethod()
-    if not checkcaller() and methodName == "FireServer" and targetaim.enabled and target and target.Character then
-        for i, Argument in ipairs(args) do
-            if typeof(Argument) == "Vector3" then
-                local targetPart = target.Character:FindFirstChild(targetaim.targetPart)
-                if targetPart then
-                    local predictedPos = targetPart.Position + (targetPart.Velocity * venus.Prediction)
-                    
-                    -- Thêm jump offset nếu có
-                    if venus.JumpOffset and venus.JumpOffset ~= 0 then
-                        predictedPos = predictedPos + Vector3.new(0, venus.JumpOffset, 0)
+
+    -- Kiểm tra điều kiện để xử lý prediction
+    if not checkcaller() and methodName == "FireServer" and targetaim.enabled then
+        if target and target.Character then
+            local targetPart = target.Character[targetaim.targetPart]
+            if targetPart then
+                for i, arg in ipairs(args) do
+                    if typeof(arg) == "Vector3" then
+                        args[i] = targetPart.Position
+                            + targetPart.Velocity * venus.Prediction
+                            + Vector3.new(0, venus.JumpOffset, 0)
+                        break -- Chỉ chỉnh sửa đối số Vector3 đầu tiên
                     end
-                    
-                    args[i] = predictedPos
-                    break
                 end
             end
         end
     end
+
     return oldNameCall(Self, unpack(args))
 end)
 

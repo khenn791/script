@@ -2182,39 +2182,14 @@ RunService.RenderStepped:Connect(function()
     end
 end)
 
--- CHỈ TARGET AIM - DÙNG CẢ 2 HOOKS
+
 local mt = getrawmetatable(game)
-local oldIndex = mt.__index
 local oldNamecall = mt.__namecall
 setreadonly(mt, false)
 
--- TARGET AIM - INDEX HOOK (thay cho Silent)
-mt.__index = newcclosure(function(Self, Key)
-    if TargetAim.Enabled and (Key == "Hit" or Key == "Target") then
-        if target and target.Character then
-            local targetPart = target.Character[TargetAim.TargetPart]
-            if targetPart then
-                local predictedPosition = targetPart.Position + (targetPart.Velocity * TargetAim.Prediction)
-                
-                -- Jump offset
-                local jumpOffset = imkhen.JumpOffset or TargetAim.JumpOffset or 0.04
-                if math.abs(targetPart.Velocity.Y) < 3 then
-                    predictedPosition = Vector3.new(predictedPosition.X, predictedPosition.Y + jumpOffset, predictedPosition.Z)
-                end
-                
-                if Key == "Hit" then
-                    return CFrame.new(predictedPosition) -- Return CFrame for Hit
-                elseif Key == "Target" then
-                    return targetPart -- Return the target part
-                end
-            end
-        end
-    end
-    
-    return oldIndex(Self, Key)
-end)
 
--- TARGET AIM - NAMECALL HOOK
+
+
 mt.__namecall = newcclosure(function(Self, ...)
     local args = {...}
     local methodName = getnamecallmethod()

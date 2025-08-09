@@ -3,6 +3,9 @@
 -- i'm quit
 
 
+game.StarterGui:SetCore("SendNotification",{Title="loading",Text="wait",Duration=5})
+
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script-khen/refs/heads/main/larplarpbypasser.txt"))()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))()
@@ -20,6 +23,10 @@ getgenv().venus = {
     ["Mode"] = "Controller",
     ["KOCheckEnabled"] = false,
     ["AutoAirEnabled"] = false,
+    ["AntiGroundShots"] = {
+        ["enabled"] = false,
+        ["value"] = 0.5,
+    },
     ["cframe"] = {
         ["enabled"] = false,
         ["speed"] = 2,
@@ -256,7 +263,7 @@ end)
 
 
 local Window = Library:CreateWindow({
-    Title = "Failurty.cc [khen.cc] v1.1.0",
+    Title = "Failurty.cc [khen.cc] v1.1.2",
     Center = true,
     AutoShow = true,
     Size = UDim2.new(0, 450, 0, 380)
@@ -331,11 +338,11 @@ assist:AddToggle(
 safe:AddToggle(
     "Enable AntiGroundShots",
     {
-        Text = "Enable Antigroundshots",
+        Text = "Antigroundshots",
         Default = false,
         Tooltip = "Enable for safety",
         Callback = function(state)
-            venus.Safety = state
+            venus.AntiGroundShots.enabled = state
         end
     }
 ) 
@@ -350,7 +357,7 @@ safe:AddInput(
             Tooltip = "Change if you would like to",
             Placeholder = "0.5",
             Callback = function(value)
-                venus.Safety = value
+                venus.AntiGroundShots.value = value
             end
         }
     )
@@ -2269,64 +2276,80 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
 end)
 
 RS.RenderStepped:Connect(function()
-    if AimlockState and Victim and Victim.Character and Victim.Character:FindFirstChild(venus.AimPart) then
-        local aimPart = Victim.Character[venus.AimPart]
+    if AimlockState and Victim and Victim.Character and Victim.Character:FindFirstChild("Humanoid") and Victim.Character:FindFirstChild(venus.AimPart) then
+        local humanoid = Victim.Character.Humanoid
+        
 
-        -- Single Prediction Calculation
-        local predictedPosition = aimPart.Position 
-            + aimPart.Velocity * venus.Prediction
-            + Vector3.new(0, venus.JumpOffset, 0)
-
-        -- Look at the target smoothly only if LookAt is enabled and target aim is active
-        if venus.LookAtEnabled and targetaim.enabled then
-            local lookPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
-            Camera.CFrame = Camera.CFrame:Lerp(lookPosition, venus.Smoothness)
-
-            local playerHRP = player.Character.HumanoidRootPart
-            playerHRP.CFrame = CFrame.new(playerHRP.Position, Vector3.new(predictedPosition.X, playerHRP.Position.Y, predictedPosition.Z))
-        end
-
-        -- Camlock functionality
-        if AimlockState then
-            local playerHRP = player.Character.HumanoidRootPart
-            local camlockPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
-            Camera.CFrame = Camera.CFrame:Lerp(camlockPosition, venus.Smoothness)
-
-            -- Target strafe functionality (Orbiting)
-            if venus.cframe.TargetStrafe.Enabled then
-                local lp = player.Character
-                local targpos = Victim.Character.HumanoidRootPart.Position
-                
-                -- Calculate strafe offset for orbiting
-                local angle = tick() * venus.cframe.TargetStrafe.StrafeSpeed
-                local strafeOffset = Vector3.new(
-                    math.cos(angle) * venus.cframe.TargetStrafe.StrafeRadius,
-                    venus.cframe.TargetStrafe.Height,
-                    math.sin(angle) * venus.cframe.TargetStrafe.StrafeRadius
-                )
-
-                local strafePosition = targpos + strafeOffset
-                strafePosition = Vector3.new(strafePosition.X, math.max(strafePosition.Y, targpos.Y), strafePosition.Z)
-                
-                lp:SetPrimaryPartCFrame(CFrame.new(strafePosition))
-                playerHRP.CFrame = CFrame.new(
-                    playerHRP.Position,
-                    Vector3.new(targpos.X, playerHRP.Position.Y, targpos.Z)
-                )
+        if venus.KOCheckEnabled and humanoid.Health <= 10 then
+            Locked = false
+            Victim = nil
+            target = nil
+            if LockButton then
+                LockButton.Image = "rbxassetid://88399410034249" -- Hình ảnh nút khóa khi không khóa
             end
-        end
+            if notificationsEnabled then
+                NotificationSystem:Notify("ez", 5)
+            end
+        else
+            -- Code hiện có cho aimlock và các tính năng khác
+            local aimPart = Victim.Character[venus.AimPart]
 
-        -- Auto Air functionality
-        if venus.AutoAirEnabled then
-            local TargetRootPart = Victim.Character:FindFirstChild("HumanoidRootPart")
-            if TargetRootPart then
-                local TargetVel = TargetRootPart.Velocity
-                if TargetVel.Y > 25 then
-                    local Character = LocalPlayer.Character
-                    if Character then
-                        local Tool = Character:FindFirstChildOfClass("Tool")
-                        if Tool then
-                            Tool:Activate()
+            -- Tính toán vị trí dự đoán
+            local predictedPosition = aimPart.Position 
+                + aimPart.Velocity * venus.Prediction
+                + Vector3.new(0, venus.JumpOffset, 0)
+
+            -- Look at the target smoothly only if LookAt is enabled and target aim is active
+            if venus.LookAtEnabled and targetaim.enabled then
+                local lookPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
+                Camera.CFrame = Camera.CFrame:Lerp(lookPosition, venus.Smoothness)
+
+                local playerHRP = player.Character.HumanoidRootPart
+                playerHRP.CFrame = CFrame.new(playerHRP.Position, Vector3.new(predictedPosition.X, playerHRP.Position.Y, predictedPosition.Z))
+            end
+
+            -- Camlock functionality
+            if AimlockState then
+                local playerHRP = player.Character.HumanoidRootPart
+                local camlockPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
+                Camera.CFrame = Camera.CFrame:Lerp(camlockPosition, venus.Smoothness)
+
+                -- Target strafe functionality (Orbiting)
+                if venus.cframe.TargetStrafe.Enabled then
+                    local lp = player.Character
+                    local targpos = Victim.Character.HumanoidRootPart.Position
+                    
+                    -- Calculate strafe offset for orbiting
+                    local angle = tick() * venus.cframe.TargetStrafe.StrafeSpeed
+                    local strafeOffset = Vector3.new(
+                        math.cos(angle) * venus.cframe.TargetStrafe.StrafeRadius,
+                        venus.cframe.TargetStrafe.Height,
+                        math.sin(angle) * venus.cframe.TargetStrafe.StrafeRadius
+                    )
+
+                    local strafePosition = targpos + strafeOffset
+                    strafePosition = Vector3.new(strafePosition.X, math.max(strafePosition.Y, targpos.Y), strafePosition.Z)
+                    
+                    lp:SetPrimaryPartCFrame(CFrame.new(strafePosition))
+                    playerHRP.CFrame = CFrame.new(
+                        playerHRP.Position,
+                        Vector3.new(targpos.X, playerHRP.Position.Y, targpos.Z)
+                    )
+                end
+            end
+
+            -- Auto Air functionality
+            if venus.AutoAirEnabled then
+                local TargetRootPart = Victim.Character:FindFirstChild("HumanoidRootPart")
+                if TargetRootPart then
+                    local TargetVel = TargetRootPart.Velocity
+                    if TargetVel.Y > 25 then
+                        local Character = LocalPlayer.Character
+                        if Character then
+                            local Tool = Character:FindFirstChildOfClass("Tool")
+                            if Tool then
+                                Tool:Activate()
+                            end
                         end
                     end
                 end

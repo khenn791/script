@@ -2366,21 +2366,28 @@ setreadonly(mt, false)
 mt.__namecall = newcclosure(function(Self, ...)
     local args = {...}
     local methodName = getnamecallmethod()
-    if not checkcaller() and methodName == "FireServer" and targetaim.enabled then
+    if not checkcaller() and methodName == "FireServer" and targetaim.enabled and target and target.Character then
         for i, Argument in ipairs(args) do
-            if typeof(Argument) == "Vector3" and target and target.Character then
-                local targetPart = target.Character[targetaim.targetPart]
+            if typeof(Argument) == "Vector3" then
+                local targetPart = target.Character:FindFirstChild(targetaim.targetPart)
                 if targetPart then
-                    args[i] = targetPart.Position 
-                        + targetPart.Velocity * venus.Prediction
-                        + Vector3.new(0, venus.JumpOffset, 0)
-                    return oldNameCall(Self, unpack(args))
+                    local predictedPos = targetPart.Position + (targetPart.Velocity * venus.Prediction)
+                    
+                    -- Thêm jump offset nếu có
+                    if venus.JumpOffset and venus.JumpOffset ~= 0 then
+                        predictedPos = predictedPos + Vector3.new(0, venus.JumpOffset, 0)
+                    end
+                    
+                    args[i] = predictedPos
+                    break
                 end
             end
         end
     end
-    return oldNameCall(Self, ...)
+    return oldNameCall(Self, unpack(args))
 end)
+
+setreadonly(mt, true)
 
 while task.wait() do
     if venus.Enabled and venus.AutoPred then

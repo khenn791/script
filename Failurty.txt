@@ -2389,6 +2389,7 @@ end)
 
 setreadonly(mt, true)
 
+
 while task.wait() do
     if venus.Enabled and venus.AutoPred then
         local pingValue = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()

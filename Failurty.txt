@@ -2358,7 +2358,7 @@ RS.RenderStepped:Connect(function()
     end
 end)
 
--- Metatable Hook for Target Aim Adjustments
+
 local mt = getrawmetatable(game)
 local oldNameCall = mt.__namecall
 setreadonly(mt, false)
@@ -2381,8 +2381,6 @@ mt.__namecall = newcclosure(function(Self, ...)
     end
     return oldNameCall(Self, ...)
 end)
-
-setreadonly(mt, true)
 
 while task.wait() do
     if venus.Enabled and venus.AutoPred then

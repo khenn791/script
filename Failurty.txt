@@ -2035,10 +2035,10 @@ SaveManager:IgnoreThemeSettings()
 SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
 
 if not isfolder("failurty") then makefolder("failurty") end
-if not isfolder("failurty/configss") then makefolder("failurty/configss") end
+if not isfolder("failurty/configsss") then makefolder("failurty/configsss") end
 
-ThemeManager:SetFolder('failurty.CC')
-SaveManager:SetFolder('failurty/configss')
+ThemeManager:SetFolder('failurty.cc')
+SaveManager:SetFolder('failurty/configsss')
 
 SaveManager:BuildConfigSection(Tabs['UI Settings'])
 ThemeManager:ApplyToTab(Tabs['UI Settings'])

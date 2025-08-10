@@ -19,9 +19,7 @@ getgenv().venus = {
     ["ShakeValue"] = 0,
     ["AutoPred"] = false,
     ["Loaded"] = false,
-    ["TTKO"] = false,
     ["Mode"] = "Controller",
-    ["KOCheckEnabled"] = false,
     ["AutoAirEnabled"] = false,
     ["AntiGroundShots"] = {
         ["enabled"] = false,
@@ -1662,20 +1660,6 @@ circleInstance.Visible = circleEnabled
 
 
 
-assist:AddToggle(
-    "Enable KO Check",
-    {
-        Text = "Enable KO Check",
-        Default = false,
-        Tooltip = "",
-        Callback = function(state)
-            venus.KOCheckEnabled = state
-        end
-    }
-)
-
-
-
 
 
 
@@ -2054,7 +2038,7 @@ local Victim
 local target
 
 if venus.Loaded then
-    notify("lmao")
+    notify("Venus.CC is Already Loaded!")
     return
 end
 
@@ -2301,25 +2285,20 @@ setreadonly(mt, false)
 mt.__namecall = newcclosure(function(Self, ...)
     local args = {...}
     local methodName = getnamecallmethod()
-
-    -- Kiểm tra điều kiện để xử lý prediction
     if not checkcaller() and methodName == "FireServer" and targetaim.enabled then
-        if target and target.Character then
-            local targetPart = target.Character[targetaim.targetPart]
-            if targetPart then
-                for i, arg in ipairs(args) do
-                    if typeof(arg) == "Vector3" then
-                        args[i] = targetPart.Position
-                            + targetPart.Velocity * venus.Prediction
-                            + Vector3.new(0, venus.JumpOffset, 0)
-                        break -- Chỉ chỉnh sửa đối số Vector3 đầu tiên
-                    end
+        for i, Argument in ipairs(args) do
+            if typeof(Argument) == "Vector3" and target and target.Character then
+                local targetPart = target.Character[targetaim.targetPart]
+                if targetPart then
+                    args[i] = targetPart.Position 
+                        + targetPart.Velocity * venus.Prediction
+                        + Vector3.new(0, venus.JumpOffset, 0)
+                    return oldNameCall(Self, unpack(args))
                 end
             end
         end
     end
-
-    return oldNameCall(Self, unpack(args))
+    return oldNameCall(Self, ...)
 end)
 
 setreadonly(mt, true)

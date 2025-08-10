@@ -3,6 +3,9 @@
 -- i'm quit
 
 
+game.StarterGui:SetCore("SendNotification",{Title="loading",Text="wait",Duration=5})
+
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script-khen/refs/heads/main/larplarpbypasser.txt"))()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))()
@@ -20,6 +23,10 @@ getgenv().venus = {
     ["Mode"] = "Controller",
     ["KOCheckEnabled"] = false,
     ["AutoAirEnabled"] = false,
+    ["AntiGroundShots"] = {
+        ["enabled"] = false,
+        ["value"] = 0.5,
+    },
     ["cframe"] = {
         ["enabled"] = false,
         ["speed"] = 2,
@@ -256,7 +263,7 @@ end)
 
 
 local Window = Library:CreateWindow({
-    Title = "Failurty.cc [khen.cc]",
+    Title = "Failurty.cc [khen.cc] v1.1.2",
     Center = true,
     AutoShow = true,
     Size = UDim2.new(0, 450, 0, 380)
@@ -330,11 +337,11 @@ assist:AddToggle(
 safe:AddToggle(
     "Enable AntiGroundShots",
     {
-        Text = "Enable Antigroundshots",
+        Text = "Antigroundshots",
         Default = false,
         Tooltip = "Enable for safety",
         Callback = function(state)
-            venus.Safety = state
+            venus.AntiGroundShots.enabled = state
         end
     }
 ) 
@@ -349,7 +356,7 @@ safe:AddInput(
             Tooltip = "Change if you would like to",
             Placeholder = "0.5",
             Callback = function(value)
-                venus.Safety = value
+                venus.AntiGroundShots.value = value
             end
         }
     )
@@ -1976,6 +1983,12 @@ creditGroup:AddLabel("")
 creditGroup:AddLabel("Ideator: @doibuonjwkkjjk\n in tiktok")
 
 
+
+
+
+
+
+
         
 local MenuGroup = Tabs['UI Settings']:AddRightGroupbox('Menu')
 
@@ -2000,6 +2013,7 @@ SaveManager:BuildConfigSection(Tabs['UI Settings'])
 ThemeManager:ApplyToTab(Tabs['UI Settings'])
 
 SaveManager:LoadAutoloadConfig()
+
 
 
 
@@ -2060,7 +2074,7 @@ local function GetClosestPlayer()
             local screenPosition, onScreen = Camera:WorldToViewportPoint(part.Position)
 
             if onScreen then
-                local angle = math.deg(math.acos(math.max(-1, math.min(1, Camera.CFrame.LookVector:Dot(relativePos.Unit)))))
+                local angle = math.deg(math.acos(Camera.CFrame.LookVector:Dot(relativePos.Unit)))
                 
                 -- Only consider players within a specific angle range (in front of you)
                 if angle <= maxAngle then
@@ -2073,12 +2087,8 @@ local function GetClosestPlayer()
                         score = score * 0.001 -- Further reduce score for players directly in front
                     end
 
-                    local raycastParams = RaycastParams.new()
-                    raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
-                    raycastParams.FilterDescendantsInstances = {player.Character}
-                    
-                    local rayResult = WS:Raycast(Camera.CFrame.Position, relativePos.Unit * playerDistance, raycastParams)
-                    local hitPart = rayResult and rayResult.Instance
+                    local ray = Ray.new(Camera.CFrame.Position, relativePos.Unit * playerDistance)
+                    local hitPart = WS:FindPartOnRayWithIgnoreList(ray, {player.Character})
 
                     if (not hitPart or hitPart:IsDescendantOf(plr.Character)) and score < shortestScore then
                         closestPlayer = plr
@@ -2091,9 +2101,6 @@ local function GetClosestPlayer()
 
     return closestPlayer
 end
-
-
-
 
 local notificationsEnabled = false -- Default state for notifications
 
@@ -2108,17 +2115,6 @@ assist:AddToggle(
         end
     }
 )
-
-
--- ok
-
-
-
-
-
-
-
-
 
 local function ToggleLock()
     if AimlockState then
@@ -2305,20 +2301,25 @@ setreadonly(mt, false)
 mt.__namecall = newcclosure(function(Self, ...)
     local args = {...}
     local methodName = getnamecallmethod()
+
+    -- Kiểm tra điều kiện để xử lý prediction
     if not checkcaller() and methodName == "FireServer" and targetaim.enabled then
-        for i, Argument in ipairs(args) do
-            if typeof(Argument) == "Vector3" and target and target.Character then
-                local targetPart = target.Character[targetaim.targetPart]
-                if targetPart then
-                    args[i] = targetPart.Position 
-                        + targetPart.Velocity * venus.Prediction
-                        + Vector3.new(0, venus.JumpOffset, 0)
-                    return oldNameCall(Self, unpack(args))
+        if target and target.Character then
+            local targetPart = target.Character[targetaim.targetPart]
+            if targetPart then
+                for i, arg in ipairs(args) do
+                    if typeof(arg) == "Vector3" then
+                        args[i] = targetPart.Position
+                            + targetPart.Velocity * venus.Prediction
+                            + Vector3.new(0, venus.JumpOffset, 0)
+                        break -- Chỉ chỉnh sửa đối số Vector3 đầu tiên
+                    end
                 end
             end
         end
     end
-    return oldNameCall(Self, ...)
+
+    return oldNameCall(Self, unpack(args))
 end)
 
 setreadonly(mt, true)
@@ -2446,7 +2447,8 @@ local Stats = Service(game, 'Stats')
 local Players = Service(game, 'Players')
 local LocalPlayer = Players.LocalPlayer
 local statPing = Stats.PerformanceStats.Ping
-local Root = LocalPlayer.Character and LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local Root = Character:WaitForChild("HumanoidRootPart")
 local Mouse = LocalPlayer:GetMouse()
 
 local runRen, runBeat = Run.RenderStepped, Run.Heartbeat
@@ -2462,9 +2464,7 @@ local function Sleep()
 end
 
 local function FireGun()
-    local char = LocalPlayer.Character
-    if not char then return end
-    local tool = char:FindFirstChildOfClass("Tool")
+    local tool = LocalPlayer.Character:FindFirstChildOfClass("Tool")
     if tool and tool:FindFirstChild("Shoot") then
         local ShootEvent = tool.Shoot
         ShootEvent:FireServer(Mouse.Hit.Position)

@@ -1,51 +1,4 @@
-local functions = {
-    rconsoleprint,
-    print,
-    rconsoleerr,
-    rconsolewarn,
-    warn,
-    error
-}
-
-for i, v in next, functions do
-    local old
-    old =
-        hookfunction(
-        v,
-        newcclosure(
-            function(...)
-                local args = {...}
-                for i, v in next, args do
-                    if tostring(i):find("https") or tostring(v):find("https") then
-                        while true do
-                        end
-                    end
-                end
-                return old(...)
-            end
-        )
-    )
-end
-
-if _G.ID then
-    while true do
-    end
-end
-setmetatable(
-    _G,
-    {
-        __newindex = function(t, i, v)
-            if tostring(i) == "ID" then
-                while true do
-                end
-            end
-        end
-    }
-)
-
-repeat
-	task.wait();
-until game:IsLoaded()
+setfpscap(1000)
 
 
 
@@ -2084,97 +2037,102 @@ local function AutoShoot()
 end
 
 RunService.RenderStepped:Connect(function()
-    if AimlockState and Victim and Victim.Character then
-        if Victim.Character:FindFirstChild(imkhen.AimPart) then
-            local aimPart = Victim.Character[imkhen.AimPart]
-            local predictedPosition = aimPart.Position + aimPart.Velocity * imkhen.Prediction
-            local smoothnessToUse = imkhen.Smoothness
+    if AimlockState and Victim and Victim.Character and Victim.Character:FindFirstChild("Humanoid") and Victim.Character:FindFirstChild(imkhen.AimPart) then
+        local humanoid = Victim.Character.Humanoid
+        local aimPart = Victim.Character[imkhen.AimPart]
 
-            if Victim.Character:FindFirstChild("Humanoid") then
-                local velocityY = aimPart.Velocity.Y
-                local humanoid = Victim.Character:FindFirstChild("Humanoid")
-                
-                if getgenv().MouseTp.MouseTp then
-                    if velocityY > getgenv().MouseTp.Velocity then
-                        smoothnessToUse = getgenv().MouseTp.Intensity
-                        predictedPosition = Vector3.new(predictedPosition.X, predictedPosition.Y + getgenv().MouseTp.HighValue, predictedPosition.Z)
-                    elseif humanoid:GetState() == Enum.HumanoidStateType.Physics then
-                        smoothnessToUse = getgenv().MouseTp.Intensity
-                        predictedPosition = Vector3.new(predictedPosition.X, predictedPosition.Y + getgenv().MouseTp.HighValue, predictedPosition.Z)
-                    else
-                        smoothnessToUse = imkhen.Smoothness
-                    end
+        -- Tính toán vị trí dự đoán (venus style)
+        local predictedPosition = aimPart.Position 
+            + aimPart.Velocity * imkhen.Prediction
+            + Vector3.new(0, imkhen.JumpOffset, 0)
+        local smoothnessToUse = imkhen.Smoothness
+
+        -- MouseTp system cho jump prediction
+        if getgenv().MouseTp.MouseTp then
+            local velocityY = aimPart.Velocity.Y
+            if velocityY > getgenv().MouseTp.Velocity then
+                smoothnessToUse = getgenv().MouseTp.Intensity
+                predictedPosition = Vector3.new(predictedPosition.X, predictedPosition.Y + getgenv().MouseTp.HighValue, predictedPosition.Z)
+            elseif humanoid:GetState() == Enum.HumanoidStateType.Physics then
+                smoothnessToUse = getgenv().MouseTp.Intensity
+                predictedPosition = Vector3.new(predictedPosition.X, predictedPosition.Y + getgenv().MouseTp.HighValue, predictedPosition.Z)
+            else
+                smoothnessToUse = imkhen.Smoothness
+            end
+        end
+
+        -- Camlock functionality
+        local camlockPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
+        Camera.CFrame = Camera.CFrame:Lerp(camlockPosition, smoothnessToUse)
+
+        -- Player velocity management (anti-fall damage)
+        local Plr = game.Players.LocalPlayer
+        local character = Plr and Plr.Character
+        if character then
+            local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+            if humanoidRootPart then
+                local velocity = humanoidRootPart.Velocity
+                local kzzhh = humanoidRootPart.Position.Y > 2
+
+                if not kzzhh and velocity.Y < -3 then
+                    humanoidRootPart.Velocity = Vector3.new(velocity.X, 0, velocity.Z)
+                else
+                    humanoidRootPart.Velocity = Vector3.new(velocity.X, velocity.Y, velocity.Z)
                 end
             end
+        end
 
-            local camlockPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
-            Camera.CFrame = Camera.CFrame:Lerp(camlockPosition, smoothnessToUse)
+        -- Spectate Mode
+        if getgenv().SpectateEnabled and TargetAim.Enabled and Victim.Character:FindFirstChild("Head") then
+            local targetHead = Victim.Character.Head
+            local headPosition = targetHead.Position
+            local cameraOffset = Vector3.new(0, 8, -12)
+            local spectatePosition = headPosition + cameraOffset
+            Camera.CFrame = CFrame.new(spectatePosition, headPosition)
+        end
 
-            local Plr = game.Players.LocalPlayer
-            local character = Plr and Plr.Character
+        -- Look at functionality
+        if getgenv().LookAtEnabled and TargetAim.Enabled then
+            local lookPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
+            Camera.CFrame = Camera.CFrame:Lerp(lookPosition, smoothnessToUse)
 
-            if character then
-                local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-                if humanoidRootPart then
-                    local velocity = humanoidRootPart.Velocity
-                    local kzzhh = humanoidRootPart.Position.Y > 2
+            local playerHRP = Plr.Character.HumanoidRootPart
+            if playerHRP then
+                playerHRP.CFrame = CFrame.new(playerHRP.Position, Vector3.new(predictedPosition.X, playerHRP.Position.Y, predictedPosition.Z))
+            end
+        end
 
-                    if not kzzhh and velocity.Y < -3 then
-                        humanoidRootPart.Velocity = Vector3.new(velocity.X, 0, velocity.Z)
-                    else
-                        humanoidRootPart.Velocity = Vector3.new(velocity.X, velocity.Y, velocity.Z)
-                    end
+        -- Auto Air system
+        if AutoAir.Enabled then
+            local TargetRootPart = Victim.Character:FindFirstChild("HumanoidRootPart")
+            if TargetRootPart then
+                local TargetVel = TargetRootPart.Velocity
+                if TargetVel.Y > AutoAir.MinVelocity then
+                    wait(AutoAir.Delay)
+                    AutoShoot()
                 end
             end
+        end
 
-            if getgenv().SpectateEnabled and TargetAim.Enabled and Victim and Victim.Character and Victim.Character:FindFirstChild("Head") then
-                local targetHead = Victim.Character.Head
-                local headPosition = targetHead.Position
-                local cameraOffset = Vector3.new(0, 8, -12)
-                local spectatePosition = headPosition + cameraOffset
-                Camera.CFrame = CFrame.new(spectatePosition, headPosition)
-            end
+        -- Target Strafe system (code gốc)
+        if getgenv().TargetStrafeEnabled and Victim.Character then
+            local humanoidRootPart = Victim.Character:FindFirstChild("HumanoidRootPart")
+            if humanoidRootPart then
+                local targetPosition = humanoidRootPart.Position
+                local strafeRadius = getgenv().RandomizedEnabled and math.random(40, 100) or getgenv().StrafeRadius
+                local strafeHeight = getgenv().RandomizedEnabled and math.random(5, 15) or getgenv().StrafeHeight
+                local strafeSpeed = getgenv().RandomizedEnabled and math.random(3, 10) or getgenv().StrafeSpeed
 
-            if getgenv().LookAtEnabled and TargetAim.Enabled then
-                local lookPosition = CFrame.new(Camera.CFrame.p, predictedPosition)
-                Camera.CFrame = Camera.CFrame:Lerp(lookPosition, smoothnessToUse)
+                local angle = tick() * strafeSpeed
+                local offsetX = math.sin(angle) * strafeRadius
+                local offsetZ = math.cos(angle) * strafeRadius
 
-                local playerHRP = Plr.Character.HumanoidRootPart
-                if playerHRP then
-                    playerHRP.CFrame = CFrame.new(playerHRP.Position, Vector3.new(predictedPosition.X, playerHRP.Position.Y, predictedPosition.Z))
-                end
-            end
+                local strafePosition = targetPosition + Vector3.new(offsetX, strafeHeight, offsetZ)
 
-            if AutoAir.Enabled then
-                local TargetRootPart = Victim.Character:FindFirstChild("HumanoidRootPart")
-                if TargetRootPart then
-                    local TargetVel = TargetRootPart.Velocity
-                    if TargetVel.Y > AutoAir.MinVelocity then
-                        wait(AutoAir.Delay)
-                        AutoShoot()
-                    end
-                end
-            end
-
-            if getgenv().TargetStrafeEnabled and Victim and Victim.Character then
-                local humanoidRootPart = Victim.Character:FindFirstChild("HumanoidRootPart")
-                if humanoidRootPart then
-                    local targetPosition = humanoidRootPart.Position
-                    local strafeRadius = getgenv().RandomizedEnabled and math.random(40, 100) or getgenv().StrafeRadius
-                    local strafeHeight = getgenv().RandomizedEnabled and math.random(5, 15) or getgenv().StrafeHeight
-                    local strafeSpeed = getgenv().RandomizedEnabled and math.random(3, 10) or getgenv().StrafeSpeed
-
-                    local angle = tick() * strafeSpeed
-                    local offsetX = math.sin(angle) * strafeRadius
-                    local offsetZ = math.cos(angle) * strafeRadius
-
-                    local strafePosition = targetPosition + Vector3.new(offsetX, strafeHeight, offsetZ)
-
-                    if character then
-                        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-                        if humanoidRootPart then
-                            humanoidRootPart.CFrame = CFrame.new(strafePosition)
-                        end
+                if character then
+                    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+                    if humanoidRootPart then
+                        humanoidRootPart.CFrame = CFrame.new(strafePosition)
                     end
                 end
             end

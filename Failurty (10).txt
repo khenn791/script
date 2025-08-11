@@ -12,7 +12,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/m
 -----
 
 getgenv().venus = {
-    ["Enabled"] = true,
+    ["Enabled"] = false,
     ["AimPart"] = "Head",
     ["Prediction"] = 0.12588,
     ["Smoothness"] = 1,
@@ -2277,29 +2277,48 @@ RS.RenderStepped:Connect(function()
     end
 end)
 
--- Metatable Hook for Target Aim Adjustments
+
 local mt = getrawmetatable(game)
-local oldNameCall = mt.__namecall
+local oldNamecall = mt.__namecall
 setreadonly(mt, false)
+
+
+
 
 mt.__namecall = newcclosure(function(Self, ...)
     local args = {...}
     local methodName = getnamecallmethod()
-    if not checkcaller() and methodName == "FireServer" and targetaim.enabled then
-        for i, Argument in ipairs(args) do
-            if typeof(Argument) == "Vector3" and target and target.Character then
-                local targetPart = target.Character[targetaim.targetPart]
-                if targetPart then
-                    args[i] = targetPart.Position 
-                        + targetPart.Velocity * venus.Prediction
-                        + Vector3.new(0, venus.JumpOffset, 0)
-                    return oldNameCall(Self, unpack(args))
+
+    if targetaim.enabled then
+        if not checkcaller() and methodName == "FireServer" then
+            for i, Argument in ipairs(args) do
+                if typeof(Argument) == "Vector3" and target and target.Character then
+                    local targetPart = target.Character[targetaim.targetPart]
+                    if targetPart then
+                        local adjustedPosition = targetPart.Position + (targetPart.Velocity * venus.Prediction)
+                        
+                        local jumpOffset = venus.JumpOffset or 0.04
+                        if math.abs(targetPart.Velocity.Y) < 3 then
+                            adjustedPosition = Vector3.new(adjustedPosition.X, adjustedPosition.Y + jumpOffset, adjustedPosition.Z)
+                        end
+                        
+                        args[i] = adjustedPosition
+                        return oldNamecall(Self, unpack(args))
+                    end
                 end
             end
         end
     end
-    return oldNameCall(Self, ...)
+
+    return oldNamecall(Self, ...)
 end)
+
+setreadonly(mt, true)
+
+
+
+
+
 
 setreadonly(mt, true)
 

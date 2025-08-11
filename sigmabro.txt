@@ -2,7 +2,6 @@ setfpscap(1000)
 
 
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))()
 
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
@@ -66,9 +65,8 @@ getgenv().HitSound = {
 }
 
 getgenv().Checks = {
-    ["Wall"] = true,
-    ["AutoUnlock"] = true,
-    ["Notify"] = true,
+    ["Wall"] = false,
+    ["Notify"] = false,
     ["DamageNotify"] = false,
 }
 
@@ -412,7 +410,7 @@ Section:Toggle({
 Section:List({
     Name = "Resolver Mode",
     Options = {"Recalculate Velocity", "Aiming", "MoveDirection"},
-    Default = "Aiming",
+    Default = "MoveDirection",
     Callback = function(value)
         SelectedResolver = value
         if not RecalculateEnabled then
@@ -485,7 +483,7 @@ Section:Toggle({
 })
 
 Section2:Toggle({
-    Name = "Ping", 
+    Name = "Ping Based", 
     Callback = function(State)
         getgenv().imkhen.AutoPredMode = State and "Ping Based"
         updatePredictionValue()
@@ -545,12 +543,7 @@ Section4:Toggle({
     end
 })
 
-Section4:Toggle({
-    Name = "KO", 
-    Callback = function(State)
-        getgenv().Checks.AutoUnlock = State
-    end
-})
+
 
 Section4:Toggle({
     Name = "Notify", 
@@ -561,6 +554,11 @@ Section4:Toggle({
     end
 })
 
+
+local speed = 45
+local speedMultiplier = 50
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local RunService = game:GetService("RunService")
 local AniUnderGroundEnabled = false
 
 Section4:Toggle({
@@ -572,7 +570,6 @@ Section4:Toggle({
 
 local Section5 = SubPage2:Section({ Name = "Hit" })
 local Section1 = SubPage2:Section({ Name = "Vision", Side = "Right" })
-local Section2 = SubPage2:Section({ Name = "Spin", Side = "Left" })
 local Section3 = SubPage2:Section({ Name = "Visuals", Side = "Right" })
 local Section4 = SubPage2:Section({ Name = "Trail", Side = "Left" })
 local Section6 = SubPage2:Section({ Name = "Textures", Side = "Right" })
@@ -611,38 +608,9 @@ Section5:Toggle({
 
 
 
-local speed = 45
-local speedMultiplier = 50
-local LocalPlayer = game:GetService("Players").LocalPlayer
-local RunService = game:GetService("RunService")
-local AniUnderGroundEnabled = false
 
-Section2:Toggle({
-    Name = "Enabled",
-    Callback = function(state)
-        AniUnderGroundEnabled = state
-    end
-})
 
-Section2:Slider({
-    Name = "Intensity",
-    Min = 1,
-    Max = 100,
-    Default = 50,
-    Decimals = 1,
-    Callback = function(value)
-        speed = value
-    end
-})
 
-RunService.RenderStepped:Connect(function(Delta)
-    if AniUnderGroundEnabled then
-        LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(speed * speedMultiplier) * Delta, 0)
-        LocalPlayer.Character:FindFirstChild("Humanoid").AutoRotate = false
-    else
-        LocalPlayer.Character:FindFirstChild("Humanoid").AutoRotate = true
-    end
-end)
 
 local CrosshairEnabled = false
 
@@ -1892,23 +1860,28 @@ local function ToggleLock()
             end
             Victim = GetClosestPlayer()
             target = Victim
-            if Victim then
+            if Victim and Victim.Name then -- FIX: Thêm check Victim.Name
                 createNotification("Locked: Onto " .. tostring(Victim.Name))
                 if Victim.Character then
                     local targetHumanoid = Victim.Character:FindFirstChild("Humanoid")
                     if targetHumanoid then
                         local lastHealth = targetHumanoid.Health
-                        notifiedDamage[Victim.Name] = false
+                        local victimName = Victim.Name -- FIX: Lưu tên trước
+                        notifiedDamage[victimName] = false
 
                         targetHumanoid.HealthChanged:Connect(function(health)
                             local damageTaken = lastHealth - health
                             if damageTaken > 0 then
-                                if getgenv().Checks.DamageNotify and not notifiedDamage[Victim.Name] then
-                                    notifiedDamage[Victim.Name] = true
-                                    createNotification("Hit: " .. Victim.Name)
-                                    playSound(Victim.Character)
-                                    wait(0.5)
-                                    notifiedDamage[Victim.Name] = false
+                                if getgenv().Checks.DamageNotify and not notifiedDamage[victimName] then -- FIX: Dùng victimName
+                                    notifiedDamage[victimName] = true
+                                    createNotification("Hit: " .. victimName) -- FIX: Dùng victimName
+                                    if Victim and Victim.Character then -- FIX: Check Victim tồn tại
+                                        playSound(Victim.Character)
+                                    end
+                                    spawn(function() -- FIX: Dùng spawn thay vì wait
+                                        wait(0.5)
+                                        notifiedDamage[victimName] = false
+                                    end)
                                 end
                             end
                             lastHealth = health
@@ -1931,31 +1904,12 @@ local function ToggleLock()
     end
 end
 
-local function CheckForKnockOrDeath()
-    if Victim and Victim.Character then
-        local targetHumanoid = Victim.Character:FindFirstChild("Humanoid")
-        if targetHumanoid then
-            if targetHumanoid.Health <= knockThreshold or 
-               targetHumanoid:GetState() == Enum.HumanoidStateType.Physics or
-               targetHumanoid:GetState() == Enum.HumanoidStateType.Seated then
-                if Locked then
-                    if getgenv().Checks["AutoUnlock"] then
-                        ToggleLock()
-                    end
-                end
-            end
-        end
-    end
-end
+
 
 UserInputService.InputBegan:Connect(function(input)
     if input.KeyCode.Name == getgenv().imkhen["KeyBind"] then
         ToggleLock()
     end
-end)
-
-game:GetService("RunService").Heartbeat:Connect(function()
-    CheckForKnockOrDeath()
 end)
 
 
@@ -2025,16 +1979,7 @@ Button2:Button({
     end
 })
 
-local function AutoShoot()
-    local character = game.Players.LocalPlayer.Character
-    if character then
-        local tool = character:FindFirstChildOfClass("Tool")
-        if tool and tool:IsA("Tool") then
-            tool:Activate()
-        end
-    end
-    wait(0.1)
-end
+
 
 RunService.RenderStepped:Connect(function()
     if AimlockState and Victim and Victim.Character and Victim.Character:FindFirstChild("Humanoid") and Victim.Character:FindFirstChild(imkhen.AimPart) then
@@ -2103,13 +2048,18 @@ RunService.RenderStepped:Connect(function()
         end
 
         -- Auto Air system
-        if AutoAir.Enabled then
+        if getgenv().AutoAir.Enabled and Victim and Victim.Character then
             local TargetRootPart = Victim.Character:FindFirstChild("HumanoidRootPart")
             if TargetRootPart then
                 local TargetVel = TargetRootPart.Velocity
-                if TargetVel.Y > AutoAir.MinVelocity then
-                    wait(AutoAir.Delay)
-                    AutoShoot()
+                if TargetVel.Y > 25 then
+                    local Character = LocalPlayer.Character
+                    if Character then
+                        local Tool = Character:FindFirstChildOfClass("Tool")
+                        if Tool then
+                            Tool:Activate()
+                        end
+                    end
                 end
             end
         end
@@ -2177,6 +2127,7 @@ mt.__namecall = newcclosure(function(Self, ...)
 end)
 
 setreadonly(mt, true)
+
 
 
 local Stats = game:GetService("Stats")

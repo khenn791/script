@@ -1,12 +1,12 @@
-setfpscap(1000)
+setfpscap(9999)
 
 
 
-
+loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))()
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
     Title = "Loading...",
-    Text = "Please wait while the script is loading.",
+    Text = "wait",
     Duration = 3
 })
 
@@ -83,18 +83,6 @@ getgenv().Fov = {
     ["FovColor"] = Color3.new(1, 1, 1),
 }
 
-getgenv().ESP = {
-    Enabled = false,
-    BoxEsp = false,
-    NameEsp = false,
-    DistanceEsp = false,
-    hpesp = false,
-    Box_Color = Color3.new(1, 1, 1),
-    Name_Color = Color3.new(1, 1, 1),
-    Distance_Color = Color3.new(1, 1, 1),
-    Font = 2,
-    Font_Size = 12
-}
 
 getgenv().imkhen = getgenv().imkhen or {}
 
@@ -819,9 +807,7 @@ local CurrentCamera = workspace.CurrentCamera
 local worldToViewportPoint = CurrentCamera.worldToViewportPoint
 
 local healthBarEnabled = false
-
-
-
+local toolEspEnabled = false
 
 Section1:Toggle({
     Name = "Boxes & Health",
@@ -830,10 +816,22 @@ Section1:Toggle({
     end
 })
 
+Section1:Toggle({
+    Name = "Tool",
+    Callback = function(State)
+        toolEspEnabled = State
+    end
+})
+
 local HeadOff = Vector3.new(0, 0.5, 0)
 local LegOff = Vector3.new(0, 3, 0)
 
-local function createJamkleBox(v)
+local function createkhenBox(v)
+    -- Skip creating ESP for local player
+    if v == lplr then
+        return
+    end
+    
     local BoxOutline = Drawing.new("Square")
     BoxOutline.Visible = false -- Keep this invisible
     BoxOutline.Color = Color3.new(0, 0, 0)
@@ -857,8 +855,25 @@ local function createJamkleBox(v)
     HealthBar.Thickness = 1.5 -- Line thickness for health bar
     HealthBar.Visible = false
 
+    local ToolText = Drawing.new("Text")
+    ToolText.Visible = false
+    ToolText.Size = 11
+    ToolText.Center = true
+    ToolText.Outline = true
+    ToolText.OutlineColor = Color3.new(0, 0, 0)
+    ToolText.Color = Color3.new(1, 1, 1) -- White text
+
     local function boxesp()
         game:GetService("RunService").RenderStepped:Connect(function()
+            -- Double check to make sure we're not drawing on local player
+            if v == lplr then
+                Box.Visible = false
+                HealthBarOutline.Visible = false
+                HealthBar.Visible = false
+                ToolText.Visible = false
+                return
+            end
+            
             if v.Character and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("HumanoidRootPart") and v.Character.Humanoid.Health > 0 then
                 local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
 
@@ -869,11 +884,6 @@ local function createJamkleBox(v)
                 local LegPosition = worldToViewportPoint(CurrentCamera, RootPart.Position - LegOff)
 
                 if onScreen and healthBarEnabled then
-                    -- Remove the BoxOutline drawing
-                    -- BoxOutline.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
-                    -- BoxOutline.Position = Vector2.new(RootPosition.X - BoxOutline.Size.X / 2, RootPosition.Y - BoxOutline.Size.Y / 2)
-                    -- BoxOutline.Visible = true -- Keep BoxOutline invisible
-
                     Box.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
                     Box.Position = Vector2.new(RootPosition.X - Box.Size.X / 2, RootPosition.Y - Box.Size.Y / 2)
                     Box.Visible = true -- Only the white box is visible
@@ -893,10 +903,25 @@ local function createJamkleBox(v)
                     HealthBarOutline.Visible = false
                     HealthBar.Visible = false
                 end
+                
+                -- Tool ESP
+                if onScreen and toolEspEnabled then
+                    local toolName = "None"
+                    if v.Character:FindFirstChildOfClass("Tool") then
+                        toolName = v.Character:FindFirstChildOfClass("Tool").Name
+                    end
+                    
+                    ToolText.Text = toolName
+                    ToolText.Position = Vector2.new(RootPosition.X, LegPosition.Y + 10)
+                    ToolText.Visible = true
+                else
+                    ToolText.Visible = false
+                end
             else
                 Box.Visible = false -- Hide the white box if the character isn't valid
                 HealthBarOutline.Visible = false
                 HealthBar.Visible = false
+                ToolText.Visible = false
             end
         end)
     end
@@ -904,11 +929,11 @@ local function createJamkleBox(v)
 end
 
 for _, v in pairs(game.Players:GetChildren()) do
-    createJamkleBox(v)
+    createkhenBox(v)
 end
 
 game.Players.PlayerAdded:Connect(function(v)
-    createJamkleBox(v)
+    createkhenBox(v)
 end)
 
 local lplr = game.Players.LocalPlayer

@@ -1,3 +1,6 @@
+-- Adonis Bypaassss
+
+
 local g = getinfo or debug.getinfo
 local d = false
 local h = {}
@@ -17,6 +20,7 @@ for i, v in getgc(true) do
             local o; o = hookfunction(x, function(c, f, n)
                 if c ~= "_" then
                     if d then
+                        warn(`Adonis AntiCheat flagged\nMethod: {c}\nInfo: {f}`)
                     end
                 end
                 
@@ -30,6 +34,7 @@ for i, v in getgc(true) do
             y = b
             local o; o = hookfunction(y, function(f)
                 if d then
+                    warn(`Adonis AntiCheat tried to kill (fallback): {f}`)
                 end
             end)
 
@@ -43,6 +48,7 @@ local o; o = hookfunction(getrenv().debug.info, newcclosure(function(...)
 
     if x and a == x then
         if d then
+            warn(`gay | adonis bypassed`)
         end
 
         return coroutine.yield(coroutine.running())
@@ -52,59 +58,3 @@ local o; o = hookfunction(getrenv().debug.info, newcclosure(function(...)
 end))
 
 setthreadidentity(7)
-
-if game.PlaceId == 7213786345 or game.PlaceId == 16033173781 or game.PlaceId == 2788229376 then
-    local a = {
-        "BANREMOTE",
-        "PERMAIDBAN",
-        "KICKREMOTE", 
-        "BR_KICKPC",
-        "BR_KICKMOBILE",
-        "OneMoreTime",
-        "CHECKER_1",
-        "TeleportDetect",
-        "CHECKER",
-        "GUI_CHECK",
-        "checkingSPEED",
-        "CHECKER_1", 
-        "TeleportDetect",
-        "OneMoreTime",
-        "PERMA-BAN",
-        "PERMABAN",
-        "BreathingHAMON",
-        "JJARC",
-        "TakePoisonDamage",
-        "FORCEFIELD",
-        "Christmas_Sock",
-        "VirusCough",
-        "Symbiote",
-        "Symbioted",
-        "RequestAFKDisplay"
-    }
-
-    local Remote
-
-    local FireHook
-    FireHook = hookmetamethod(
-        game,
-        "__namecall",
-        function(...)
-            local c = {...}
-            local self, d, e = c[1], getnamecallmethod(), getcallingscript()
-            if d == "FireServer" and self == Remote and table.find(a, c[2]) then
-                return
-            end
-            return FireHook(...)
-        end
-    )
-
-    local RemoteNames = {"MainEvent", "Bullets", "Remote", "MAINEVENT"}
-    for _, remote in pairs(game.ReplicatedStorage:GetDescendants()) do
-        if table.find(RemoteNames, remote.Name) and remote:IsA("RemoteEvent") then
-            Remote = remote
-            break
-        end
-    end
-
-    return Remote
-end

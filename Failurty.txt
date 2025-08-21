@@ -1,1 +1,100 @@
-loadstring(game:HttpGet("https://khencc.vercel.app/script/failurty.cc", true))();
+local gui = Instance.new("ScreenGui", game.CoreGui)
+local frame = Instance.new("Frame", gui)
+frame.BackgroundColor3 = Color3.fromRGB(35,35,35)
+frame.Size = UDim2.new(0,300,0,200)
+frame.Position = UDim2.new(0.5,-150,0.5,-100)
+frame.Active, frame.Draggable = true, true
+
+local corner = Instance.new("UICorner", frame)
+corner.CornerRadius = UDim.new(0,10)
+
+local stroke = Instance.new("UIStroke", frame)
+stroke.Color = Color3.fromRGB(70,70,70)
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1,0,0,40)
+title.Font = Enum.Font.GothamBold
+title.Text = "VERSION SELECTOR"
+title.TextSize = 16
+title.BackgroundTransparency = 1
+title.TextColor3 = Color3.new(1,1,1)
+
+local oldBtn = Instance.new("TextButton", frame)
+oldBtn.Size = UDim2.new(0.8,0,0,35)
+oldBtn.Position = UDim2.new(0.1,0,0.3,0)
+oldBtn.Text = "Old Version"
+oldBtn.Font = Enum.Font.Gotham
+oldBtn.TextColor3 = Color3.new(1,1,1)
+oldBtn.BackgroundColor3 = Color3.fromRGB(70,130,180)
+Instance.new("UICorner", oldBtn).CornerRadius = UDim.new(0,6)
+
+local newBtn = Instance.new("TextButton", frame)
+newBtn.Size = UDim2.new(0.8,0,0,35)
+newBtn.Position = UDim2.new(0.1,0,0.5,0)
+newBtn.Text = "New Version"
+newBtn.Font = Enum.Font.Gotham
+newBtn.TextColor3 = Color3.new(1,1,1)
+newBtn.BackgroundColor3 = Color3.fromRGB(34,139,34)
+Instance.new("UICorner", newBtn).CornerRadius = UDim.new(0,6)
+
+local discordBtn = Instance.new("TextButton", frame)
+discordBtn.Size = UDim2.new(0.6,0,0,25)
+discordBtn.Position = UDim2.new(0.1,0,0.7,0)
+discordBtn.Text = "Copy Our Discord"
+discordBtn.Font = Enum.Font.Gotham
+discordBtn.TextColor3 = Color3.new(1,1,1)
+discordBtn.BackgroundColor3 = Color3.fromRGB(88,101,242)
+Instance.new("UICorner", discordBtn).CornerRadius = UDim.new(0,6)
+
+local closeBtn = Instance.new("TextButton", frame)
+closeBtn.Size = UDim2.new(0.15,0,0,25)
+closeBtn.Position = UDim2.new(0.75,0,0.7,0)
+closeBtn.Text = "X"
+closeBtn.Font = Enum.Font.Gotham
+closeBtn.TextColor3 = Color3.new(1,1,1)
+closeBtn.BackgroundColor3 = Color3.fromRGB(220,20,60)
+Instance.new("UICorner", closeBtn).CornerRadius = UDim.new(0,6)
+
+local oldScript = "https://khencc.vercel.app/script/failurty.cc"
+local newScript = "https://khencc.vercel.app/script/failurty_new.txt"
+local discord = "https://discord.gg/AwvEUDyDQm"
+local clicked = false
+
+local function runScript(url)
+    if clicked then return end
+    clicked = true
+    oldBtn.Text,newBtn.Text="Loading...","Loading..."
+    oldBtn.BackgroundColor3 = Color3.fromRGB(100,100,100)
+    newBtn.BackgroundColor3 = Color3.fromRGB(100,100,100)
+    local ok,err=pcall(function() loadstring(game:HttpGet(url))() end)
+    if ok then
+        wait(0.5)
+        gui:Destroy()
+    else
+        clicked=false
+        oldBtn.Text,newBtn.Text="Old Version","New Version"
+        oldBtn.BackgroundColor3 = Color3.fromRGB(70,130,180)
+        newBtn.BackgroundColor3 = Color3.fromRGB(34,139,34)
+    end
+end
+
+oldBtn.MouseButton1Click:Connect(function() runScript(oldScript) end)
+newBtn.MouseButton1Click:Connect(function() runScript(newScript) end)
+
+discordBtn.MouseButton1Click:Connect(function()
+    if setclipboard then
+        setclipboard(discord)
+        discordBtn.Text = "Copied!"
+        wait(2)
+        discordBtn.Text = "Copy Our Discord"
+    end
+end)
+
+closeBtn.MouseButton1Click:Connect(function()
+    frame:TweenSize(UDim2.new(0,0,0,0),Enum.EasingDirection.In,Enum.EasingStyle.Back,0.3,true,function()
+        gui:Destroy()
+    end)
+end)
+
+frame.Size = UDim2.new(0,0,0,0)
+frame:TweenSize(UDim2.new(0,300,0,200),Enum.EasingDirection.Out,Enum.EasingStyle.Back,0.5,true)

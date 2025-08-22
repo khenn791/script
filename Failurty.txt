@@ -68,7 +68,7 @@ local function runScript(url)
     newBtn.BackgroundColor3 = Color3.fromRGB(100,100,100)
     local ok,err=pcall(function() loadstring(game:HttpGet(url))() end)
     if ok then
-        wait(0.5)
+        task.wait(1)
         gui:Destroy()
     else
         clicked=false
@@ -85,7 +85,7 @@ discordBtn.MouseButton1Click:Connect(function()
     if setclipboard then
         setclipboard(discord)
         discordBtn.Text = "Copied!"
-        wait(2)
+        task.wait(2)
         discordBtn.Text = "Copy Our Discord"
     end
 end)

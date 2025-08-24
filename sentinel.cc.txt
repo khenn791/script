@@ -3,17 +3,14 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script-khen/
 loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))()
 
 
-local repo = 'https://raw.githubusercontent.com/khen791/library/cac/'
+local repo = "https://raw.githubusercontent.com/khen791/library/main/"
 
+local Library = loadstring(game:HttpGet(repo .. "Library.lua..txt"))()
 
-local Library = loadstring(game:HttpGet(repo .. 'main.txt'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. "nini/ThemeManager.lua"))()
 
+local SaveManager = loadstring(game:HttpGet(repo .. "nini/SaveManager.lua"))()
 
-
-
-
-local ThemeManager = loadstring(game:HttpGet(repo .. 'nini/ThemeManager.lua'))()
-local SaveManager = loadstring(game:HttpGet(repo .. 'nini/SaveManager.lua'))()
 
 local Window = Library:CreateWindow({
     Title = 'Sentinel.cc',
@@ -1078,6 +1075,7 @@ targetSigm99928 = getgenv().Psalms.ShootDelay
 end)
 
 --------------------------
+
 
 
 print("khen.cc")

@@ -56,7 +56,7 @@ closeBtn.BackgroundColor3 = Color3.fromRGB(220,20,60)
 Instance.new("UICorner", closeBtn).CornerRadius = UDim.new(0,6)
 
 local oldScript = "https://khencc.vercel.app/script/failurty.cc"
-local newScript = "https://khencc.vercel.app/script/failurty_new.txt"
+local newScript = "https://raw.githubusercontent.com/khenn791/script/refs/heads/khen.cc/failurty_new"
 local discord = "https://discord.gg/AwvEUDyDQm"
 local clicked = false
 

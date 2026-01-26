@@ -1,0 +1,21 @@
+local _StarterGui = game:GetService('StarterGui')
+
+local function v61()
+    setclipboard('discord.gg/f35NmWdW5c')
+    _StarterGui:SetCore('SendNotification', {
+        Title = 'khen.cc',
+        Text = 'Copied to Clipboard',
+        Duration = 1,
+    })
+end
+
+local _BindableFunction = Instance.new('BindableFunction')
+_BindableFunction.OnInvoke = v61
+
+_StarterGui:SetCore('SendNotification', {
+    Title = 'Discord Server Link',
+    Text = 'Click To Copy',
+    Duration = 6,
+    Button1 = 'Copy to Clipboard',
+    Callback = _BindableFunction,
+})

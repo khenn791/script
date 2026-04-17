@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script-khen/refs/heads/main/larplarpbypasser.txt"))()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/aa8283/i/refs/heads/main/Protected_2547730226887233.txt"))()
+loadstring(game:HttpGet'https://pastefy.app/aAkQKVF4/raw')()
 
 
 local repo = "https://raw.githubusercontent.com/khen791/library/main/"

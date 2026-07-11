@@ -1,2 +1,1 @@
-getgenv().script_id = "HHJihHUuvc9a"
-loadstring(game:HttpGet("https://protectscripts.vercel.app/skid.txt"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/khenn791/script/refs/heads/main/new%20iguess"))()
